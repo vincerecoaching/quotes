@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote #3146 | Miranda Electrical</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --volt:       #F0E010;
+    --volt-dark:  #C8BC00;
+    --volt-glow:  rgba(240,224,16,0.18);
+    --charcoal:   #111316;
+    --charcoal-2: #181B1F;
+    --charcoal-3: #1F2329;
+    --charcoal-4: #272D35;
+    --steel:      #7A8494;
+    --steel-lt:   #9BA5B4;
+    --white:      #F4F6F8;
+    --green:      #22C55E;
+    --red:        #EF4444;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--charcoal);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30 L20 30 M40 30 L60 30 M30 0 L30 20 M30 40 L30 60' stroke='rgba(240,224,16,0.04)' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='2' fill='rgba(240,224,16,0.06)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ══ TOP BAR ══ */
+  .topbar {
+    background: var(--volt);
+    padding: 10px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+    z-index: 10;
+  }
+  .topbar-left { display: flex; gap: 28px; flex-wrap: wrap; }
+  .topbar-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--charcoal); }
+  .topbar-item strong { font-weight: 700; }
+  .topbar-right { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(17,19,22,0.6); }
+
+  /* ══ HERO ══ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 20%, rgba(240,224,16,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 60% at 90% 80%, rgba(240,224,16,0.04) 0%, transparent 50%),
+      linear-gradient(160deg, #1A1D24 0%, #111316 50%, #0D0F12 100%);
+  }
+  .hero-slash {
+    position: absolute;
+    top: 0; right: 0;
+    width: 500px; height: 100%;
+    background: linear-gradient(160deg, transparent 0%, transparent 45%, rgba(240,224,16,0.04) 45%, rgba(240,224,16,0.04) 46%, transparent 46%, transparent 55%, rgba(240,224,16,0.025) 55%, rgba(240,224,16,0.025) 56%, transparent 56%);
+    pointer-events: none;
+  }
+  .hero-bolt {
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 500px;
+    opacity: 0.018;
+    color: var(--volt);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; }
+
+  .hero-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 52px 64px 0;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .logo-img { height: 44px; width: auto; display: block; margin-bottom: 8px; filter: brightness(0) invert(1); }
+  .logo-wordmark { font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 2px; color: #fff; display: none; }
+  .logo-wordmark span { color: var(--volt); }
+  .logo-tagline { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--steel); margin-top: 6px; }
+
+  .quote-ref-block { text-align: right; }
+  .qr-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--volt); }
+  .qr-number { font-family: 'Bebas Neue', sans-serif; font-size: 56px; letter-spacing: 2px; color: #fff; line-height: 1; margin-top: 4px; }
+  .qr-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--steel); margin-top: 6px; }
+
+  .hero-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 64px;
+    padding: 56px 64px 80px;
+    align-items: center;
+  }
+  .hl-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--volt); margin-bottom: 22px;
+  }
+  .hl-tag::before { content: ''; width: 3px; height: 18px; background: var(--volt); border-radius: 2px; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 7.5vw, 104px); letter-spacing: 2px; line-height: 0.88; color: #fff; margin-bottom: 30px; }
+  .hero-title .volt { color: var(--volt); }
+  .hero-title .dim { color: rgba(255,255,255,0.22); }
+  .hero-intro { font-size: 16px; line-height: 1.8; color: var(--steel-lt); max-width: 500px; margin-bottom: 44px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-accept {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--volt); color: var(--charcoal);
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 40px; border: none; border-radius: 2px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .btn-accept::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); opacity: 0; transition: opacity 0.2s; }
+  .btn-accept:hover::after { opacity: 1; }
+  .btn-accept:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(240,224,16,0.35); }
+
+  .btn-call {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: #fff;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.25s;
+  }
+  .btn-call:hover { border-color: var(--volt); color: var(--volt); }
+
+  /* CLIENT CARD */
+  .client-card {
+    background: var(--charcoal-2);
+    border: 1px solid rgba(240,224,16,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .client-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--volt); }
+  .cc-header { background: var(--charcoal-3); padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); margin-top: 3px; }
+  .cc-header-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); }
+  .cc-status { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: #4ADE80; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; }
+  .cc-status::before { content: '▶'; font-size: 7px; }
+  .cc-body { padding: 28px; }
+  .cc-name { font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 1.5px; color: #fff; margin-bottom: 4px; }
+  .cc-address { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--steel); margin-bottom: 28px; letter-spacing: 0.5px; }
+  .cc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+  .cc-key { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--steel); margin-bottom: 5px; }
+  .cc-val { font-size: 14px; color: #fff; font-weight: 500; }
+  .cc-val.big { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--volt); }
+  .cc-validity { background: rgba(0,0,0,0.25); border-radius: 3px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.04); }
+  .cv-track { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
+  .cv-fill { height: 100%; width: 70%; background: var(--volt); border-radius: 2px; animation: fillBar 1.5s ease 0.5s both; }
+  @keyframes fillBar { from { width: 0; } to { width: 70%; } }
+  .cv-labels { display: flex; justify-content: space-between; align-items: center; }
+  .cv-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--steel); letter-spacing: 1px; }
+  .cv-days { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--volt); }
+
+  .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3; animation: fadeUp 1s ease 1.2s both; }
+  .scroll-hint span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--steel); }
+  .scroll-line { width: 1px; height: 44px; background: linear-gradient(var(--volt), transparent); animation: bob 2s ease-in-out infinite; }
+  @keyframes bob { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.1)} }
+  @keyframes fadeUp { from{opacity:0;transform:translate(-50%,16px)} to{opacity:1;transform:translate(-50%,0)} }
+
+  /* ══ TRUST BAR ══ */
+  .trust-bar { background: var(--charcoal-3); border-top: 2px solid rgba(240,224,16,0.2); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 24px 64px; position: relative; z-index: 2; }
+  .trust-inner { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .trust-item { display: flex; align-items: center; gap: 14px; }
+  .trust-icon { width: 40px; height: 40px; border-radius: 3px; background: rgba(240,224,16,0.08); border: 1px solid rgba(240,224,16,0.2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .trust-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: #fff; line-height: 1; }
+  .trust-label { font-size: 11px; color: var(--steel); margin-top: 2px; }
+
+  /* ══ SECTIONS ══ */
+  section { padding: 96px 64px; position: relative; z-index: 2; }
+  .container { max-width: 1300px; margin: 0 auto; }
+  .sec-tag { display: inline-flex; align-items: center; gap: 10px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--volt); margin-bottom: 16px; }
+  .sec-tag::before { content: '//'; opacity: 0.5; }
+  .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 5vw, 68px); letter-spacing: 1.5px; line-height: 0.95; margin-bottom: 14px; color: #fff; }
+  .sec-sub { font-size: 15px; color: var(--steel-lt); line-height: 1.7; max-width: 540px; }
+
+  /* ══ SCOPE ══ */
+  .scope { background: var(--charcoal); }
+  .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px; }
+  .scope-card {
+    background: var(--charcoal-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 3px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .scope-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--volt), transparent); opacity: 0; transition: opacity 0.3s; }
+  .scope-card:hover { transform: translateY(-4px); border-color: rgba(240,224,16,0.2); }
+  .scope-card:hover::after { opacity: 1; }
+  .scope-card.featured { border-color: rgba(240,224,16,0.2); }
+  .scope-card.featured::after { opacity: 1; }
+  .sc-num { font-family: 'Bebas Neue', sans-serif; font-size: 90px; letter-spacing: 2px; color: rgba(240,224,16,0.04); position: absolute; top: 8px; right: 16px; line-height: 1; }
+  .sc-icon { width: 46px; height: 46px; border-radius: 3px; background: rgba(240,224,16,0.1); border: 1px solid rgba(240,224,16,0.2); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; }
+  .sc-title { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px; color: #fff; margin-bottom: 10px; }
+  .sc-desc { font-size: 13px; color: var(--steel-lt); line-height: 1.7; margin-bottom: 18px; }
+  .sc-list { list-style: none; }
+  .sc-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.6); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .sc-list li:last-child { border-bottom: none; }
+  .sc-list li::before { content: '⚡'; color: var(--volt); flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+
+  /* Full-width scope card for long list */
+  .scope-grid-wide { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .scope-card-wide { grid-column: span 2; }
+
+  /* ══ WHY US ══ */
+  .why { background: var(--charcoal-2); }
+  .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-img-wrap { position: relative; border-radius: 3px; overflow: hidden; border: 1px solid rgba(240,224,16,0.15); }
+  .why-img-wrap img { width: 100%; display: block; filter: brightness(0.6) saturate(0.8); transition: filter 0.4s; }
+  .why-img-wrap:hover img { filter: brightness(0.75) saturate(1); }
+  .why-badge { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(17,19,22,0.95)); padding: 40px 24px 24px; }
+  .wb-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 1.5px; color: var(--volt); line-height: 1; }
+  .wb-label { font-size: 12px; color: var(--steel-lt); margin-top: 2px; }
+  .why-points { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .wp { display: flex; gap: 18px; align-items: flex-start; padding: 18px 20px; background: var(--charcoal-3); border: 1px solid rgba(255,255,255,0.04); border-radius: 3px; transition: border-color 0.3s; }
+  .wp:hover { border-color: rgba(240,224,16,0.2); }
+  .wp-icon { width: 40px; height: 40px; border-radius: 3px; background: rgba(240,224,16,0.1); border: 1px solid rgba(240,224,16,0.2); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .wp-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.5px; color: #fff; margin-bottom: 4px; }
+  .wp-desc { font-size: 13px; color: var(--steel-lt); line-height: 1.6; }
+
+  /* ══ PRICING ══ */
+  .pricing { background: var(--charcoal); }
+  .price-table { background: var(--charcoal-2); border: 1px solid rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-top: 48px; }
+  .pt-head { display: grid; grid-template-columns: 1fr 110px 160px 160px; padding: 14px 32px; background: var(--charcoal-3); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .pt-head span { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); }
+  .pt-head span:last-child { text-align: right; }
+  .pt-row { display: grid; grid-template-columns: 1fr 110px 160px 160px; padding: 18px 32px; border-bottom: 1px solid rgba(255,255,255,0.03); align-items: center; transition: background 0.2s; }
+  .pt-row:hover { background: rgba(240,224,16,0.03); }
+  .pt-row:last-child { border-bottom: none; }
+  .pt-item { font-size: 14px; color: #fff; }
+  .pt-item small { display: block; font-size: 11px; color: var(--steel); margin-top: 3px; font-weight: 300; }
+  .pt-qty, .pt-unit { font-size: 14px; color: var(--steel); font-family: 'Space Mono', monospace; }
+  .pt-total { font-size: 14px; color: #fff; text-align: right; font-weight: 500; font-family: 'Space Mono', monospace; }
+  .pt-total.incl { color: var(--green); }
+  .pt-footer { background: var(--charcoal-3); padding: 28px 32px; display: flex; justify-content: flex-end; flex-direction: column; align-items: flex-end; gap: 10px; border-top: 1px solid rgba(240,224,16,0.15); }
+  .ptf-row { display: flex; gap: 60px; align-items: center; }
+  .ptf-label { font-size: 13px; color: var(--steel); }
+  .ptf-val { font-family: 'Space Mono', monospace; font-size: 13px; color: #fff; text-align: right; min-width: 120px; }
+  .ptf-total { display: flex; gap: 60px; align-items: center; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .ptf-total-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1.5px; color: #fff; }
+  .ptf-total-val { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 1px; color: var(--volt); min-width: 120px; text-align: right; line-height: 1; }
+  .pt-note { margin-top: 20px; background: rgba(240,224,16,0.04); border: 1px solid rgba(240,224,16,0.15); border-radius: 3px; padding: 16px 20px; font-size: 12px; color: var(--steel-lt); line-height: 1.7; font-family: 'Space Mono', monospace; }
+  .pt-note strong { color: var(--volt); }
+
+  /* ══ GALLERY ══ */
+  .gallery { background: var(--charcoal-2); }
+  .gallery-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 10px; margin-top: 48px; }
+  .gi { border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; }
+  .gi:first-child { grid-row: span 2; }
+  .gi img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.6) saturate(0.7); transition: transform 0.5s ease, filter 0.4s ease; }
+  .gi:hover img { transform: scale(1.05); filter: brightness(0.8) saturate(1); }
+  .gi::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(240,224,16,0); transition: border-color 0.3s; border-radius: 3px; pointer-events: none; }
+  .gi:hover::after { border-color: rgba(240,224,16,0.4); }
+  .gi-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(10,12,15,0.92)); font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
+  .gi:hover .gi-label { opacity: 1; }
+
+  /* ══ REVIEWS ══ */
+  .reviews { background: var(--charcoal); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px; }
+  .rv-card { background: var(--charcoal-2); border: 1px solid rgba(255,255,255,0.05); border-radius: 3px; padding: 30px; transition: border-color 0.3s, transform 0.3s; }
+  .rv-card:hover { border-color: rgba(240,224,16,0.2); transform: translateY(-4px); }
+  .rv-card.featured { border-color: rgba(240,224,16,0.15); }
+  .rv-qmark { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: rgba(240,224,16,0.1); line-height: 0.8; margin-bottom: 12px; letter-spacing: 2px; }
+  .rv-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+  .rv-star { color: var(--volt); font-size: 14px; }
+  .rv-text { font-size: 13px; line-height: 1.8; color: var(--steel-lt); margin-bottom: 22px; font-style: italic; }
+  .rv-author { display: flex; align-items: center; gap: 12px; }
+  .rv-avatar { width: 40px; height: 40px; border-radius: 2px; background: var(--charcoal-4); border: 1px solid rgba(240,224,16,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 1px; color: var(--volt); }
+  .rv-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.5px; color: #fff; }
+  .rv-loc { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--steel); margin-top: 2px; }
+
+  /* ══ PROCESS ══ */
+  .process { background: var(--charcoal-2); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 52px; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 38px; left: 80px; right: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--volt), transparent); opacity: 0.4; }
+  .ps { text-align: center; padding: 0 20px; }
+  .ps-circle { width: 76px; height: 76px; border-radius: 2px; background: var(--charcoal-3); border: 1px solid rgba(240,224,16,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; color: var(--volt); position: relative; z-index: 2; transition: all 0.3s; }
+  .ps:hover .ps-circle { background: var(--volt); color: var(--charcoal); box-shadow: 0 0 30px rgba(240,224,16,0.4); }
+  .ps-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.5px; color: #fff; margin-bottom: 10px; }
+  .ps-desc { font-size: 13px; color: var(--steel-lt); line-height: 1.6; }
+
+  /* ══ GUARANTEE ══ */
+  .guarantee { background: var(--charcoal); padding: 80px 64px; }
+  .guarantee-inner { max-width: 1300px; margin: 0 auto; background: var(--charcoal-2); border: 1px solid rgba(240,224,16,0.15); border-radius: 3px; padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; overflow: hidden; }
+  .guarantee-inner::before { content: '⚡'; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-size: 200px; opacity: 0.025; pointer-events: none; line-height: 1; }
+  .g-title { font-family: 'Bebas Neue', sans-serif; font-size: 54px; letter-spacing: 2px; color: #fff; line-height: 0.95; margin-bottom: 16px; }
+  .g-title span { color: var(--volt); }
+  .g-desc { font-size: 14px; color: var(--steel-lt); line-height: 1.7; }
+  .g-points { display: flex; flex-direction: column; gap: 18px; }
+  .gp { display: flex; gap: 16px; align-items: flex-start; }
+  .gp-icon { width: 34px; height: 34px; border-radius: 2px; background: var(--volt); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .gp-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.5px; color: #fff; margin-bottom: 3px; }
+  .gp-desc { font-size: 12px; color: var(--steel-lt); line-height: 1.5; }
+
+  /* ══ ACCEPT CTA ══ */
+  .accept-section { background: var(--volt); padding: 100px 64px; position: relative; overflow: hidden; }
+  .accept-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(0,0,0,0.04) 24px, rgba(0,0,0,0.04) 25px); }
+  .accept-section::after { content: '⚡'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-size: 360px; opacity: 0.06; line-height: 1; pointer-events: none; }
+  .accept-inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  .a-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(17,19,22,0.55); margin-bottom: 20px; }
+  .a-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 88px); letter-spacing: 2px; line-height: 0.92; color: var(--charcoal); margin-bottom: 24px; }
+  .a-title span { color: rgba(17,19,22,0.45); }
+  .a-sub { font-size: 16px; color: rgba(17,19,22,0.65); margin-bottom: 48px; line-height: 1.65; }
+  .a-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-accept-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--charcoal); color: var(--volt); font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; padding: 18px 44px; border: none; border-radius: 2px; cursor: pointer; transition: all 0.25s; }
+  .btn-accept-dark:hover { background: #0a0c0e; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+  .btn-call-dark { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--charcoal); font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; padding: 18px 40px; border: 2px solid rgba(17,19,22,0.3); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.25s; }
+  .btn-call-dark:hover { border-color: var(--charcoal); background: rgba(17,19,22,0.08); }
+  .a-checks { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .a-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(17,19,22,0.6); font-weight: 500; }
+  .a-check-icon { color: var(--charcoal); font-weight: 700; }
+
+  /* ══ FOOTER ══ */
+  footer { background: #0A0C0E; border-top: 1px solid rgba(255,255,255,0.04); padding: 44px 64px; position: relative; z-index: 2; }
+  .footer-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: center; }
+  .f-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--volt); }
+  .f-brand-sub { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--steel); margin-top: 6px; line-height: 1.7; letter-spacing: 1px; }
+  .f-quote { text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--steel); line-height: 1.8; }
+  .f-quote strong { color: var(--volt); }
+  .f-contact { text-align: right; }
+  .f-contact a { display: block; font-size: 13px; color: var(--steel); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
+  .f-contact a:hover { color: var(--volt); }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+  .hero-title { animation: fadeInUp 0.8s ease both; }
+  .hero-intro { animation: fadeInUp 0.8s ease 0.15s both; }
+  .hero-actions { animation: fadeInUp 0.8s ease 0.3s both; }
+  .client-card { animation: fadeInUp 0.8s ease 0.2s both; }
+
+  /* ══ MODAL ══ */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(5,7,10,0.97); z-index: 9999; align-items: center; justify-content: center; padding: 40px; backdrop-filter: blur(12px); }
+  .modal.open { display: flex; }
+  .modal-box { background: var(--charcoal-2); border: 1px solid rgba(240,224,16,0.25); border-radius: 3px; padding: 56px; max-width: 520px; width: 100%; text-align: center; position: relative; animation: fadeInUp 0.4s ease; }
+  .modal-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--volt); }
+  .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--steel); font-size: 20px; cursor: pointer; transition: color 0.2s; font-family: 'Space Mono', monospace; }
+  .modal-close:hover { color: var(--volt); }
+  .modal-icon { font-size: 52px; margin-bottom: 20px; }
+  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 2px; color: #fff; margin-bottom: 14px; }
+  .modal-text { font-size: 14px; color: var(--steel-lt); line-height: 1.7; margin-bottom: 28px; }
+  .modal-ref { font-family: 'Space Mono', monospace; font-size: 14px; color: var(--volt); font-weight: 700; margin-bottom: 32px; letter-spacing: 1px; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 960px) {
+    section, .hero { padding: 60px 24px; }
+    .hero-body { grid-template-columns: 1fr; }
+    .hero-header { padding: 36px 24px 0; }
+    .quote-ref-block { text-align: left; }
+    .scope-grid { grid-template-columns: 1fr; }
+    .scope-grid-wide { grid-template-columns: 1fr; }
+    .scope-card-wide { grid-column: span 1; }
+    .why-layout { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gi:first-child { grid-row: span 1; }
+    .guarantee-inner { grid-template-columns: 1fr; gap: 40px; padding: 36px; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .f-contact, .f-quote { text-align: center; }
+    .trust-bar { padding: 24px; }
+    .topbar { padding: 10px 24px; }
+    .guarantee, .accept-section { padding: 60px 24px; }
+    .pt-head, .pt-row { grid-template-columns: 1fr 80px 110px 110px; padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-item">📞 <strong>0425 436 225</strong></div>
+    <div class="topbar-item">✉ <strong>admin@mirandaelectrical.com.au</strong></div>
+    <div class="topbar-item">⚡ 24/7 Emergency Available</div>
+  </div>
+  <div class="topbar-right">Master Electricians · Brisbane · ABN 66 081 597 917</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-bolt">⚡</div>
+
+  <div class="hero-inner">
+    <div class="hero-header">
+      <div class="logo-block">
+        <img
+          class="logo-img"
+          src="https://mirandaelectrical.com.au/wp-content/uploads/miranda-electrical.svg"
+          alt="Miranda Electrical"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        >
+        <div class="logo-wordmark">MIRANDA <span>ELECTRICAL</span></div>
+        <div class="logo-tagline">Master Electricians · Lic. 2468 · AU 065631</div>
+      </div>
+      <div class="quote-ref-block">
+        <div class="qr-label">// Job Quote</div>
+        <div class="qr-number">#3146</div>
+        <div class="qr-date">Prepared 2nd March 2026 &nbsp;·&nbsp; Valid for 30 days</div>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-left">
+        <div class="hl-tag">Prepared exclusively for</div>
+        <h1 class="hero-title">
+          GARY<br>
+          <span class="volt">POLLOCK</span><br>
+          <span class="dim">BELMONT</span>
+        </h1>
+        <p class="hero-intro">
+          Thanks Gary — we've put together a detailed quote for the full electrical fit-out of your shed and man cave at 359 Boston Road, Belmont. Lighting, power, switchboard, TV antenna and everything in between.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-accept" onclick="acceptQuote()">
+            ⚡ &nbsp;Accept This Quote
+          </button>
+          <a href="tel:0425436225" class="btn-call">
+            📞 &nbsp;Call Us First
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="client-card">
+          <div class="cc-header">
+            <div class="cc-header-label">// Client Details</div>
+            <div class="cc-status">Quote Active</div>
+          </div>
+          <div class="cc-body">
+            <div class="cc-name">Gary Pollock</div>
+            <div class="cc-address">359 Boston Road, Belmont QLD 4153</div>
+            <div class="cc-grid">
+              <div class="cc-item">
+                <div class="cc-key">Service Type</div>
+                <div class="cc-val">Supply & Install</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Job Type</div>
+                <div class="cc-val">Shed Fit-Out</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Quote Total</div>
+                <div class="cc-val big">$17,402.00 inc GST</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Deposit Required</div>
+                <div class="cc-val">30% — $5,220.60</div>
+              </div>
+            </div>
+            <div class="cc-validity">
+              <div class="cv-track"><div class="cv-fill"></div></div>
+              <div class="cv-labels">
+                <div class="cv-label">// Quote expires in</div>
+                <div class="cv-days" id="countdown-days">30 days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      <div><div class="trust-num">Master</div><div class="trust-label">Electricians</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏡</div>
+      <div><div class="trust-num">3rd Gen</div><div class="trust-label">Family Business</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div><div class="trust-num">5★</div><div class="trust-label">Google Rated</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div><div class="trust-num">Lifetime</div><div class="trust-label">Workmanship Guarantee</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔧</div>
+      <div><div class="trust-num">80+ Yrs</div><div class="trust-label">Combined Experience</div></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📋</div>
+      <div><div class="trust-num">COC</div><div class="trust-label">Issued on Completion</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCOPE OF WORKS -->
+<section class="scope">
+  <div class="container">
+    <div class="sec-tag fade-in">Scope of Works</div>
+    <h2 class="sec-title fade-in">Exactly What's<br>Included.</h2>
+    <p class="sec-sub fade-in">Every item in this quote is detailed below — no hidden extras, no surprises on the day.</p>
+
+    <div class="scope-grid">
+      <div class="scope-card featured fade-in">
+        <div class="sc-num">01</div>
+        <div class="sc-icon">💡</div>
+        <div class="sc-title">Lighting — Shed & Man Cave</div>
+        <p class="sc-desc">Full LED lighting suite for the shed and man cave, designed to provide even illumination across all zones.</p>
+        <ul class="sc-list">
+          <li>8 × high bay LED lights — 5 switching groups</li>
+          <li>8 × LED batten lights (shed, per layout)</li>
+          <li>3 × LED batten lights over storage area</li>
+          <li>2 × LED downlights (designated areas)</li>
+          <li>1 × 100W LED floodlight — external/security</li>
+          <li>Power &amp; lights supplied to man cave</li>
+        </ul>
+      </div>
+
+      <div class="scope-card fade-in">
+        <div class="sc-num">02</div>
+        <div class="sc-icon">🔌</div>
+        <div class="sc-title">Power Outlets</div>
+        <p class="sc-desc">A comprehensive power point layout for general use, outdoor/damp locations, ceiling pendant supply and three-phase equipment.</p>
+        <ul class="sc-list">
+          <li>12 × internal double power points</li>
+          <li>4 × weatherproof double power points</li>
+          <li>2 × 15A single GPOs — ceiling pendant mount</li>
+          <li>1 × 32A three-phase outlet</li>
+          <li>Dedicated 3-phase circuit from switchboard</li>
+        </ul>
+      </div>
+
+      <div class="scope-card fade-in">
+        <div class="sc-num">03</div>
+        <div class="sc-icon">⚡</div>
+        <div class="sc-title">Switchboard & Circuits</div>
+        <p class="sc-desc">New shed switchboard installed complete, with all required circuits for the shed's power and lighting demands.</p>
+        <ul class="sc-list">
+          <li>New shed switchboard — full supply &amp; install</li>
+          <li>Main switch included</li>
+          <li>RCBO protection — individual per circuit</li>
+          <li>Circuit breakers sized to connected loads</li>
+          <li>All circuits clearly labelled</li>
+          <li>Dedicated circuit for hot water system</li>
+          <li>All power &amp; lighting circuits to load requirements</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Additional works row -->
+    <div class="scope-grid-wide" style="margin-top:16px;">
+      <div class="scope-card fade-in">
+        <div class="sc-num">04</div>
+        <div class="sc-icon">📺</div>
+        <div class="sc-title">Additional Works — Man Cave</div>
+        <p class="sc-desc">Extras included to complete the man cave setup.</p>
+        <ul class="sc-list">
+          <li>Supply &amp; install TV antenna for man cave</li>
+          <li>Power and lighting circuit to man cave</li>
+        </ul>
+      </div>
+
+      <div class="scope-card fade-in">
+        <div class="sc-num">05</div>
+        <div class="sc-icon">📋</div>
+        <div class="sc-title">Testing & Compliance</div>
+        <p class="sc-desc">Full testing and certification of all works on completion to AS/NZS 3000 standards.</p>
+        <ul class="sc-list">
+          <li>Test all circuits, outlets &amp; lighting</li>
+          <li>Verify polarity, earth continuity &amp; insulation resistance</li>
+          <li>RCD operation test all circuits</li>
+          <li>Commission full installation</li>
+          <li>Certificate of Electrical Compliance (COC) issued</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MIRANDA -->
+<section class="why">
+  <div class="container">
+    <div class="why-layout">
+      <div class="why-img-wrap fade-in">
+        <img
+          src="https://mirandaelectrical.com.au/wp-content/uploads/general-electrical-services-brisbane.jpg"
+          alt="Miranda Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'"
+        >
+        <div class="why-badge">
+          <div class="wb-num">80+ Years</div>
+          <div class="wb-label">Combined on-the-tools experience</div>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="sec-tag">Why Choose Miranda Electrical</div>
+        <h2 class="sec-title">Premium gear.<br>No shortcuts.</h2>
+        <p style="font-size:14px; color:var(--steel-lt); line-height:1.8; margin-top:14px;">
+          Miranda Electrical is a third-generation family business. We exclusively use premium equipment and materials on every job — because we know your shed needs to work reliably for decades, not just pass inspection on the day.
+        </p>
+        <div class="why-points">
+          <div class="wp">
+            <div class="wp-icon">🏆</div>
+            <div>
+              <div class="wp-title">Master Accredited Electricians</div>
+              <div class="wp-desc">Every task is carried out by our team of master accredited electricians — fully licensed, certified and insured for commercial and residential works.</div>
+            </div>
+          </div>
+          <div class="wp">
+            <div class="wp-icon">💰</div>
+            <div>
+              <div class="wp-title">Fixed Price — No Surprises</div>
+              <div class="wp-desc">We quote upfront and we stick to it. Your invoice will match this quote. Transparent pricing is core to how we operate.</div>
+            </div>
+          </div>
+          <div class="wp">
+            <div class="wp-icon">🔒</div>
+            <div>
+              <div class="wp-title">Safety First, Always</div>
+              <div class="wp-desc">Safety and compliance guides every system and process we run. RCBO protection on every individual circuit — your shed is built to the highest standard.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TABLE -->
+<section class="pricing">
+  <div class="container">
+    <div class="sec-tag fade-in">Full Pricing Breakdown</div>
+    <h2 class="sec-title fade-in">Transparent Pricing.<br>Every Line Item.</h2>
+    <p class="sec-sub fade-in">The number at the bottom is what you pay. Nothing changes on the day without your sign-off.</p>
+
+    <div class="price-table fade-in">
+      <div class="pt-head">
+        <span>Description</span>
+        <span>Qty</span>
+        <span>Unit Price</span>
+        <span>Total</span>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">
+          Full Shed Electrical Fit-Out — Supply &amp; Install
+          <small>Lighting, power outlets, switchboard, man cave, TV antenna &amp; all circuits as per scope of works and plans given</small>
+        </div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">$15,820.00</div>
+        <div class="pt-total">$15,820.00</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">
+          Certificate of Electrical Compliance (COC)
+          <small>Issued on completion — all circuits tested and certified to AS/NZS 3000</small>
+        </div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">Included</div>
+        <div class="pt-total incl">$0.00</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">
+          Lifetime Workmanship Guarantee
+          <small>Covers all installation works completed by Miranda Electrical</small>
+        </div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">Included</div>
+        <div class="pt-total incl">$0.00</div>
+      </div>
+
+      <div class="pt-footer">
+        <div class="ptf-row">
+          <div class="ptf-label">Subtotal (ex GST)</div>
+          <div class="ptf-val">$15,820.00</div>
+        </div>
+        <div class="ptf-row">
+          <div class="ptf-label">GST (10%)</div>
+          <div class="ptf-val">$1,582.00</div>
+        </div>
+        <div class="ptf-total">
+          <div class="ptf-total-label">Total inc GST</div>
+          <div class="ptf-total-val">$17,402.00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-note fade-in">
+      <strong>Deposit:</strong> 30% deposit required before work commences — $5,220.60. Balance due on completion. &nbsp;|&nbsp; <strong>Validity:</strong> Quote valid for 30 days from 2nd March 2026. &nbsp;|&nbsp; <strong>Warranty:</strong> Lifetime workmanship guarantee on all installation works. Premium equipment used throughout. &nbsp;|&nbsp; <strong>Compliance:</strong> All works carried out to AS/NZS 3000 wiring rules and Electrical Safety Regulation 2013.
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="container">
+    <div class="sec-tag fade-in">Recent Work</div>
+    <h2 class="sec-title fade-in">Similar Jobs We've<br>Completed Nearby.</h2>
+
+    <div class="gallery-grid fade-in">
+      <div class="gi">
+        <img src="https://mirandaelectrical.com.au/wp-content/uploads/miranda-collage-2.jpg" alt="Miranda Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'">
+        <div class="gi-label">Shed fit-out — Carindale</div>
+      </div>
+      <div class="gi">
+        <img src="https://mirandaelectrical.com.au/wp-content/uploads/brisbane-electrician-1.jpg" alt="Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'">
+        <div class="gi-label">Switchboard upgrade — Morningside</div>
+      </div>
+      <div class="gi">
+        <img src="https://mirandaelectrical.com.au/wp-content/uploads/brisbane-electrician-5.jpg" alt="Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80'">
+        <div class="gi-label">High bay LED install — Tingalpa</div>
+      </div>
+      <div class="gi">
+        <img src="https://mirandaelectrical.com.au/wp-content/uploads/brisbane-electrician-6.jpg" alt="Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80'">
+        <div class="gi-label">3-phase install — Wynnum</div>
+      </div>
+      <div class="gi">
+        <img src="https://mirandaelectrical.com.au/wp-content/uploads/brisbane-electrician-4.jpg" alt="Electrical work"
+          onerror="this.src='https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=600&q=80'">
+        <div class="gi-label">Workshop power — Carina</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="sec-tag fade-in">What Our Clients Say</div>
+    <h2 class="sec-title fade-in">Don't Take Our<br>Word For It.</h2>
+
+    <div class="reviews-grid">
+      <div class="rv-card featured fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">The team at Miranda Electrical were extremely professional and easy to work with. They helped us make good, informed decisions during our renovation.</p>
+        <div class="rv-author">
+          <div class="rv-avatar">EW</div>
+          <div>
+            <div class="rv-name">Emma Wilson</div>
+            <div class="rv-loc">Residential Electrical · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-card fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">Miranda Electrical has helped us with a number of jobs over the years. Always tidy, fast, low fuss and able to handle all the curve balls we've thrown at them.</p>
+        <div class="rv-author">
+          <div class="rv-avatar">HK</div>
+          <div>
+            <div class="rv-name">Hannah Kid</div>
+            <div class="rv-loc">Commercial Electrical · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-card fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">Lindon went the extra mile to help us out in a very short timeframe. Communication, workmanship and price are all top notch. Highly recommend.</p>
+        <div class="rv-author">
+          <div class="rv-avatar">VL</div>
+          <div>
+            <div class="rv-name">Victor Larder</div>
+            <div class="rv-loc">Commercial Electrical · Google Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container" style="text-align:center;">
+    <div class="sec-tag fade-in" style="justify-content:center;">What Happens Next</div>
+    <h2 class="sec-title fade-in">Simple Process.<br>Zero Stress.</h2>
+    <div class="process-steps fade-in" style="margin-top:52px; text-align:left;">
+      <div class="ps">
+        <div class="ps-circle">01</div>
+        <div class="ps-title">Accept Quote</div>
+        <p class="ps-desc">Click below or call us to confirm. We'll send confirmation back to you within the hour.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">02</div>
+        <div class="ps-title">Pay 30% Deposit</div>
+        <p class="ps-desc">$5,220.60 deposit locks in your start date and gets materials ordered. Bank transfer accepted.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">03</div>
+        <div class="ps-title">We Handle It</div>
+        <p class="ps-desc">Our master electricians arrive on time with premium gear. We keep you updated throughout.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">04</div>
+        <div class="ps-title">Certified & Done</div>
+        <p class="ps-desc">We test everything, issue your COC, clean up the site, and you pay the balance. Job done right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-inner fade-in">
+    <div>
+      <div class="sec-tag" style="margin-bottom:20px;">Our Commitment to You</div>
+      <h2 class="g-title">Our <span>Lifetime</span><br>Workmanship<br>Guarantee.</h2>
+      <p class="g-desc" style="margin-top:20px;">
+        With Miranda Electrical, you're not just choosing a service — you're choosing a partner committed to safety, quality, and your long-term satisfaction. We stand behind every install with a lifetime guarantee on our craftsmanship.
+      </p>
+    </div>
+    <div class="g-points">
+      <div class="gp">
+        <div class="gp-icon">💰</div>
+        <div>
+          <div class="gp-title">Fixed-Price Guarantee</div>
+          <div class="gp-desc">The price quoted is the price you pay. Any variation is discussed and signed off by you before a dollar more is spent.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">🏆</div>
+        <div>
+          <div class="gp-title">Premium Gear Only</div>
+          <div class="gp-desc">We exclusively use top-quality equipment and materials. Your electrical system is built for long-term reliability, not just to pass the test.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">📋</div>
+        <div>
+          <div class="gp-title">Full Compliance Certification</div>
+          <div class="gp-desc">Every installation is tested and a Certificate of Electrical Compliance (COC) issued on completion — no cutting corners.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">⚡</div>
+        <div>
+          <div class="gp-title">24/7 Emergency Backup</div>
+          <div class="gp-desc">As a Miranda Electrical client, you have access to our 24/7 emergency same-day response whenever you need it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCEPT CTA -->
+<section class="accept-section">
+  <div class="accept-inner">
+    <div class="a-tag">// Ready to Get Started?</div>
+    <h2 class="a-title fade-in">
+      Ready to Go,<br><span>Gary?</span>
+    </h2>
+    <p class="a-sub fade-in">
+      This quote is valid for 30 days from 2nd March 2026. Accepting locks in your start date and gets the materials ordered. We'll be in touch within the hour to sort your 30% deposit.
+    </p>
+    <div class="a-actions fade-in">
+      <button class="btn-accept-dark" onclick="acceptQuote()">
+        ⚡ &nbsp;Accept Quote #3146
+      </button>
+      <a href="tel:0425436225" class="btn-call-dark">
+        📞 &nbsp;0425 436 225
+      </a>
+    </div>
+    <div class="a-checks fade-in">
+      <div class="a-check"><span class="a-check-icon">✓</span> Fixed price — $17,402 inc GST</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> Lifetime workmanship guarantee</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> COC issued on completion</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> 30% deposit to book in</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand">Miranda Electrical</div>
+      <div class="f-brand-sub">56/1631 Wynnum Rd, Tingalpa QLD 4173<br>Lic. 2468 · AU 065631 · ABN 66 081 597 917</div>
+    </div>
+    <div class="f-quote">
+      Quote <strong>#3146</strong><br>
+      Prepared for Gary Pollock<br>
+      <span style="font-size:10px; color:#333; font-family:'Space Mono', monospace;">Valid 30 days from 2nd March 2026</span>
+    </div>
+    <div class="f-contact">
+      <a href="tel:0425436225">📞 0425 436 225</a>
+      <a href="mailto:admin@mirandaelectrical.com.au">✉ admin@mirandaelectrical.com.au</a>
+      <a href="https://mirandaelectrical.com.au" target="_blank">🌐 mirandaelectrical.com.au</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="acceptModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">⚡</div>
+    <div class="modal-title">Quote Accepted!</div>
+    <p class="modal-text">
+      Thanks Gary — your acceptance of Quote <strong style="color:var(--volt)">#3146</strong> has been recorded. We'll be in touch shortly to arrange your 30% deposit ($5,220.60) and lock in your start date.
+    </p>
+    <div class="modal-ref">Miranda Electrical · 0425 436 225</div>
+    <button class="btn-accept" onclick="closeModal()" style="display:block; margin: 0 auto;">Close</button>
+  </div>
+</div>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  (function() {
+    const issued = new Date('2026-03-02');
+    const expiry = new Date(issued.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const diff = Math.ceil((expiry - new Date()) / 86400000);
+    const el = document.getElementById('countdown-days');
+    if (el) el.textContent = diff > 0 ? diff + ' days' : 'Expired';
+  })();
+
+  function acceptQuote() {
+    document.getElementById('acceptModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('acceptModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('acceptModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
