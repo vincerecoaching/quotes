@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote #14648 | T42 Electrical & Air Conditioning</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --volt:      #256CEC;
+    --volt-dark: #0BA7D7;
+    --volt-glow: rgba(37,108,236,0.25);
+    --carbon:    #0A0B0D;
+    --carbon-2:  #111318;
+    --carbon-3:  #181C22;
+    --carbon-4:  #1E242C;
+    --steel:     #2A3140;
+    --slate:     #7A8899;
+    --ice:       #C8D6E8;
+    --white:     #F0F4F8;
+    --green:     #22C55E;
+    --red:       #EF4444;
+    --blue:      #0BA7D7;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--carbon);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* Circuit board texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37,108,236,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,108,236,0.015) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════
+     TOP BAR
+  ══════════════════════════════════════ */
+  .topbar {
+    background: var(--carbon-2);
+    border-bottom: 1px solid rgba(37,108,236,0.15);
+    padding: 10px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 10;
+  }
+  .topbar-left { display: flex; gap: 28px; flex-wrap: wrap; }
+  .topbar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--slate);
+    letter-spacing: 0.3px;
+  }
+  .topbar-item strong { color: var(--ice); font-weight: 500; }
+  .topbar-item .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--volt);
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 var(--volt-glow)} 50%{opacity:0.7;box-shadow:0 0 0 4px transparent} }
+
+  .topbar-right {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ══════════════════════════════════════
+     HERO
+  ══════════════════════════════════════ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 50%, rgba(37,108,236,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 20%, rgba(11,167,215,0.06) 0%, transparent 50%),
+      linear-gradient(160deg, #0D1117 0%, #0A0B0D 50%, #060709 100%);
+  }
+
+  /* Lightning bolt accent */
+  .hero-lightning {
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .hero-lightning::before {
+    content: '⚡';
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    transform: translateY(-50%);
+    font-size: 600px;
+    line-height: 1;
+    opacity: 0.015;
+    filter: blur(2px);
+  }
+
+  /* Diagonal slash line */
+  .hero-slash {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 55%;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, rgba(37,108,236,0.15), transparent);
+    transform: skewX(-8deg);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ROW ── */
+  .hero-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 48px 64px 0;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .logo-block {}
+  .logo-img {
+    height: 56px;
+    width: auto;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .logo-wordmark {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1;
+    display: none;
+  }
+  .logo-wordmark .volt { color: var(--volt); }
+  .logo-tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-top: 6px;
+  }
+
+  .quote-ref-block { text-align: right; }
+  .qr-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--volt);
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .qr-number {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #fff;
+    line-height: 1;
+    margin-top: 4px;
+  }
+  .qr-date { font-size: 12px; color: var(--slate); margin-top: 6px; }
+
+  /* ── HERO BODY ── */
+  .hero-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 64px;
+    padding: 56px 64px 80px;
+    align-items: center;
+  }
+
+  .hl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--volt);
+    margin-bottom: 20px;
+  }
+  .hl-tag::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--volt);
+  }
+
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 6.5vw, 96px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 0.9;
+    color: #fff;
+    margin-bottom: 28px;
+  }
+  .hero-title .accent { color: var(--volt); }
+  .hero-title .dim { color: rgba(255,255,255,0.25); }
+
+  .hero-intro {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.55);
+    max-width: 500px;
+    margin-bottom: 44px;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-accept {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--volt);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 36px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-accept::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .btn-accept:hover::before { transform: translateX(0); }
+  .btn-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px var(--volt-glow);
+  }
+
+  .btn-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-call:hover { border-color: var(--volt); color: var(--volt); }
+
+  /* ── CLIENT CARD ── */
+  .client-card {
+    background: var(--carbon-2);
+    border: 1px solid rgba(37,108,236,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .client-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--volt), rgba(37,108,236,0.2));
+  }
+  .cc-header {
+    background: rgba(37,108,236,0.04);
+    border-bottom: 1px solid rgba(37,108,236,0.1);
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cc-header-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .cc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #4ADE80;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .cc-status .dot { width: 5px; height: 5px; border-radius: 50%; background: #4ADE80; animation: pulse 2s infinite; }
+
+  .cc-body { padding: 28px; }
+  .cc-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .cc-address { font-size: 13px; color: var(--slate); margin-bottom: 24px; font-weight: 300; }
+
+  .cc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .cc-key {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 5px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .cc-val { font-size: 14px; color: var(--ice); font-weight: 500; }
+  .cc-val.big {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0BA7D7;
+    letter-spacing: -0.5px;
+  }
+
+  .cc-validity {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 3px;
+    padding: 16px 18px;
+  }
+  .cv-track {
+    height: 3px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .cv-fill {
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(90deg, var(--volt-dark), var(--volt));
+    border-radius: 2px;
+    animation: fillBar 1.5s ease 0.5s both;
+  }
+  @keyframes fillBar { from { width: 0; } to { width: 60%; } }
+  .cv-labels { display: flex; justify-content: space-between; align-items: center; }
+  .cv-label { font-size: 11px; color: var(--slate); }
+  .cv-days { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--volt); }
+
+  /* ── SCROLL HINT ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+    animation: fadeUp 1s ease 1.2s both;
+  }
+  .scroll-hint span {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--slate);
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(var(--volt), transparent);
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{opacity:.2;transform:scaleY(1)} 50%{opacity:0.8;transform:scaleY(1.1)} }
+  @keyframes fadeUp { from{opacity:0;transform:translate(-50%,14px)} to{opacity:1;transform:translate(-50%,0)} }
+
+  /* ══════════════════════════════════════
+     TRUST BAR
+  ══════════════════════════════════════ */
+  .trust-bar {
+    background: var(--carbon-2);
+    border-top: 1px solid rgba(37,108,236,0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 24px 64px;
+    position: relative;
+    z-index: 2;
+  }
+  .trust-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .trust-item { display: flex; align-items: center; gap: 12px; }
+  .trust-icon {
+    width: 38px; height: 38px;
+    border-radius: 3px;
+    background: rgba(37,108,236,0.06);
+    border: 1px solid rgba(37,108,236,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .trust-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .trust-label { font-size: 11px; color: var(--slate); margin-top: 2px; }
+
+  /* ══════════════════════════════════════
+     SECTIONS BASE
+  ══════════════════════════════════════ */
+  section { padding: 88px 64px; position: relative; z-index: 2; }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  .sec-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--volt);
+    margin-bottom: 16px;
+  }
+  .sec-tag::before { content: ''; width: 20px; height: 2px; background: var(--volt); }
+
+  .sec-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(38px, 4vw, 56px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 0.95;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .sec-sub {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.7;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  /* ══════════════════════════════════════
+     SCOPE
+  ══════════════════════════════════════ */
+  .scope { background: var(--carbon); }
+
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 52px;
+  }
+
+  .scope-card {
+    background: var(--carbon-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .scope-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--volt), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .scope-card:hover { transform: translateY(-4px); border-color: rgba(37,108,236,0.2); }
+  .scope-card:hover::after { opacity: 1; }
+  .scope-card.featured { border-color: rgba(37,108,236,0.2); }
+  .scope-card.featured::after { opacity: 1; }
+
+  .sc-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: rgba(37,108,236,0.04);
+    position: absolute;
+    top: 8px; right: 16px;
+    line-height: 1;
+  }
+  .sc-icon {
+    width: 44px; height: 44px;
+    border-radius: 3px;
+    background: rgba(37,108,236,0.08);
+    border: 1px solid rgba(37,108,236,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .sc-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .sc-desc { font-size: 13px; color: var(--slate); line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+  .sc-list { list-style: none; }
+  .sc-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-weight: 300;
+  }
+  .sc-list li:last-child { border-bottom: none; }
+  .sc-list li::before { content: '▸'; color: var(--volt); font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ══════════════════════════════════════
+     WHY US
+  ══════════════════════════════════════ */
+  .why { background: var(--carbon-2); position: relative; overflow: hidden; }
+  .why::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,108,236,0.04), transparent 70%);
+    pointer-events: none;
+  }
+
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-img-wrap {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(37,108,236,0.15);
+  }
+  .why-img-wrap img {
+    width: 100%;
+    display: block;
+    filter: brightness(0.6) saturate(0.8);
+    transition: filter 0.4s;
+  }
+  .why-img-wrap:hover img { filter: brightness(0.75) saturate(1); }
+
+  .why-badge {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    background: rgba(10,11,13,0.92);
+    border: 1px solid rgba(37,108,236,0.25);
+    border-radius: 3px;
+    padding: 14px 18px;
+    backdrop-filter: blur(8px);
+  }
+  .wb-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--volt);
+    line-height: 1;
+  }
+  .wb-label { font-size: 12px; color: var(--slate); margin-top: 2px; }
+
+  .why-points { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+  .wp {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 3px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .wp:hover { border-color: rgba(37,108,236,0.2); background: rgba(37,108,236,0.03); }
+  .wp-icon {
+    width: 38px; height: 38px;
+    border-radius: 3px;
+    background: rgba(37,108,236,0.08);
+    border: 1px solid rgba(37,108,236,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .wp-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .wp-desc { font-size: 13px; color: var(--slate); line-height: 1.6; font-weight: 300; }
+
+  /* ══════════════════════════════════════
+     PRICING
+  ══════════════════════════════════════ */
+  .pricing { background: var(--carbon); }
+
+  .price-table {
+    background: var(--carbon-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 48px;
+    position: relative;
+  }
+  .price-table::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--volt), rgba(37,108,236,0.2), transparent);
+  }
+
+  .pt-head {
+    display: grid;
+    grid-template-columns: 1fr 100px 150px 150px;
+    padding: 14px 32px;
+    background: var(--carbon-3);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pt-head span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .pt-head span:last-child { text-align: right; }
+
+  .pt-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 150px 150px;
+    padding: 18px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .pt-row:hover { background: rgba(37,108,236,0.02); }
+  .pt-row:last-child { border-bottom: none; }
+  .pt-item { font-size: 14px; color: var(--ice); }
+  .pt-item small { display: block; font-size: 12px; color: var(--slate); margin-top: 3px; font-weight: 300; }
+  .pt-qty, .pt-unit { font-size: 14px; color: var(--slate); }
+  .pt-total { font-size: 14px; color: var(--ice); text-align: right; font-weight: 500; }
+  .pt-total.incl { color: var(--green); }
+
+  .pt-footer {
+    background: var(--carbon-3);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    border-top: 1px solid rgba(37,108,236,0.15);
+  }
+  .ptf-row { display: flex; gap: 56px; align-items: center; }
+  .ptf-label { font-size: 13px; color: var(--slate); }
+  .ptf-val { font-size: 14px; color: var(--ice); text-align: right; min-width: 110px; }
+  .ptf-total { display: flex; gap: 56px; align-items: center; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .ptf-total-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .ptf-total-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #0BA7D7;
+    letter-spacing: -0.5px;
+    min-width: 110px;
+    text-align: right;
+  }
+
+  .pt-note {
+    margin-top: 16px;
+    background: rgba(37,108,236,0.04);
+    border: 1px solid rgba(37,108,236,0.12);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .pt-note strong { color: var(--volt); font-weight: 600; }
+
+  /* ══════════════════════════════════════
+     GALLERY
+  ══════════════════════════════════════ */
+  .gallery { background: var(--carbon-2); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 10px;
+    margin-top: 48px;
+  }
+  .gi { border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; }
+  .gi:first-child { grid-row: span 2; }
+  .gi img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.6) saturate(0.7);
+    transition: transform 0.5s ease, filter 0.4s ease;
+  }
+  .gi:hover img { transform: scale(1.05); filter: brightness(0.8) saturate(1); }
+  .gi-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(6,7,9,0.95));
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    opacity: 0;
+    transition: opacity 0.3s;
+    letter-spacing: 0.5px;
+  }
+  .gi:hover .gi-label { opacity: 1; }
+  .gi-border {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(37,108,236,0.0);
+    transition: border-color 0.3s;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+  .gi:hover .gi-border { border-color: rgba(37,108,236,0.2); }
+
+  /* ══════════════════════════════════════
+     REVIEWS
+  ══════════════════════════════════════ */
+  .reviews { background: var(--carbon); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 52px;
+  }
+  .rv-card {
+    background: var(--carbon-2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .rv-card:hover { border-color: rgba(37,108,236,0.2); transform: translateY(-4px); }
+  .rv-card.featured { border-color: rgba(37,108,236,0.15); }
+
+  .rv-qmark {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: rgba(37,108,236,0.08);
+    line-height: 0.8;
+    margin-bottom: 12px;
+  }
+  .rv-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+  .rv-star { color: var(--volt); font-size: 13px; }
+  .rv-text { font-size: 13px; line-height: 1.8; color: var(--slate); margin-bottom: 22px; font-style: italic; font-weight: 300; }
+  .rv-author { display: flex; align-items: center; gap: 12px; }
+  .rv-avatar {
+    width: 38px; height: 38px;
+    border-radius: 3px;
+    background: var(--carbon-3);
+    border: 1px solid rgba(37,108,236,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--volt);
+    letter-spacing: 1px;
+  }
+  .rv-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ice);
+  }
+  .rv-loc { font-size: 11px; color: var(--slate); margin-top: 2px; }
+
+  /* ══════════════════════════════════════
+     PROCESS
+  ══════════════════════════════════════ */
+  .process { background: var(--carbon-2); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 52px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 38px;
+    left: 72px; right: 72px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--volt), rgba(37,108,236,0.2), transparent);
+  }
+  .ps { text-align: center; padding: 0 16px; }
+  .ps-circle {
+    width: 76px; height: 76px;
+    border-radius: 3px;
+    background: var(--carbon-3);
+    border: 1px solid rgba(37,108,236,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--volt);
+    position: relative; z-index: 2;
+    transition: all 0.3s;
+  }
+  .ps:hover .ps-circle {
+    background: var(--volt);
+    color: #fff;
+    border-color: var(--volt);
+    box-shadow: 0 0 24px var(--volt-glow);
+  }
+  .ps-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .ps-desc { font-size: 13px; color: var(--slate); line-height: 1.6; font-weight: 300; }
+
+  /* ══════════════════════════════════════
+     GUARANTEE
+  ══════════════════════════════════════ */
+  .guarantee { background: var(--carbon); padding: 72px 64px; }
+  .guarantee-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: var(--carbon-2);
+    border: 1px solid rgba(37,108,236,0.12);
+    border-radius: 4px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .guarantee-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--volt), rgba(37,108,236,0.1), transparent);
+  }
+  .guarantee-inner::after {
+    content: '⚡';
+    position: absolute;
+    right: 40px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 200px;
+    opacity: 0.025;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .g-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+  .g-title span { color: var(--volt); }
+  .g-desc { font-size: 14px; color: var(--slate); line-height: 1.7; font-weight: 300; }
+  .g-points { display: flex; flex-direction: column; gap: 16px; }
+  .gp { display: flex; gap: 14px; align-items: flex-start; }
+  .gp-icon {
+    width: 34px; height: 34px;
+    border-radius: 3px;
+    background: var(--volt);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .gp-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .gp-desc { font-size: 12px; color: var(--slate); line-height: 1.6; font-weight: 300; }
+
+  /* ══════════════════════════════════════
+     ACCEPT CTA
+  ══════════════════════════════════════ */
+  .accept-section {
+    background: var(--carbon-3);
+    border-top: 1px solid rgba(37,108,236,0.1);
+    border-bottom: 1px solid rgba(37,108,236,0.1);
+    padding: 96px 64px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .accept-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 100% at 100% 50%, rgba(37,108,236,0.04), transparent),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(37,108,236,0.01) 40px, rgba(37,108,236,0.01) 41px);
+  }
+  .accept-inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  .a-tag {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .a-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5.5vw, 68px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 0.95;
+    color: #fff;
+    margin-bottom: 22px;
+  }
+  .a-title span { color: var(--volt); }
+  .a-sub { font-size: 16px; color: rgba(255,255,255,0.5); margin-bottom: 44px; line-height: 1.7; font-weight: 300; }
+  .a-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
+  .a-checks { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .a-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.4); }
+  .a-check-icon { color: var(--green); font-size: 12px; }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  footer {
+    background: var(--carbon);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding: 40px 64px;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .f-brand {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--volt);
+  }
+  .f-brand-sub { font-size: 11px; color: var(--slate); margin-top: 5px; letter-spacing: 0.3px; font-weight: 300; }
+  .f-lic { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 8px; }
+  .f-quote { text-align: center; font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300; }
+  .f-quote strong { color: var(--volt); font-weight: 600; }
+  .f-contact { text-align: right; }
+  .f-contact a { display: block; font-size: 13px; color: var(--slate); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; font-weight: 300; }
+  .f-contact a:hover { color: var(--volt); }
+
+  /* ══════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════ */
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { opacity:0; transform:translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+
+  .hero-title { animation: fadeInUp 0.7s ease both; }
+  .hero-intro { animation: fadeInUp 0.7s ease 0.12s both; }
+  .hero-actions { animation: fadeInUp 0.7s ease 0.24s both; }
+  .client-card { animation: fadeInUp 0.7s ease 0.18s both; }
+
+  /* ══════════════════════════════════════
+     MODAL
+  ══════════════════════════════════════ */
+  .modal {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(6,7,9,0.97);
+    z-index: 9999;
+    align-items: center; justify-content: center;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+  }
+  .modal.open { display: flex; }
+  .modal-box {
+    background: var(--carbon-2);
+    border: 1px solid rgba(37,108,236,0.25);
+    border-radius: 4px;
+    padding: 52px;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.35s ease;
+  }
+  .modal-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--volt);
+  }
+  .modal-close { position: absolute; top: 18px; right: 18px; background: none; border: none; color: var(--slate); font-size: 20px; cursor: pointer; transition: color 0.2s; }
+  .modal-close:hover { color: #fff; }
+  .modal-icon { font-size: 52px; margin-bottom: 18px; }
+  .modal-title { font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-bottom: 12px; }
+  .modal-text { font-size: 14px; color: var(--slate); line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
+  .modal-ref { font-family: 'Rajdhani', sans-serif; font-size: 16px; color: var(--volt); font-weight: 700; letter-spacing: 1px; margin-bottom: 28px; }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 960px) {
+    section, .guarantee, .accept-section { padding: 56px 24px; }
+    .hero-body { grid-template-columns: 1fr; }
+    .hero-header { padding: 32px 24px 0; }
+    .quote-ref-block { text-align: left; }
+    .scope-grid { grid-template-columns: 1fr; }
+    .why-layout { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gi:first-child { grid-row: span 1; }
+    .guarantee-inner { grid-template-columns: 1fr; gap: 40px; padding: 32px; }
+    .footer-inner { grid-template-columns: 1fr; text-align: center; }
+    .f-contact, .f-quote { text-align: center; }
+    .trust-bar { padding: 20px 24px; }
+    .topbar { padding: 10px 24px; }
+    .hero-header { padding: 32px 24px 0; }
+    .hero-body { padding: 40px 24px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+  TOP BAR
+════════════════════════════════════ -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-item">
+      <span class="dot"></span>
+      <strong>0428 374 510</strong>
+    </div>
+    <div class="topbar-item">✉ <strong>admin@t42electrical.com.au</strong></div>
+    <div class="topbar-item">🕐 Mon–Fri 7:00am – 5:00pm</div>
+  </div>
+  <div class="topbar-right">Electrician Gold Coast · License #83326</div>
+</div>
+
+<!-- ════════════════════════════════════
+  HERO
+════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lightning"></div>
+  <div class="hero-slash"></div>
+
+  <div class="hero-inner">
+    <div class="hero-header">
+      <div class="logo-block">
+        <img
+          class="logo-img"
+          src="https://t42electrical.com.au/wp-content/uploads/2024/06/T42-Electrical-Air-Conditoning-Gold-Coast-transparent.webp"
+          alt="T42 Electrical"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        >
+        <div class="logo-wordmark">T<span class="volt">42</span> Electrical</div>
+        <div class="logo-tagline">Electrical · Air Conditioning · Gold Coast</div>
+      </div>
+      <div class="quote-ref-block">
+        <div class="qr-label">Quote Reference</div>
+        <div class="qr-number">#14648</div>
+        <div class="qr-date">Prepared 29 April 2026 &nbsp;·&nbsp; Valid until 29 May 2026</div>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-left">
+        <div class="hl-tag">Prepared exclusively for</div>
+        <h1 class="hero-title">
+          THE<br>
+          <span class="accent">LA MUSS</span><br>
+          <span class="dim">PROPERTY</span>
+        </h1>
+        <p class="hero-intro">
+          Thanks for reaching out, Jake. We've put together a detailed quote for your 3-phase electrical upgrade at Unit 2, 14 Hilldon Court, Nerang. Everything you need to make a confident decision is right here.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-accept" onclick="acceptQuote()">
+            ✓ &nbsp;Accept This Quote
+          </button>
+          <a href="tel:+61428374510" class="btn-call">
+            ⚡ &nbsp;Call Fabian First
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="client-card">
+          <div class="cc-header">
+            <div class="cc-header-label">Client Details</div>
+            <div class="cc-status"><span class="dot"></span> Quote Active</div>
+          </div>
+          <div class="cc-body">
+            <div class="cc-name">Jake La Muss</div>
+            <div class="cc-address">Unit 2, 14 Hilldon Court, Nerang QLD 4211</div>
+            <div class="cc-grid">
+              <div class="cc-item">
+                <div class="cc-key">Service Type</div>
+                <div class="cc-val">3-Phase Electrical Upgrade</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Job Category</div>
+                <div class="cc-val">Residential</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Quote Total</div>
+                <div class="cc-val big">$9,876.89 inc GST</div>
+              </div>
+              <div class="cc-item">
+                <div class="cc-key">Est. Start Date</div>
+                <div class="cc-val">TBC — contact Fabian</div>
+              </div>
+            </div>
+            <div class="cc-validity">
+              <div class="cv-track"><div class="cv-fill"></div></div>
+              <div class="cv-labels">
+                <div class="cv-label">Quote expires in</div>
+                <div class="cv-days" id="countdown-days">30 days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  TRUST BAR
+════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">⭐</div>
+      <div>
+        <div class="trust-num">200+</div>
+        <div class="trust-label">5-Star Google Reviews</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏅</div>
+      <div>
+        <div class="trust-num">Accredited</div>
+        <div class="trust-label">Master Electricians</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      <div>
+        <div class="trust-num">24/7</div>
+        <div class="trust-label">Emergency Response</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div>
+        <div class="trust-num">Fully</div>
+        <div class="trust-label">Licensed & Insured</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏡</div>
+      <div>
+        <div class="trust-num">Family</div>
+        <div class="trust-label">Owned & Operated</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📍</div>
+      <div>
+        <div class="trust-num">Gold Coast</div>
+        <div class="trust-label">QLD Specialists</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+  SCOPE OF WORKS
+════════════════════════════════════ -->
+<section class="scope">
+  <div class="container">
+    <div class="sec-tag fade-in">Scope of Works</div>
+    <h2 class="sec-title fade-in">Exactly What's<br>Included.</h2>
+    <p class="sec-sub fade-in">Every item in this quote is listed below. No hidden extras, no surprises on the day.</p>
+
+    <div class="scope-grid">
+      <div class="scope-card featured fade-in">
+        <div class="sc-num">01</div>
+        <div class="sc-icon">⚡</div>
+        <div class="sc-title">3-Phase Cable Install — In Conduit</div>
+        <p class="sc-desc">Supply and installation of new 3-phase cabling run through conduit, meeting manufacturer specifications and all current Australian Standards.</p>
+        <ul class="sc-list">
+          <li>Confirm conduit run & location for 3-phase mains</li>
+          <li>Supply and install appropriate conduit</li>
+          <li>Supply and install new 3Ø cable (20m run)</li>
+          <li>All cabling to manufacturer specifications</li>
+          <li>Full testing and certification on completion</li>
+        </ul>
+      </div>
+
+      <div class="scope-card fade-in">
+        <div class="sc-num">02</div>
+        <div class="sc-icon">🔌</div>
+        <div class="sc-title">New 3-Phase Meter Board & Circuit Protection</div>
+        <p class="sc-desc">Full decommission of existing switchboard and supply/install of a new QLD-compliant meter board with RCBO protection to all circuits, fully certified to AS/NZS3000.</p>
+        <ul class="sc-list">
+          <li>Decommission & remove existing switchboard</li>
+          <li>Supply & install new QLD-compliant enclosure</li>
+          <li>RCBO protection to all circuits</li>
+          <li>Full compliance with Energex requirements</li>
+          <li>Testing, commissioning & certification</li>
+        </ul>
+      </div>
+
+      <div class="scope-card fade-in">
+        <div class="sc-num">03</div>
+        <div class="sc-icon">🏗️</div>
+        <div class="sc-title">Meter Board Wiring, Main Switch & EWP Hire</div>
+        <p class="sc-desc">Upgrade of 3-phase meter board wiring and main switch to current standards, plus EWP/scissor lift hire required for safe access during installation.</p>
+        <ul class="sc-list">
+          <li>New QLD-compliant switchboard wiring</li>
+          <li>Supply & install new 3-phase main switch</li>
+          <li>EWP / scissor lift hire for safe access</li>
+          <li>Full Energex compliance upgrade</li>
+          <li>Complete testing, commissioning & certification</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  WHY T42 ELECTRICAL
+════════════════════════════════════ -->
+<section class="why">
+  <div class="container">
+    <div class="why-layout">
+      <div class="why-img-wrap fade-in">
+        <img
+          src="https://t42electrical.com.au/wp-content/uploads/2024/10/residential-electrician-gold-coast.jpg"
+          alt="T42 Electrical at work"
+          onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'"
+        >
+        <div class="why-badge">
+          <div class="wb-num">25+ yrs</div>
+          <div class="wb-label">Industry experience</div>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="sec-tag">Why Choose T42 Electrical</div>
+        <h2 class="sec-title">We get it done.<br>Properly.</h2>
+        <p style="font-size:14px; color:var(--slate); line-height:1.8; margin-top:16px; font-weight:300;">
+          T42 Electrical is a family-owned business founded by Fabian and Sharni — built on quality workmanship, transparent pricing, and actually giving a damn about the outcome. We treat your home or business like our own.
+        </p>
+        <div class="why-points">
+          <div class="wp">
+            <div class="wp-icon">🏅</div>
+            <div>
+              <div class="wp-title">Accredited Master Electricians</div>
+              <div class="wp-desc">Fabian leads a fully accredited team with over 25 years of industry experience. We know this trade inside and out.</div>
+            </div>
+          </div>
+          <div class="wp">
+            <div class="wp-icon">💬</div>
+            <div>
+              <div class="wp-title">Transparent Pricing, Always</div>
+              <div class="wp-desc">Clear scope and pricing before we start. No surprises — your electrician discusses all options with you on site.</div>
+            </div>
+          </div>
+          <div class="wp">
+            <div class="wp-icon">⚡</div>
+            <div>
+              <div class="wp-title">Same-Day & Emergency Service</div>
+              <div class="wp-desc">Power out? We're on call 24/7. Our local Gold Coast team responds fast when it matters most.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  PRICING TABLE
+════════════════════════════════════ -->
+<section class="pricing">
+  <div class="container">
+    <div class="sec-tag fade-in">Full Pricing Breakdown</div>
+    <h2 class="sec-title fade-in">Transparent Pricing.<br>Every Line Item.</h2>
+    <p class="sec-sub fade-in">The number at the bottom is what you pay. Nothing changes on the day without your sign-off first.</p>
+
+    <div class="price-table fade-in">
+      <div class="pt-head">
+        <span>Description</span>
+        <span>Qty</span>
+        <span>Unit Price</span>
+        <span>Total</span>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">Install 3-Phase Cable — In Conduit<small>Confirm conduit run, supply &amp; install conduit and new 3Ø cable to manufacturer spec</small></div>
+        <div class="pt-qty">20m</div>
+        <div class="pt-unit">—</div>
+        <div class="pt-total">Incl.</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">Install New 3-Phase Meter Board &amp; Circuit Protection<small>Decommission existing board, supply/install new QLD-compliant enclosure, RCBO protection to all circuits, Energex compliant, certified to AS/NZS3000</small></div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">—</div>
+        <div class="pt-total">Incl.</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">EWP / Scissor Lift Hire<small>Access equipment hire required for safe installation at height</small></div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">—</div>
+        <div class="pt-total">Incl.</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">Upgrade 3-Phase Meter Board Wiring &amp; Main Switch<small>New QLD-compliant switchboard wiring, new 3-phase main switch, Energex compliant, tested &amp; certified to AS/NZS3000</small></div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">—</div>
+        <div class="pt-total">Incl.</div>
+      </div>
+
+      <div class="pt-row">
+        <div class="pt-item">Testing, Commissioning &amp; Certification<small>Full testing and electrical safety certification as required by Queensland legislation</small></div>
+        <div class="pt-qty">1</div>
+        <div class="pt-unit">Included</div>
+        <div class="pt-total incl">$0.00</div>
+      </div>
+
+      <div class="pt-footer">
+        <div class="ptf-row">
+          <div class="ptf-label">Subtotal (ex GST)</div>
+          <div class="ptf-val">$8,978.96</div>
+        </div>
+        <div class="ptf-row">
+          <div class="ptf-label">GST (10%)</div>
+          <div class="ptf-val">$897.93</div>
+        </div>
+        <div class="ptf-total">
+          <div class="ptf-total-label">Total inc GST</div>
+          <div class="ptf-total-val">$9,876.89</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-note fade-in">
+      <strong>Deposit Required:</strong> 10% deposit ($987.69) required to confirm booking. &nbsp;|&nbsp;
+      <strong>Bank Transfer:</strong> T42 Electrical Pty Ltd · BSB: 066 531 · Acc: 1040 7977 · Ref: 14648 &nbsp;|&nbsp;
+      <strong>Warranty:</strong> 12-month workmanship warranty. Compliance certificate issued upon receipt of full payment. &nbsp;|&nbsp;
+      <strong>Valid for 30 days from date of issue.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  GALLERY
+════════════════════════════════════ -->
+<section class="gallery">
+  <div class="container">
+    <div class="sec-tag fade-in">Recent Work</div>
+    <h2 class="sec-title fade-in">Similar Jobs We've<br>Completed Nearby.</h2>
+
+    <div class="gallery-grid fade-in">
+      <div class="gi">
+        <img src="https://t42electrical.com.au/wp-content/uploads/2024/10/residential-electrician-gold-coast.jpg" alt="T42 Electrical residential"
+          onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'">
+        <div class="gi-label">Residential electrical — Gold Coast</div>
+        <div class="gi-border"></div>
+      </div>
+      <div class="gi">
+        <img src="https://t42electrical.com.au/wp-content/uploads/2024/10/air-conditioning-installation-gold-coast.jpg" alt="Air conditioning install"
+          onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'">
+        <div class="gi-label">A/C installation — Burleigh Heads</div>
+        <div class="gi-border"></div>
+      </div>
+      <div class="gi">
+        <img src="https://t42electrical.com.au/wp-content/uploads/2024/10/commercial-electrician-gold-coast.jpg" alt="Commercial electrical"
+          onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80'">
+        <div class="gi-label">Commercial fit-out — Robina</div>
+        <div class="gi-border"></div>
+      </div>
+      <div class="gi">
+        <img src="https://t42electrical.com.au/wp-content/uploads/2024/10/emergency-electrican-gold-coast.jpg" alt="Emergency electrical"
+          onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80'">
+        <div class="gi-label">Emergency repair — Nerang</div>
+        <div class="gi-border"></div>
+      </div>
+      <div class="gi">
+        <img src="https://t42electrical.com.au/wp-content/uploads/2024/10/electrical-repairs-gold-coast.jpg" alt="Electrical repairs"
+          onerror="this.src='https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=600&q=80'">
+        <div class="gi-label">Switchboard upgrade — Palm Beach</div>
+        <div class="gi-border"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  REVIEWS
+════════════════════════════════════ -->
+<section class="reviews">
+  <div class="container">
+    <div class="sec-tag fade-in">What Our Clients Say</div>
+    <h2 class="sec-title fade-in">200+ Five-Star<br>Reviews.</h2>
+
+    <div class="reviews-grid">
+      <div class="rv-card featured fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">Job went well, the lads talked me through all the issues I would have with a tricky positioned aircon unit I wanted installed. They came up with solid solutions and made it happen. Stoked.</p>
+        <div class="rv-author">
+          <div class="rv-avatar">AL</div>
+          <div>
+            <div class="rv-name">Andy Lewis</div>
+            <div class="rv-loc">Air conditioning install · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-card fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">Toby the electrician was on time, professional, and very friendly. Very kind in explaining everything to me. Clear pricing, no surprises. Found my electrician — thank you!</p>
+        <div class="rv-author">
+          <div class="rv-avatar">SP</div>
+          <div>
+            <div class="rv-name">Sandy Power</div>
+            <div class="rv-loc">Residential electrical · Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-card fade-in">
+        <div class="rv-qmark">"</div>
+        <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
+        <p class="rv-text">Prompt, efficient, and left the place clean and tidy. Exactly what you want from a tradie — professional, fast, and no drama. Highly recommended to anyone on the Gold Coast.</p>
+        <div class="rv-author">
+          <div class="rv-avatar">BC</div>
+          <div>
+            <div class="rv-name">Bruce Cockle</div>
+            <div class="rv-loc">Electrical repairs · Google Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  PROCESS
+════════════════════════════════════ -->
+<section class="process">
+  <div class="container" style="text-align:center;">
+    <div class="sec-tag fade-in" style="justify-content:center;">What Happens Next</div>
+    <h2 class="sec-title fade-in">Simple Process.<br>Zero Stress.</h2>
+    <div class="process-steps fade-in" style="text-align:left;">
+      <div class="ps">
+        <div class="ps-circle">1</div>
+        <div class="ps-title">Accept Quote</div>
+        <p class="ps-desc">Click below or call Fabian directly to confirm. We'll have a confirmation back to you same day.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">2</div>
+        <div class="ps-title">Pay Deposit</div>
+        <p class="ps-desc">10% deposit ($987.69) locks in your job. Bank transfer to T42 Electrical Pty Ltd · BSB 066 531 · Acc 1040 7977 · Ref 14648.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">3</div>
+        <div class="ps-title">We Show Up</div>
+        <p class="ps-desc">Our team arrives on time, ready to go. No waiting around, no excuses.</p>
+      </div>
+      <div class="ps">
+        <div class="ps-circle">4</div>
+        <div class="ps-title">Job Done Right</div>
+        <p class="ps-desc">Work completed, tested, certified and cleaned up. You pay the balance. Simple.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  GUARANTEE
+════════════════════════════════════ -->
+<section class="guarantee">
+  <div class="guarantee-inner fade-in">
+    <div>
+      <div class="sec-tag" style="margin-bottom:20px;">Our Commitment to You</div>
+      <h2 class="g-title">Our <span>Quality</span><br>& Price<br>Guarantee.</h2>
+      <p class="g-desc" style="margin-top:18px;">
+        The price you've been quoted is the price you'll pay. We don't change scope without talking to you first, and we don't leave a job until it's done to the standard we'd want in our own home. Fabian's name is on every job — that means something.
+      </p>
+    </div>
+    <div class="g-points">
+      <div class="gp">
+        <div class="gp-icon">💰</div>
+        <div>
+          <div class="gp-title">Fixed-Price Guarantee</div>
+          <div class="gp-desc">The quoted price is what you pay. Any extras are discussed and approved before we proceed.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">🏅</div>
+        <div>
+          <div class="gp-title">Quality Workmanship</div>
+          <div class="gp-desc">All work is performed to the highest Australian standards by fully accredited master electricians.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">📋</div>
+        <div>
+          <div class="gp-title">Compliance Certificate Included</div>
+          <div class="gp-desc">Your electrical safety certificate is included — required by Queensland law, handled by us.</div>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-icon">⚡</div>
+        <div>
+          <div class="gp-title">Emergency Support Available</div>
+          <div class="gp-desc">T42 are available 24/7 for emergency jobs. You're in good hands long after this job is done.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  ACCEPT CTA
+════════════════════════════════════ -->
+<section class="accept-section">
+  <div class="accept-inner">
+    <div class="a-tag">Ready to Go?</div>
+    <h2 class="a-title fade-in">
+      Ready to Move<br>Forward, <span>Jake?</span>
+    </h2>
+    <p class="a-sub fade-in">
+      This quote is valid until 29 May 2026. Accepting locks in your job and gets the works scheduled. Fabian will be in touch same day to confirm your 10% deposit ($987.69) and start date.
+    </p>
+    <div class="a-actions fade-in">
+      <button class="btn-accept" onclick="acceptQuote()" style="font-size:17px; padding:17px 44px;">
+        ✓ &nbsp;Accept Quote #14648
+      </button>
+      <a href="tel:+61428374510" class="btn-call" style="font-size:17px; padding:17px 40px;">
+        ⚡ &nbsp;0428 374 510
+      </a>
+    </div>
+    <div class="a-checks fade-in">
+      <div class="a-check"><span class="a-check-icon">✓</span> Fixed price guaranteed</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> Compliance cert included</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> Accredited master electricians</div>
+      <div class="a-check"><span class="a-check-icon">✓</span> 10% deposit to book</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  TERMS & CONDITIONS
+════════════════════════════════════ -->
+<section class="scope" style="background: var(--carbon-2); padding: 72px 64px;">
+  <div class="container">
+    <div class="sec-tag fade-in">Legal</div>
+    <h2 class="sec-title fade-in">Payment Terms<br>&amp; Conditions.</h2>
+    <p class="sec-sub fade-in" style="margin-bottom: 40px;">By accepting this quote, you confirm you understand and agree to the following terms. Full contract details are outlined below.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;" class="fade-in">
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">1. Payment Terms</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">Invoices are payable immediately upon receipt or completion of works, whichever occurs first. If your internal policies differ, notify T42 in writing before works commence. A $30 admin fee applies per manual follow-up of overdue invoices, commencing 7 days after the invoice date.</p>
+      </div>
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">2. Deposits</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">A 10% deposit is required to confirm your booking. Deposits are non-refundable once materials have been procured. Progress payments may apply on larger jobs. Special-order items that are non-returnable remain the client's cost if works are cancelled.</p>
+      </div>
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">3. Payment Plans</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">For invoices exceeding $3,000, T42 may at its discretion offer a 4–8 week payment plan. A 15% surcharge may apply. All plans must be agreed in writing before works commence. Payment may be made by EFT, credit card, or cash on site.</p>
+      </div>
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">4. Variations</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">Any deviations from the agreed scope will be documented by our on-site technician and discussed with you before proceeding. Variation costs are invoiced in line with the same payment terms as this quote.</p>
+      </div>
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">5. Compliance Certificates</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">Certificates of Compliance, Form 12s, and all statutory documentation are issued only upon receipt of full payment. T42 reserves the right to withhold certification where any amounts remain outstanding.</p>
+      </div>
+
+      <div style="background: var(--carbon-3); border: 1px solid rgba(37,108,236,0.1); border-radius: 4px; padding: 28px;">
+        <div style="color: var(--volt); font-family: Rajdhani, sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">6. Warranty &amp; Disputes</div>
+        <p style="font-size: 13px; color: var(--slate); line-height: 1.8; font-weight: 300;">Warranty claims must be notified immediately with supporting evidence. T42 will inspect and, if within 12 months of installation, coordinate repair or replacement per manufacturer terms. Invoice disputes must be raised in writing within 5 business days of the invoice date.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 20px; background: rgba(37,108,236,0.05); border: 1px solid rgba(37,108,236,0.15); border-radius: 4px; padding: 18px 22px; font-size: 12px; color: var(--slate); line-height: 1.7; font-weight: 300;" class="fade-in">
+      <strong style="color: var(--volt);">Governing Law:</strong> This agreement is governed by the laws of Queensland, Australia. In the event of non-payment, T42 Electrical reserves the right to suspend services and recover all costs including legal fees and collection charges. By accepting this quote, you agree to the full T42 Electrical Pty Ltd General Works Payment Terms Contract.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+  FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand">T42 Electrical</div>
+      <div class="f-brand-sub">Electrical · Air Conditioning · Gold Coast QLD<br>Worongary QLD 4213</div>
+      <div class="f-lic">License #83326 · ABN 54 620 621 187</div>
+    </div>
+    <div class="f-quote">
+      Quote <strong>#14648</strong><br>
+      Prepared for Jake La Muss<br>
+      <span style="font-size:11px; color:rgba(255,255,255,0.2);">Valid until 29 May 2026</span>
+    </div>
+    <div class="f-contact">
+      <a href="tel:+61428374510">⚡ 0428 374 510</a>
+      <a href="mailto:admin@t42electrical.com.au">✉ admin@t42electrical.com.au</a>
+      <a href="https://t42electrical.com.au" target="_blank">🌐 t42electrical.com.au</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════
+  MODAL
+════════════════════════════════════ -->
+<div class="modal" id="acceptModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">⚡</div>
+    <div class="modal-title">Quote Accepted!</div>
+    <p class="modal-text">
+      Thanks Jake — your acceptance of Quote <strong style="color:var(--volt)">#14648</strong> has been recorded. Fabian will be in touch shortly to confirm your deposit and lock in your start date.
+    </p>
+    <div class="modal-ref">T42 Electrical · 0428 374 510</div>
+    <button class="btn-accept" onclick="closeModal()" style="display:block; margin: 0 auto;">Close</button>
+  </div>
+</div>
+
+<script>
+  // Scroll fade-in
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // Countdown — set expiry date below
+  (function() {
+    const expiry = new Date('2026-05-29'); // e.g. '2026-05-29'
+    const diff = Math.ceil((expiry - new Date()) / 86400000);
+    const el = document.getElementById('countdown-days');
+    if (el && !isNaN(diff)) el.textContent = diff > 0 ? diff + ' days' : 'Expired';
+  })();
+
+  // Modal
+  function acceptQuote() {
+    document.getElementById('acceptModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('acceptModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('acceptModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
