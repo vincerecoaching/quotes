@@ -1,23 +1,22 @@
-<!-- cache-bust: 20260506065622 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DEMO -- Quote #QU-0001 | Betty Blue Electrical</title>
+<title>DEMO — Quote #QU-0001 | Betty Blue Electrical</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary:      #26ACE2;
-    --primary-dark: #1C81A9;
-    --primary-light:#2BC5FF;
-    --primary-xlight:#A8DDF3;
-    --accent:       #A8DDF3;
-    --confirm:      #26ACE2;
+    --primary:      #1CA4DC;
+    --primary-dark: #14769E;
+    --primary-light:#4DBBE8;
+    --primary-xlight:#C3D6DE;
+    --accent:       #BCD2DB;
+    --confirm:      #1CA4DC;
     --dark:         #0A0D0E;
     --dark-2:       #0F1214;
     --dark-3:       #151B1D;
-    --slate:        #7E929A;
+    --slate:        #7E919A;
     --white:        #F9FAFB;
     --offwhite:     #EEF0F2;
   }
@@ -48,7 +47,7 @@
   ══════════════════════════════════════ */
   .topbar {
     background: #0A0D0E;
-    border-bottom: 2px solid rgba(38,172,226,0.3);
+    border-bottom: 2px solid rgba(28,164,220,0.3);
     padding: 10px 48px;
     display: flex;
     justify-content: space-between;
@@ -91,8 +90,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(38,172,226,0.22) 0%, transparent 60%),
-      radial-gradient(ellipse 70% 50% at 90% 100%, rgba(38,172,226,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(28,164,220,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 100%, rgba(28,164,220,0.09) 0%, transparent 55%),
       linear-gradient(170deg, #0A0D0E 0%, #0A0D0E 50%, #0A0D0E 100%);
   }
 
@@ -102,8 +101,8 @@
     inset: 0;
     opacity: 0.045;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(38,172,226,0.9) 48px, rgba(38,172,226,0.9) 49px),
-      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(38,172,226,0.5) 48px, rgba(38,172,226,0.5) 49px);
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(28,164,220,0.9) 48px, rgba(28,164,220,0.9) 49px),
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(28,164,220,0.5) 48px, rgba(28,164,220,0.5) 49px);
   }
 
   /* Green glow bottom */
@@ -111,7 +110,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 200px;
-    background: linear-gradient(transparent, rgba(38,172,226,0.04));
+    background: linear-gradient(transparent, rgba(28,164,220,0.04));
     pointer-events: none;
   }
 
@@ -246,7 +245,7 @@
   .btn-accept:hover {
     background: var(--primary-light);
     transform: translateY(-2px);
-    box-shadow: 0 16px 48px rgba(38,172,226,0.4);
+    box-shadow: 0 16px 48px rgba(28,164,220,0.4);
   }
 
   .btn-call {
@@ -272,14 +271,14 @@
   /* ── CLIENT CARD ── */
   .client-card {
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(38,172,226,0.18);
+    border: 1px solid rgba(28,164,220,0.18);
     border-radius: 12px;
     overflow: hidden;
     backdrop-filter: blur(16px);
   }
   .cc-header {
-    background: rgba(38,172,226,0.07);
-    border-bottom: 1px solid rgba(38,172,226,0.18);
+    background: rgba(28,164,220,0.07);
+    border-bottom: 1px solid rgba(28,164,220,0.18);
     padding: 20px 28px;
     display: flex;
     justify-content: space-between;
@@ -298,7 +297,7 @@
     gap: 6px;
     background: rgba(39,174,96,0.2);
     border: 1px solid rgba(39,174,96,0.4);
-    color: #2BC5FF;
+    color: #4DBBE8;
     font-size: 12px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -396,7 +395,7 @@
   ══════════════════════════════════════ */
   .trust-bar {
     background: #0A0D0E;
-    border-top: 2px solid rgba(38,172,226,0.25);
+    border-top: 2px solid rgba(28,164,220,0.25);
     border-bottom: 1px solid rgba(255,255,255,0.04);
     padding: 28px 60px;
   }
@@ -413,8 +412,8 @@
   .trust-icon {
     width: 42px; height: 42px;
     border-radius: 8px;
-    background: rgba(38,172,226,0.08);
-    border: 1px solid rgba(38,172,226,0.2);
+    background: rgba(28,164,220,0.08);
+    border: 1px solid rgba(28,164,220,0.2);
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
   }
@@ -491,15 +490,15 @@
     height: 3px;
     background: linear-gradient(90deg, var(--primary-dark), transparent);
   }
-  .scope-card:hover { transform: translateY(-5px); border-color: rgba(38,172,226,0.3); }
-  .scope-card.featured { border-color: rgba(38,172,226,0.25); }
+  .scope-card:hover { transform: translateY(-5px); border-color: rgba(28,164,220,0.3); }
+  .scope-card.featured { border-color: rgba(28,164,220,0.25); }
   .scope-card.featured::before { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
 
   .sc-num {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 80px;
     font-weight: 900;
-    color: rgba(38,172,226,0.06);
+    color: rgba(28,164,220,0.06);
     position: absolute;
     top: 12px; right: 20px;
     line-height: 1;
@@ -507,8 +506,8 @@
   .sc-icon {
     width: 48px; height: 48px;
     border-radius: 8px;
-    background: rgba(38,172,226,0.08);
-    border: 1px solid rgba(38,172,226,0.2);
+    background: rgba(28,164,220,0.08);
+    border: 1px solid rgba(28,164,220,0.2);
     display: flex; align-items: center; justify-content: center;
     font-size: 22px;
     margin-bottom: 20px;
@@ -546,7 +545,7 @@
     top: -150px; right: -150px;
     width: 500px; height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(38,172,226,0.06), transparent 70%);
+    background: radial-gradient(circle, rgba(28,164,220,0.06), transparent 70%);
     pointer-events: none;
   }
 
@@ -561,7 +560,7 @@
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgba(38,172,226,0.18);
+    border: 1px solid rgba(28,164,220,0.18);
   }
   .why-img-wrap img {
     width: 100%;
@@ -575,7 +574,7 @@
     position: absolute;
     bottom: 24px; left: 24px;
     background: rgba(10,18,4,0.92);
-    border: 1px solid rgba(38,172,226,0.35);
+    border: 1px solid rgba(28,164,220,0.35);
     border-radius: 8px;
     padding: 16px 20px;
     backdrop-filter: blur(8px);
@@ -600,12 +599,12 @@
     border-radius: 8px;
     transition: border-color 0.3s, background 0.3s;
   }
-  .wp:hover { border-color: rgba(38,172,226,0.25); background: rgba(38,172,226,0.03); }
+  .wp:hover { border-color: rgba(28,164,220,0.25); background: rgba(28,164,220,0.03); }
   .wp-icon {
     width: 44px; height: 44px;
     border-radius: 8px;
-    background: rgba(38,172,226,0.08);
-    border: 1px solid rgba(38,172,226,0.2);
+    background: rgba(28,164,220,0.08);
+    border: 1px solid rgba(28,164,220,0.2);
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
     flex-shrink: 0;
@@ -657,7 +656,7 @@
     align-items: center;
     transition: background 0.2s;
   }
-  .pt-row:hover { background: rgba(38,172,226,0.03); }
+  .pt-row:hover { background: rgba(28,164,220,0.03); }
   .pt-row:last-child { border-bottom: none; }
   .pt-item { font-size: 15px; color: #fff; }
   .pt-item small { display: block; font-size: 12px; color: var(--slate); margin-top: 3px; font-weight: 300; }
@@ -673,7 +672,7 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 10px;
-    border-top: 1px solid rgba(38,172,226,0.18);
+    border-top: 1px solid rgba(28,164,220,0.18);
   }
   .ptf-row { display: flex; gap: 60px; align-items: center; }
   .ptf-label { font-size: 14px; color: var(--slate); }
@@ -699,8 +698,8 @@
 
   .pt-note {
     margin-top: 20px;
-    background: rgba(38,172,226,0.04);
-    border: 1px solid rgba(38,172,226,0.18);
+    background: rgba(28,164,220,0.04);
+    border: 1px solid rgba(28,164,220,0.18);
     border-radius: 8px;
     padding: 16px 20px;
     font-size: 13px;
@@ -761,14 +760,14 @@
     padding: 32px;
     transition: border-color 0.3s, transform 0.3s;
   }
-  .rv-card:hover { border-color: rgba(38,172,226,0.25); transform: translateY(-4px); }
-  .rv-card.featured { border-color: rgba(38,172,226,0.2); }
+  .rv-card:hover { border-color: rgba(28,164,220,0.25); transform: translateY(-4px); }
+  .rv-card.featured { border-color: rgba(28,164,220,0.2); }
 
   .rv-qmark {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 72px;
     font-weight: 900;
-    color: rgba(38,172,226,0.1);
+    color: rgba(28,164,220,0.1);
     line-height: 0.8;
     margin-bottom: 12px;
   }
@@ -780,7 +779,7 @@
     width: 42px; height: 42px;
     border-radius: 50%;
     background: var(--dark-3);
-    border: 2px solid rgba(38,172,226,0.25);
+    border: 2px solid rgba(28,164,220,0.25);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
@@ -835,7 +834,7 @@
     background: var(--primary);
     color: #0A0D0E;
     border-color: var(--primary);
-    box-shadow: 0 0 32px rgba(38,172,226,0.5);
+    box-shadow: 0 0 32px rgba(28,164,220,0.5);
   }
   .ps-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -855,8 +854,8 @@
   .guarantee-inner {
     max-width: 1300px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(38,172,226,0.07), rgba(38,172,226,0.01));
-    border: 1px solid rgba(38,172,226,0.18);
+    background: linear-gradient(135deg, rgba(28,164,220,0.07), rgba(28,164,220,0.01));
+    border: 1px solid rgba(28,164,220,0.18);
     border-radius: 12px;
     padding: 60px;
     display: grid;
@@ -913,7 +912,7 @@
   ══════════════════════════════════════ */
   .accept-section {
     background: #0A0D0E;
-    border-top: 2px solid rgba(38,172,226,0.25);
+    border-top: 2px solid rgba(28,164,220,0.25);
     padding: 100px 60px;
     position: relative;
     overflow: hidden;
@@ -923,8 +922,8 @@
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(38,172,226,0.06), transparent),
-      repeating-linear-gradient(-30deg, transparent, transparent 50px, rgba(38,172,226,0.012) 50px, rgba(38,172,226,0.012) 51px);
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(28,164,220,0.06), transparent),
+      repeating-linear-gradient(-30deg, transparent, transparent 50px, rgba(28,164,220,0.012) 50px, rgba(28,164,220,0.012) 51px);
   }
   .accept-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
   .a-tag {
@@ -959,7 +958,7 @@
   ══════════════════════════════════════ */
   footer {
     background: #0A0D0E;
-    border-top: 1px solid rgba(38,172,226,0.1);
+    border-top: 1px solid rgba(28,164,220,0.1);
     padding: 44px 60px;
   }
   .footer-inner {
@@ -1014,7 +1013,7 @@
   .modal.open { display: flex; }
   .modal-box {
     background: var(--dark-2);
-    border: 1px solid rgba(38,172,226,0.3);
+    border: 1px solid rgba(28,164,220,0.3);
     border-radius: 12px;
     padding: 56px;
     max-width: 540px;
@@ -1076,28 +1075,24 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-
   <div class="hero-inner">
     <div class="hero-header">
       <div class="logo-block">
-        <img class="logo-img" src="http://static1.squarespace.com/static/6683950b306fb63b0d99126c/t/67fe022536ea51214f3eb81c/1744699941650/BBE.jpg?format=1500w" alt="Betty Blue Electrical"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="logo-wordmark" style="display:none"><span>Betty Blue Electrical</span></div>
+        <img class="logo-img" src="http://static1.squarespace.com/static/6683950b306fb63b0d99126c/t/67fe022536ea51214f3eb81c/1744699941650/BBE.jpg?format=1500w" alt="Betty Blue Electrical" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="logo-wordmark" style="display:none"><span>Betty Blue Electrical</span></div>
         <div class="logo-tagline">Electrical Services &middot; Aldinga</div>
       </div>
       <div class="quote-ref-block">
         <div class="qr-label">Quote Reference</div>
-        <div class="qr-number">#DEMO-9834</div>
+        <div class="qr-number">#DEMO-6374</div>
         <div class="qr-date">Valid for 30 days from issue</div>
       </div>
     </div>
-
     <div class="hero-body">
       <div class="hero-left">
         <div class="hl-tag">Prepared exclusively for</div>
         <h1 class="hero-title">
-          BETTY<br>
-          <span class="amber">BLUE</span><br>
+          YOUR<br>
+          <span class="amber">ELECTRICAL</span><br>
           <span class="light">QUOTE</span>
         </h1>
         <p class="hero-intro">Thanks for reaching out, Hank. We've prepared a fixed-price quote for your electrical works — 4 scope items plus a complimentary Electrical Safety Report (valued at $149). Full breakdown below.</p>
@@ -1106,11 +1101,10 @@
             &#10003; &nbsp;Accept This Quote
           </button>
           <a href="tel:0431409886" class="btn-call">
-            📞 &nbsp;Call Wade
+            📞 &nbsp;Call Betty Blue Electrical
           </a>
         </div>
       </div>
-
       <div class="hero-right">
         <div class="client-card">
           <div class="cc-header">
@@ -1119,7 +1113,7 @@
           </div>
           <div class="cc-body">
             <div class="cc-name">Hank Mardoukis</div>
-            <div class="cc-address">14 Stirling Road, Aldinga 5173</div>
+            <div class="cc-address">14 Stirling Road, Aldinga QLD 5173</div>
             <div class="cc-grid">
               <div class="cc-item">
                 <div class="cc-key">Service Type</div>
@@ -1135,7 +1129,7 @@
               </div>
               <div class="cc-item">
                 <div class="cc-key">Est. Start Date</div>
-                <div class="cc-val">TBC &mdash; contact Wade</div>
+                <div class="cc-val">TBC &mdash; call Betty Blue Electrical</div>
               </div>
             </div>
             <div class="cc-validity">
@@ -1150,7 +1144,6 @@
       </div>
     </div>
   </div>
-
   <div class="scroll-hint">
     <span>Scroll to explore</span>
     <div class="scroll-line"></div>
@@ -1198,7 +1191,7 @@
     <h2 class="sec-title fade-in">Exactly What's<br>Included.</h2>
     <p class="sec-sub fade-in">Every item in this quote is listed below. No hidden extras, no surprises on the day.</p>
 
-    <div class="scope-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="scope-grid" style="grid-template-columns:repeat(2,1fr);">
       <div class="scope-card featured fade-in">
         <div class="sc-num">01</div>
         <div class="sc-icon">🔌</div>
@@ -1211,7 +1204,6 @@
           <li>Tested to Australian standards</li>
         </ul>
       </div>
-
       <div class="scope-card  fade-in">
         <div class="sc-num">02</div>
         <div class="sc-icon">🔥</div>
@@ -1224,7 +1216,6 @@
           <li>Tested and certified on completion</li>
         </ul>
       </div>
-
       <div class="scope-card  fade-in">
         <div class="sc-num">03</div>
         <div class="sc-icon">💡</div>
@@ -1237,7 +1228,6 @@
           <li>Full test on completion</li>
         </ul>
       </div>
-
       <div class="scope-card  fade-in">
         <div class="sc-num">04</div>
         <div class="sc-icon">⚡</div>
@@ -1251,7 +1241,6 @@
           <li>Metering co-ordination if required</li>
         </ul>
       </div>
-
       <div class="scope-card  fade-in">
         <div class="sc-num">05</div>
         <div class="sc-icon">📋</div>
@@ -1269,7 +1258,7 @@
 </section>
 
 <!-- ════════════════════════════════════
-  WHY Wade
+  WHY Betty
 ════════════════════════════════════ -->
 <section class="why">
   <div class="container">
@@ -1290,14 +1279,14 @@
             <div class="wp-icon">🏆</div>
             <div>
               <div class="wp-title">Licensed &amp; Insured</div>
-              <div class="wp-desc">Fully licensed, comprehensively insured. Every job done to Australian standards — fully compliant, no shortcuts.</div>
+              <div class="wp-desc">Fully licensed electricians, comprehensively insured. Every job done to Australian standards — compliant, no shortcuts.</div>
             </div>
           </div>
           <div class="wp">
             <div class="wp-icon">⚡</div>
             <div>
-              <div class="wp-title">Family-owned Specialists</div>
-              <div class="wp-desc">Betty Blue Electrical are family-owned electrical experts — bringing specialist-level knowledge and quality to every job.</div>
+              <div class="wp-title">Fixed-Price Quotes</div>
+              <div class="wp-desc">The price you see is the price you pay. No hidden extras, no surprises. Any scope change is discussed with you first.</div>
             </div>
           </div>
           <div class="wp">
@@ -1324,49 +1313,40 @@
 
         <div class="price-table fade-in">
       <div class="pt-head">
-        <span>Description</span>
-        <span>Qty</span>
-        <span>Unit Price</span>
-        <span>Total</span>
+        <span>Description</span><span>Qty</span><span>Unit Price</span><span>Total</span>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Installation -- 2x Double GPO (DGPO)<small>New double power outlets, new circuit wiring, conduit & cabling, tested to AS/NZS 3000</small></div>
+        <div class="pt-item">Installation — 2x Double GPO (DGPO)<small>New double power outlets, circuit wiring, conduit & cabling, tested to AS/NZS 3000</small></div>
         <div class="pt-qty">2</div>
         <div class="pt-unit">$280.00</div>
         <div class="pt-total">$560.00</div>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Installation -- Smoke Alarm (Photoelectric)<small>Hardwired photoelectric smoke alarm with battery backup, legislation compliant</small></div>
+        <div class="pt-item">Installation — Smoke Alarm (Photoelectric)<small>Hardwired photoelectric smoke alarm with battery backup, legislation compliant</small></div>
         <div class="pt-qty">1</div>
         <div class="pt-unit">$320.00</div>
         <div class="pt-total">$320.00</div>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Installation -- Pendant Light<small>Pendant light fitting, canopy, all wiring & connection to existing lighting circuit</small></div>
+        <div class="pt-item">Installation — Pendant Light<small>Pendant light fitting, canopy, all wiring & connection to existing circuit</small></div>
         <div class="pt-qty">1</div>
         <div class="pt-unit">$220.00</div>
         <div class="pt-total">$220.00</div>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Switchboard Replacement -- 18 Module<small>Full board replacement, RCD safety switches, new circuit breakers, labelling & compliance cert</small></div>
+        <div class="pt-item">Switchboard Replacement — 18 Module<small>Full board replacement, RCD safety switches, new circuit breakers, labelling & compliance cert</small></div>
         <div class="pt-qty">1</div>
         <div class="pt-unit">$1,850.00</div>
         <div class="pt-total">$1,850.00</div>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Site Clean-Up<small>All off-cuts, packaging and waste removed -- site left tidy</small></div>
+        <div class="pt-item">Site Clean-Up<small>All off-cuts, packaging and waste removed — site left tidy</small></div>
         <div class="pt-qty">1</div>
         <div class="pt-unit">Included</div>
         <div class="pt-total incl">$0.00</div>
       </div>
-
       <div class="pt-row">
-        <div class="pt-item">Electrical Safety Report<small>Full visual inspection + written report identifying any defects or risks — complimentary with this quote</small></div>
+        <div class="pt-item">Electrical Safety Report<small>Full visual inspection + written report identifying defects or risks — complimentary with this quote</small></div>
         <div class="pt-qty">1</div>
         <div class="pt-unit">$149 value</div>
         <div class="pt-total incl">COMPLIMENTARY</div>
@@ -1387,8 +1367,6 @@
       </div>
     </div>
 
-    
-  </div>
 </section>
 
 <!-- ════════════════════════════════════
@@ -1399,27 +1377,28 @@
     <div class="sec-tag fade-in">Recent Installs</div>
     <h2 class="sec-title fade-in">Similar Jobs We've<br>Completed Nearby.</h2>
 
-    <div class="gallery-grid fade-in">
-      <div class="gi">
-        <img src="https://images.squarespace-cdn.com/content/v1/6683950b306fb63b0d99126c/24c7df6a-cfb9-4330-bb18-f84234758f10/Betty%2BBlue%2BElectrical%2Band%2BAir%2BConditioning%2B_%2BMcLaren%2BVale%2BElectrician.jpg" alt="GPO installation" loading="lazy" onerror="this.parentElement.style.display='none'">
-        <div class="gi-label">GPO installation</div>
-      </div>
+        <div class="gallery-grid fade-in">
       <div class="gi">
         <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80" alt="GPO installation" loading="lazy" onerror="this.parentElement.style.display='none'">
         <div class="gi-label">GPO installation</div>
       </div>
       <div class="gi">
-        <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?w=800" alt="Switchboard replacement" loading="lazy" onerror="this.parentElement.style.display='none'">
-        <div class="gi-label">Switchboard replacement</div>
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80" alt="Smoke alarm installation" loading="lazy" onerror="this.parentElement.style.display='none'">
+        <div class="gi-label">Smoke alarm installation</div>
       </div>
       <div class="gi">
         <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=800&q=80" alt="Pendant light installation" loading="lazy" onerror="this.parentElement.style.display='none'">
         <div class="gi-label">Pendant light installation</div>
       </div>
       <div class="gi">
-        <img src="https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?w=800" alt="Ceiling light fitting" loading="lazy" onerror="this.parentElement.style.display='none'">
-        <div class="gi-label">Ceiling light fitting</div>
+        <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?w=800" alt="Switchboard replacement" loading="lazy" onerror="this.parentElement.style.display='none'">
+        <div class="gi-label">Switchboard replacement</div>
       </div>
+      <div class="gi">
+        <img src="https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?w=800" alt="Electrical safety inspection" loading="lazy" onerror="this.parentElement.style.display='none'">
+        <div class="gi-label">Electrical safety inspection</div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -1436,7 +1415,7 @@
       <div class="rv-card featured fade-in">
         <div class="rv-qmark">"</div>
         <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
-        <p class="rv-text">Absolutely professional from start to finish. Wade turned up on time, did a clean job, and walked me through everything. Highly recommend.</p>
+        <p class="rv-text">Absolutely professional from start to finish. Dean turned up on time, did a clean job, and walked me through everything. Highly recommend.</p>
         <div class="rv-author">
           <div class="rv-avatar">JT</div>
           <div>
@@ -1460,7 +1439,7 @@
       <div class="rv-card  fade-in">
         <div class="rv-qmark">"</div>
         <div class="rv-stars"><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span></div>
-        <p class="rv-text">Quick, reliable, and no hidden costs. Will be my go-to sparky from now on. Couldn't recommend more highly.</p>
+        <p class="rv-text">Quick, reliable, and no hidden costs. Dean and the team were excellent. Will be my go-to sparky from now on.</p>
         <div class="rv-author">
           <div class="rv-avatar">MB</div>
           <div>
@@ -1484,7 +1463,7 @@
       <div class="ps">
         <div class="ps-circle">1</div>
         <div class="ps-title">Accept Quote</div>
-        <p class="ps-desc">Click below or call Wade directly to confirm. We'll respond within the hour to lock in your job.</p>
+        <p class="ps-desc">Click below or call Dean directly to confirm. We'll respond within the hour to lock in your job.</p>
       </div>
       <div class="ps">
         <div class="ps-circle">2</div>
@@ -1514,7 +1493,7 @@
       <div class="sec-tag" style="margin-bottom:20px;">Our Commitment to You</div>
       <h2 class="g-title">Our <span>Fixed-Price</span><br>&amp; Quality<br>Guarantee.</h2>
       <p class="g-desc" style="margin-top:20px;">
-        Every quote we issue is a firm price. We only supply equipment we'd put in our own homes, and we stand behind every install we complete. Wade's name is on every job — and that means something.
+        Every quote we issue is a firm price. We only supply equipment we'd put in our own homes, and we stand behind every install we complete. Dean's name is on every job — and that means something.
       </p>
     </div>
     <div class="g-points">
@@ -1528,8 +1507,8 @@
       <div class="gp">
         <div class="gp-icon">🏆</div>
         <div>
-          <div class="gp-title">Quality Guaranteed</div>
-          <div class="gp-desc">We stand behind every job — quality materials, quality workmanship, and a guarantee you can count on.</div>
+          <div class="gp-title">Premium Brands Only</div>
+          <div class="gp-desc">We supply quality, quality, and quality — the three most reliable brands in Australian air conditioning.</div>
         </div>
       </div>
       <div class="gp">
@@ -1560,7 +1539,7 @@
       Ready to Move<br>Forward, <span>Hank?</span>
     </h2>
     <p class="a-sub fade-in">
-      This quote is valid until 30 days from issue. Accepting locks in your booking and gets the unit ordered. Wade will be in touch within the hour to confirm your 50% deposit and install date.
+      This quote is valid until 30 days from issue. Accepting locks in your booking and gets the unit ordered. Dean will be in touch within the hour to confirm your 50% deposit and install date.
     </p>
     <div class="a-actions fade-in">
       <button class="btn-accept" onclick="acceptQuote()" style="font-size:18px; padding:18px 44px;">
@@ -1587,7 +1566,7 @@
     <div>
       <div class="f-brand" style="display:block"><span>Betty Blue Electrical</span></div>
       <div class="f-brand-sub">Electrical Services<br>Aldinga</div>
-      <div class="f-lic">Fully Licensed &amp; Insured<br>Fully Licensed &amp; Insured</div>
+      <div class="f-lic">Fully Licensed &amp; Insured</div>
     </div>
     <div class="f-quote">
       <strong>This is a personalised demo quote.</strong><br>
@@ -1611,8 +1590,9 @@
     <div class="modal-icon">🎉</div>
     <div class="modal-title">Quote Accepted!</div>
     <p class="modal-text">
-      Thanks Hank — your acceptance of Quote <strong style="color:var(--primary)">#QU-0001</strong> has been recorded. Wade will be in touch shortly to confirm your deposit and lock in your booking.</p>
-    <div class="modal-ref">Betty Blue Electrical &middot; 0431409886</div>
+      Thanks Hank — your acceptance of Quote <strong style="color:var(--primary)">#QU-0001</strong> has been recorded. Dean will be in touch shortly to confirm your 50% deposit and lock in your install date.
+    </p>
+    <div class="modal-ref">Betty Blue Electrical · 0431409886</div>
     <button class="btn-accept" onclick="closeModal()" style="display:block; margin: 0 auto;">Close</button>
   </div>
 </div>
@@ -1638,6 +1618,10 @@
 
   // Modal
   function acceptQuote() {
+    // WEBHOOK_URL: replace with your Tekmatix/Zapier endpoint to capture acceptance
+    // fetch('YOUR_WEBHOOK_URL', {method:'POST', body:JSON.stringify({
+    //   quote: 'DEMO-6374', client: 'Hank Mardoukis', business: 'Betty Blue Electrical'
+    // })});
     document.getElementById('acceptModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
