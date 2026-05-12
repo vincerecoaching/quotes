@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade Business System Stack — Vincere</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0a0a; }
+    input:focus, textarea:focus, select:focus { border-color: #E85C2B !important; }
+    input::placeholder, textarea::placeholder { color: #444; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    @media print {
+      body { background: #0a0a0a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none !important; }
+      .print-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const PILLARS = [
+      {
+        id: "marketing", label: "Marketing & Lead Generation", color: "#E85C2B", number: "01",
+        systems: [
+          { id: 1, name: "Lead Tracking System", description: "Ensures every enquiry is recorded and tracked.", defaultChecklist: ["Capture phone leads", "Capture website leads", "Capture referral sources", "Track conversion rates", "Weekly lead reporting"], automationHints: "Call tracking (WildJar), Google form to CRM, Lead tagging" },
+          { id: 2, name: "Google Reviews System", description: "Systematically generate positive reviews.", defaultChecklist: ["Job completed", "Customer satisfaction check", "Send review request", "Follow up after 48 hours"], automationHints: "ServiceM8 review automation, SMS review link" },
+          { id: 3, name: "Referral System", description: "Turn happy customers into new leads.", defaultChecklist: ["Ask every satisfied customer", "Send referral incentive", "Track referral sources", "Thank referrers"], automationHints: "Example offer: Refer a friend and receive a $50 gift card" },
+          { id: 4, name: "Builder Relationship System", description: "Manage relationships with builders.", defaultChecklist: ["Builder contact list maintained", "Quarterly check-in completed", "Price reviews scheduled", "Project pipeline tracked"], automationHints: "CRM contact tagging, calendar reminders for quarterly check-ins" },
+          { id: 5, name: "Local Awareness Marketing System", description: "Create local brand awareness.", defaultChecklist: ["Letterbox drops scheduled", "Cafe flyer boards utilised", "Local sponsorship explored", "Community Facebook groups active"], automationHints: "Facebook local group posting schedule, flyer design template" }
+        ]
+      },
+      {
+        id: "sales", label: "Sales & Quoting", color: "#E85C2B", number: "02",
+        systems: [
+          { id: 6, name: "Enquiry Handling System", description: "Ensure every enquiry is handled professionally.", defaultChecklist: ["Answer call within 3 rings", "Capture customer details", "Confirm scope", "Book site visit"], automationHints: "Phone script documented, CRM auto-entry on new enquiry" },
+          { id: 7, name: "Qualification System", description: "Determine if a job is worth quoting.", defaultChecklist: ["Budget confirmed", "Timeline established", "Scope defined", "Decision maker identified"], automationHints: "Qualification scorecard, pre-quote questionnaire form" },
+          { id: 8, name: "Quoting System", description: "Create consistent and profitable quotes.", defaultChecklist: ["Scope documented", "Photos attached", "Materials calculated", "Margin applied", "Quote template used"], automationHints: "Quote template in ServiceM8, margin calculator spreadsheet" },
+          { id: 9, name: "Quote Follow-Up System", description: "Most tradies miss this — follow up consistently.", defaultChecklist: ["Day 1: Send quote", "Day 3: Follow up", "Day 7: Follow up", "Day 14: Final follow up"], automationHints: "CRM task reminders, automated follow-up email sequence" },
+          { id: 10, name: "Price Increase System", description: "Adjust pricing annually.", defaultChecklist: ["Review supplier increases", "Adjust labour rates", "Communicate to clients", "Update price lists"], automationHints: "Annual calendar reminder, price list version control" }
+        ]
+      },
+      {
+        id: "delivery", label: "Job Delivery", color: "#E85C2B", number: "03",
+        systems: [
+          { id: 11, name: "Job Preparation System", description: "Ensure jobs run smoothly from the start.", defaultChecklist: ["Materials ordered", "Job notes written", "Safety requirements checked", "Team assigned"], automationHints: "Job prep checklist in ServiceM8, materials order trigger on job booking" },
+          { id: 12, name: "Job Checklist System", description: "Standardise work quality on every job.", defaultChecklist: ["Installation checklist completed", "Safety checks done", "Compliance certificates obtained", "Photos taken"], automationHints: "Digital checklist in job management software, photo upload on completion" },
+          { id: 13, name: "Variation Approval System", description: "Prevent profit leaks with proper variation control.", defaultChecklist: ["Variation identified", "Variation priced", "Client approval obtained", "Variation documented"], automationHints: "Rule: No approval = no work. Variation form in ServiceM8" },
+          { id: 14, name: "Job Documentation System", description: "Protect the business legally with proper records.", defaultChecklist: ["Photos taken", "Job notes recorded", "Compliance certificates filed", "Client sign off obtained"], automationHints: "Document storage in Google Drive or ServiceM8, client sign off via SMS/email" },
+          { id: 15, name: "Job Completion System", description: "Ensure clean handover every time.", defaultChecklist: ["Site cleaned", "Photos taken", "Customer walk through done", "Review request sent"], automationHints: "Completion checklist trigger, automated review request SMS" }
+        ]
+      },
+      {
+        id: "scheduling", label: "Scheduling & Operations", color: "#E85C2B", number: "04",
+        systems: [
+          { id: 16, name: "Job Scheduling System", description: "Organise technician time efficiently.", defaultChecklist: ["Priority jobs identified", "Geographic grouping applied", "Emergency buffer allocated", "Travel optimised"], automationHints: "ServiceM8 dispatch board, route optimisation tools" },
+          { id: 17, name: "Materials Ordering System", description: "Avoid delays and lost time on site.", defaultChecklist: ["Materials list created", "Ordered in advance", "Delivered to site", "Checked on arrival"], automationHints: "Materials list template per job type, supplier account with online ordering" },
+          { id: 18, name: "Vehicle & Stock System", description: "Maintain technician vehicles and stock levels.", defaultChecklist: ["Weekly stock check done", "Consumables list updated", "Vehicle cleanliness maintained", "Tool inventory checked"], automationHints: "Weekly stock check form, vehicle inspection app" },
+          { id: 19, name: "Communication System", description: "Ensure consistent team communication.", defaultChecklist: ["Morning toolbox meeting held", "Job updates communicated", "End of day reporting done"], automationHints: "Slack or WhatsApp group, daily standup template" },
+          { id: 20, name: "Quality Control System", description: "Maintain high standards across all work.", defaultChecklist: ["Supervisor job audits scheduled", "Random job inspections conducted", "Client feedback collected"], automationHints: "Quality audit checklist, NPS survey after job completion" }
+        ]
+      },
+      {
+        id: "finance", label: "Finance & Cashflow", color: "#E85C2B", number: "05",
+        systems: [
+          { id: 21, name: "Invoicing System", description: "Invoices sent quickly after every job.", defaultChecklist: ["Job completed", "Invoice generated", "Invoice sent same day"], automationHints: "ServiceM8 auto-invoice on job completion, Xero integration" },
+          { id: 22, name: "Payment Collection System", description: "Reduce debtor days with clear payment processes.", defaultChecklist: ["Payment terms defined", "COD applied for service jobs", "Payment link included on invoice"], automationHints: "Stripe or GoCardless integration, payment link in invoice template" },
+          { id: 23, name: "Debtor Follow-Up System", description: "Ensure overdue invoices are collected.", defaultChecklist: ["7 day reminder sent", "14 day reminder sent", "Phone call made", "Final demand issued"], automationHints: "Xero auto-reminders, debtor report reviewed weekly" },
+          { id: 24, name: "Profit Tracking System", description: "Ensure jobs are profitable with real numbers.", defaultChecklist: ["Labour hours tracked", "Materials cost tracked", "Job margin calculated"], automationHints: "Job costing report in ServiceM8, back costing spreadsheet" },
+          { id: 25, name: "Monthly Financial Review System", description: "Monthly owner meeting to review the numbers.", defaultChecklist: ["Revenue reviewed", "Profit reviewed", "Labour % reviewed", "Overheads reviewed"], automationHints: "Monthly P&L from Xero, dashboard in Google Sheets" }
+        ]
+      },
+      {
+        id: "hiring", label: "Hiring & Team", color: "#E85C2B", number: "06",
+        systems: [
+          { id: 26, name: "Hiring System", description: "Consistent hiring process every time.", defaultChecklist: ["Job ad published", "Application form used", "Phone screening completed", "Interview conducted", "Trial day completed"], automationHints: "SEEK job ad template, application form in Google Forms" },
+          { id: 27, name: "Employee Onboarding System", description: "Help new staff succeed quickly.", defaultChecklist: ["Contracts signed", "Safety induction completed", "Software training done", "Vehicle allocated"], automationHints: "Onboarding checklist in Notion or Google Docs, digital contract signing" },
+          { id: 28, name: "Apprentice Training System", description: "Improve apprentice completion rates.", defaultChecklist: ["Weekly mentoring session held", "Skills logbook updated", "Monthly review completed"], automationHints: "Skills logbook template, calendar reminders for monthly reviews" },
+          { id: 29, name: "Performance Review System", description: "Quarterly review for every team member.", defaultChecklist: ["Skills reviewed", "Attitude reviewed", "Productivity reviewed", "Training needs identified"], automationHints: "Quarterly review form, calendar invite set 12 months in advance" },
+          { id: 30, name: "Leadership & Culture System", description: "Build strong team culture deliberately.", defaultChecklist: ["Weekly team meetings held", "Recognition given", "Clear expectations set", "Open communication maintained"], automationHints: "Weekly meeting agenda template, recognition board in team chat" }
+        ]
+      }
+    ];
+
+    const STATUS_OPTIONS = ["Not Started", "In Progress", "Active"];
+    const PRIORITY_OPTIONS = ["Low", "Medium", "High"];
+    const STATUS_COLORS = {
+      "Not Started": { bg: "#1a1a1a", text: "#666", border: "#333" },
+      "In Progress": { bg: "#2a1800", text: "#E85C2B", border: "#E85C2B" },
+      "Active": { bg: "#0a2a0a", text: "#4caf50", border: "#4caf50" }
+    };
+    const PRIORITY_COLORS = { "Low": "#555", "Medium": "#E8A82B", "High": "#E85C2B" };
+
+    const labelStyle = { display: "block", fontSize: "10px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", color: "#555", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "5px" };
+    const inputStyle = { width: "100%", background: "#1a1a1a", border: "1px solid #2a2a2a", borderRadius: "4px", color: "#ddd", padding: "7px 10px", fontSize: "13px", fontFamily: "Barlow, sans-serif", outline: "none", boxSizing: "border-box", marginBottom: 0 };
+    const selectStyle = { ...inputStyle, cursor: "pointer", appearance: "none", WebkitAppearance: "none" };
+    const printValueStyle = { fontSize: "13px", color: "#ccc", fontFamily: "Barlow, sans-serif", padding: "7px 0", borderBottom: "1px solid #222" };
+
+    function PillarProgress({ systems, systemData }) {
+      const active = systems.filter(s => systemData[s.id]?.status === "Active").length;
+      const inProgress = systems.filter(s => systemData[s.id]?.status === "In Progress").length;
+      const total = systems.length;
+      const pct = Math.round(((active + inProgress * 0.5) / total) * 100);
+      const r = 22, circ = 2 * Math.PI * r, dash = (pct / 100) * circ;
+      return (
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r={r} fill="none" stroke="#222" strokeWidth="4" />
+          <circle cx="28" cy="28" r={r} fill="none" stroke="#E85C2B" strokeWidth="4"
+            strokeDasharray={`${dash} ${circ}`} strokeLinecap="round"
+            transform="rotate(-90 28 28)" style={{ transition: "stroke-dasharray 0.6s ease" }} />
+          <text x="28" y="33" textAnchor="middle" fill="#fff" fontSize="11" fontFamily="Barlow Condensed, sans-serif" fontWeight="700">{pct}%</text>
+        </svg>
+      );
+    }
+
+    function SystemCard({ system, data, onUpdate, isPrinting }) {
+      const [expanded, setExpanded] = useState(false);
+      const d = data || { status: "Not Started", owner: "", tools: "", notes: "", priority: "Medium", steps: [...system.defaultChecklist] };
+      const update = (field, val) => onUpdate(system.id, { ...d, [field]: val });
+      const updateStep = (i, val) => { const steps = [...d.steps]; steps[i] = val; update("steps", steps); };
+      const addStep = () => update("steps", [...d.steps, ""]);
+      const removeStep = (i) => update("steps", d.steps.filter((_, idx) => idx !== i));
+      const sc = STATUS_COLORS[d.status];
+
+      return (
+        <div style={{ background: "#111", border: `1px solid ${expanded ? "#E85C2B" : "#222"}`, borderRadius: "6px", marginBottom: "8px", overflow: "hidden", transition: "border-color 0.2s", pageBreakInside: "avoid" }}>
+          <div onClick={() => !isPrinting && setExpanded(!expanded)} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "14px 16px", cursor: isPrinting ? "default" : "pointer", userSelect: "none" }}>
+            <span style={{ fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", color: "#444", minWidth: "24px" }}>{String(system.id).padStart(2, "0")}</span>
+            <span style={{ flex: 1, fontSize: "14px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "600", color: "#fff", letterSpacing: "0.3px" }}>{system.name}</span>
+            <span style={{ fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", color: PRIORITY_COLORS[d.priority], textTransform: "uppercase", letterSpacing: "1px", display: isPrinting ? "none" : "block" }}>{d.priority}</span>
+            <span style={{ fontSize: "11px", fontFamily: "Barlow, sans-serif", fontWeight: "600", color: sc.text, background: sc.bg, border: `1px solid ${sc.border}`, padding: "3px 10px", borderRadius: "20px", whiteSpace: "nowrap" }}>{d.status}</span>
+            {!isPrinting && <span style={{ color: "#444", fontSize: "16px", transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>}
+          </div>
+          {(expanded || isPrinting) && (
+            <div style={{ padding: "0 16px 16px", borderTop: "1px solid #1e1e1e" }}>
+              <p style={{ fontSize: "12px", color: "#666", margin: "12px 0 16px", fontFamily: "Barlow, sans-serif" }}>{system.description}</p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "16px" }}>
+                <div><label style={labelStyle}>STATUS</label>{isPrinting ? <div style={printValueStyle}>{d.status}</div> : <select value={d.status} onChange={e => update("status", e.target.value)} style={selectStyle}>{STATUS_OPTIONS.map(s => <option key={s}>{s}</option>)}</select>}</div>
+                <div><label style={labelStyle}>PRIORITY</label>{isPrinting ? <div style={printValueStyle}>{d.priority}</div> : <select value={d.priority} onChange={e => update("priority", e.target.value)} style={selectStyle}>{PRIORITY_OPTIONS.map(p => <option key={p}>{p}</option>)}</select>}</div>
+                <div><label style={labelStyle}>SYSTEM OWNER</label>{isPrinting ? <div style={printValueStyle}>{d.owner || "—"}</div> : <input value={d.owner} onChange={e => update("owner", e.target.value)} placeholder="Who is responsible?" style={inputStyle} />}</div>
+                <div><label style={labelStyle}>TOOLS / SOFTWARE</label>{isPrinting ? <div style={printValueStyle}>{d.tools || "—"}</div> : <input value={d.tools} onChange={e => update("tools", e.target.value)} placeholder={system.automationHints} style={inputStyle} />}</div>
+              </div>
+              <div style={{ marginBottom: "14px" }}>
+                <label style={labelStyle}>SOP STEPS</label>
+                {d.steps.map((step, i) => (
+                  <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "6px", alignItems: "center" }}>
+                    <span style={{ color: "#E85C2B", fontSize: "11px", fontWeight: "700", minWidth: "18px", fontFamily: "Barlow Condensed, sans-serif" }}>{i + 1}.</span>
+                    {isPrinting ? <span style={{ fontSize: "13px", color: "#ccc", fontFamily: "Barlow, sans-serif" }}>{step}</span> : <input value={step} onChange={e => updateStep(i, e.target.value)} style={{ ...inputStyle, flex: 1, marginBottom: 0 }} />}
+                    {!isPrinting && <button onClick={() => removeStep(i)} style={{ background: "none", border: "none", color: "#444", cursor: "pointer", fontSize: "14px", padding: "0 4px", lineHeight: 1 }}>✕</button>}
+                  </div>
+                ))}
+                {!isPrinting && <button onClick={addStep} style={{ fontSize: "11px", color: "#E85C2B", background: "none", border: "1px solid #E85C2B33", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", marginTop: "4px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "600", letterSpacing: "0.5px" }}>+ ADD STEP</button>}
+              </div>
+              <div>
+                <label style={labelStyle}>NOTES</label>
+                {isPrinting ? <div style={{ ...printValueStyle, minHeight: "30px" }}>{d.notes || "—"}</div> : <textarea value={d.notes} onChange={e => update("notes", e.target.value)} placeholder="Additional notes, context or next actions..." rows={2} style={{ ...inputStyle, resize: "vertical", minHeight: "56px" }} />}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function TradeSystemStack() {
+      const [systemData, setSystemData] = useState({});
+      const [activePillar, setActivePillar] = useState(null);
+      const [businessName, setBusinessName] = useState("");
+      const [isPrinting, setIsPrinting] = useState(false);
+
+      const updateSystem = (id, data) => setSystemData(prev => ({ ...prev, [id]: data }));
+      const allSystems = PILLARS.flatMap(p => p.systems);
+      const activeCount = allSystems.filter(s => systemData[s.id]?.status === "Active").length;
+      const inProgressCount = allSystems.filter(s => systemData[s.id]?.status === "In Progress").length;
+      const overallPct = Math.round(((activeCount + inProgressCount * 0.5) / 30) * 100);
+      const handlePrint = () => { setIsPrinting(true); setTimeout(() => { window.print(); setIsPrinting(false); }, 300); };
+      const displayPillars = activePillar ? PILLARS.filter(p => p.id === activePillar) : PILLARS;
+
+      return (
+        <div style={{ minHeight: "100vh", background: "#0a0a0a", fontFamily: "Barlow, sans-serif", color: "#fff" }}>
+          <div style={{ background: "#000", borderBottom: "1px solid #1a1a1a", padding: "0 24px", position: "sticky", top: 0, zIndex: 100 }}>
+            <div style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", alignItems: "center", height: "56px", gap: "16px" }}>
+              <span style={{ fontSize: "18px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#E85C2B", letterSpacing: "2px" }}>VINCERE</span>
+              <span style={{ color: "#2a2a2a", fontSize: "20px" }}>|</span>
+              <span style={{ fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", color: "#555", letterSpacing: "2px", textTransform: "uppercase" }}>Trade Business System Stack</span>
+              <div style={{ flex: 1 }} />
+              <div className="no-print" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <input value={businessName} onChange={e => setBusinessName(e.target.value)} placeholder="Business name..." style={{ background: "#111", border: "1px solid #222", borderRadius: "4px", color: "#ddd", padding: "5px 10px", fontSize: "12px", fontFamily: "Barlow, sans-serif", outline: "none", width: "180px" }} />
+                <button onClick={handlePrint} style={{ background: "#E85C2B", color: "#fff", border: "none", borderRadius: "4px", padding: "6px 14px", cursor: "pointer", fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", letterSpacing: "1px" }}>EXPORT PDF</button>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "32px 24px" }}>
+            <div style={{ marginBottom: "32px" }}>
+              {businessName && <div style={{ fontSize: "12px", color: "#E85C2B", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "6px" }}>{businessName}</div>}
+              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
+                <div>
+                  <h1 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#fff", lineHeight: 1, letterSpacing: "-0.5px" }}>BASE BUILD<br /><span style={{ color: "#E85C2B" }}>SYSTEM STACK</span></h1>
+                  <p style={{ fontSize: "13px", color: "#555", marginTop: "8px", fontFamily: "Barlow, sans-serif" }}>30 core systems across 6 pillars. Build, document and activate your business operating system.</p>
+                </div>
+                <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "32px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#4caf50", lineHeight: 1 }}>{activeCount}</div><div style={{ fontSize: "10px", color: "#555", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>Active</div></div>
+                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "32px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#E85C2B", lineHeight: 1 }}>{inProgressCount}</div><div style={{ fontSize: "10px", color: "#555", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>In Progress</div></div>
+                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "32px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#fff", lineHeight: 1 }}>{overallPct}%</div><div style={{ fontSize: "10px", color: "#555", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase" }}>Complete</div></div>
+                </div>
+              </div>
+              <div style={{ height: "3px", background: "#1a1a1a", borderRadius: "2px", marginTop: "20px" }}>
+                <div style={{ height: "100%", background: "#E85C2B", borderRadius: "2px", width: `${overallPct}%`, transition: "width 0.5s ease" }} />
+              </div>
+            </div>
+
+            <div className="no-print" style={{ display: "flex", gap: "8px", marginBottom: "28px", flexWrap: "wrap" }}>
+              <button onClick={() => setActivePillar(null)} style={{ padding: "6px 14px", borderRadius: "4px", cursor: "pointer", fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase", border: activePillar === null ? "1px solid #E85C2B" : "1px solid #222", background: activePillar === null ? "#E85C2B15" : "transparent", color: activePillar === null ? "#E85C2B" : "#555" }}>All Pillars</button>
+              {PILLARS.map(p => (
+                <button key={p.id} onClick={() => setActivePillar(activePillar === p.id ? null : p.id)} style={{ padding: "6px 14px", borderRadius: "4px", cursor: "pointer", fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", letterSpacing: "0.5px", textTransform: "uppercase", border: activePillar === p.id ? "1px solid #E85C2B" : "1px solid #222", background: activePillar === p.id ? "#E85C2B15" : "transparent", color: activePillar === p.id ? "#E85C2B" : "#555" }}>{p.number} {p.label}</button>
+              ))}
+            </div>
+
+            {displayPillars.map(pillar => (
+              <div key={pillar.id} style={{ marginBottom: "40px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "16px", paddingBottom: "14px", borderBottom: "1px solid #1a1a1a" }}>
+                  <PillarProgress systems={pillar.systems} systemData={systemData} />
+                  <div>
+                    <div style={{ fontSize: "11px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "700", color: "#E85C2B", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "2px" }}>Pillar {pillar.number}</div>
+                    <h2 style={{ fontSize: "22px", fontFamily: "Barlow Condensed, sans-serif", fontWeight: "800", color: "#fff", letterSpacing: "0.3px" }}>{pillar.label.toUpperCase()}</h2>
+                  </div>
+                  <div style={{ flex: 1 }} />
+                  <div style={{ textAlign: "right" }}><span style={{ fontSize: "12px", color: "#555", fontFamily: "Barlow Condensed, sans-serif" }}>{pillar.systems.filter(s => systemData[s.id]?.status === "Active").length}/{pillar.systems.length} Active</span></div>
+                </div>
+                {pillar.systems.map(system => (
+                  <SystemCard key={system.id} system={system} data={systemData[system.id]} onUpdate={updateSystem} isPrinting={isPrinting} />
+                ))}
+              </div>
+            ))}
+
+            <div style={{ borderTop: "1px solid #1a1a1a", paddingTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: "11px", color: "#333", fontFamily: "Barlow Condensed, sans-serif", letterSpacing: "1px" }}>VINCERE COACHING & CONSULTING — TRADE BUSINESS SYSTEM STACK</span>
+              <span style={{ fontSize: "11px", color: "#333", fontFamily: "Barlow Condensed, sans-serif" }}>{new Date().toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<TradeSystemStack />);
+  </script>
+</body>
+</html>
