@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tradie Booster — Build Pack</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; background: #1D1D1B; color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+  .logo-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+  .logo-bar img { height: 48px; }
+  .logo-bar span { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #E8881F; }
+  h1 { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #888; text-align: center; margin-bottom: 40px; letter-spacing: 1px; text-transform: uppercase; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; width: 100%; max-width: 860px; }
+  .card { background: #2a2a28; border-radius: 10px; padding: 24px 28px; text-decoration: none; color: #fff; border: 1px solid #333; transition: border-color 0.2s, transform 0.15s; display: flex; align-items: center; gap: 18px; }
+  .card:hover { border-color: #E8881F; transform: translateY(-2px); }
+  .card .icon { font-size: 28px; flex-shrink: 0; }
+  .card .label { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .card .desc { font-size: 12px; color: #888; margin-top: 4px; }
+  .card.primary { border-color: #E8881F; }
+  .card.primary .label { color: #E8881F; }
+  .accent-line { width: 100%; max-width: 860px; height: 3px; background: #E8881F; border-radius: 2px; margin-top: 48px; }
+  .footer { font-size: 11px; color: #555; margin-top: 16px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="https://vincerecoaching.github.io/quotes/vincere_banner.png" alt="Vincere" style="height:36px; object-fit:cover; object-position:center; border-radius:4px;" />
+</div>
+
+<h1>Tradie Booster</h1>
+<p class="subtitle">Funnel Build Pack</p>
+
+<div class="grid">
+
+  <a class="card primary" href="TRADIE-BOOSTER-BUILD-BRIEF.pdf" target="_blank">
+    <span class="icon">📄</span>
+    <div>
+      <div class="label">Build Brief</div>
+      <div class="desc">Full project brief — PDF</div>
+    </div>
+  </a>
+
+  <a class="card primary" href="wireframe/index.html" target="_blank">
+    <span class="icon">🖼️</span>
+    <div>
+      <div class="label">Live Wireframe</div>
+      <div class="desc">Full funnel visual mockup</div>
+    </div>
+  </a>
+
+  <a class="card" href="01-landing-page.md" target="_blank">
+    <span class="icon">🏠</span>
+    <div>
+      <div class="label">Landing Page Spec</div>
+      <div class="desc">Copy, sections, structure</div>
+    </div>
+  </a>
+
+  <a class="card" href="02-checkout-page.md" target="_blank">
+    <span class="icon">💳</span>
+    <div>
+      <div class="label">Checkout Page Spec</div>
+      <div class="desc">Order form + trust elements</div>
+    </div>
+  </a>
+
+  <a class="card" href="03-thank-you-page.md" target="_blank">
+    <span class="icon">🎉</span>
+    <div>
+      <div class="label">Thank You Page Spec</div>
+      <div class="desc">Post-purchase flow</div>
+    </div>
+  </a>
+
+  <a class="card" href="04-email-sequence.md" target="_blank">
+    <span class="icon">✉️</span>
+    <div>
+      <div class="label">Email Sequence</div>
+      <div class="desc">Full onboarding email flow</div>
+    </div>
+  </a>
+
+  <a class="card" href="05-design-spec.md" target="_blank">
+    <span class="icon">🎨</span>
+    <div>
+      <div class="label">Design Spec</div>
+      <div class="desc">Brand, colours, typography</div>
+    </div>
+  </a>
+
+  <a class="card" href="00-build-checklist.md" target="_blank">
+    <span class="icon">✅</span>
+    <div>
+      <div class="label">Build Checklist</div>
+      <div class="desc">Step-by-step completion tracker</div>
+    </div>
+  </a>
+
+</div>
+
+<div class="accent-line"></div>
+<p class="footer">Vincere Coaching & Consulting — Internal Use Only</p>
+
+</body>
+</html>
