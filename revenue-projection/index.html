@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincere Revenue Projections</title>
+<style>
+  :root {
+    --orange: #E8881F;
+    --black: #1D1D1B;
+    --dark: #111110;
+    --card: #1e1e1c;
+    --border: #2e2e2c;
+    --text: #f0f0ee;
+    --muted: #888886;
+    --green: #4CAF50;
+    --red: #e05555;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  header h1 span { color: var(--orange); }
+
+  header p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .accent-line {
+    width: 60px;
+    height: 3px;
+    background: var(--orange);
+    margin: 12px auto 0;
+    border-radius: 2px;
+  }
+
+  .layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .card h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  /* Tier table */
+  .tier-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 80px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tier-row:last-child { border-bottom: none; }
+
+  .tier-name { font-size: 0.9rem; font-weight: 500; }
+  .tier-rate { font-size: 0.8rem; color: var(--muted); }
+
+  .tier-row input[type="number"] {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .tier-row input[type="number"]:focus {
+    border-color: var(--orange);
+  }
+
+  .tier-mrr {
+    font-size: 0.9rem;
+    color: var(--orange);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .cnw-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* Controls */
+  .control-group {
+    margin-bottom: 20px;
+  }
+
+  .control-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .control-group .value-display {
+    color: var(--orange);
+    font-weight: 700;
+    margin-left: 8px;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--orange);
+    cursor: pointer;
+  }
+
+  .control-group input[type="number"] {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 1rem;
+    padding: 8px 12px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .control-group input[type="number"]:focus {
+    border-color: var(--orange);
+  }
+
+  /* Summary cards */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .stat-card .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  .stat-card .sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Projection table */
+  .proj-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    margin-top: 8px;
+  }
+
+  .proj-table th {
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proj-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .proj-table tr:last-child td { border-bottom: none; }
+
+  .proj-table .revenue { color: var(--orange); font-weight: 600; }
+
+  .proj-table tr:hover td { background: rgba(232,136,31,0.04); }
+
+  /* CNW tracker */
+  .cnw-tracker {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+  }
+
+  .cnw-tracker h3 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .cnw-lift {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    padding: 4px 0;
+  }
+
+  .cnw-lift span:last-child { color: var(--green); font-weight: 600; }
+
+  /* Full width card */
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .section-header h2 {
+    margin-bottom: 0;
+  }
+
+  .total-clients {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .total-clients span { color: var(--text); font-weight: 600; }
+
+  /* Target indicator */
+  .target-bar {
+    background: var(--dark);
+    border-radius: 6px;
+    height: 8px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .target-fill {
+    height: 100%;
+    background: var(--orange);
+    border-radius: 6px;
+    transition: width 0.3s ease;
+  }
+
+  .target-fill.over { background: var(--green); }
+
+  .target-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .tier-header {
+    display: grid;
+    grid-template-columns: 1fr 90px 80px;
+    gap: 10px;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+
+  .tier-header span {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .tier-header span:nth-child(2) { text-align: center; }
+  .tier-header span:last-child { text-align: right; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>VINCERE <span>REVENUE</span> PROJECTIONS</h1>
+  <p>Coaching & Consulting — Private Dashboard</p>
+  <div class="accent-line"></div>
+</header>
+
+<div class="layout">
+
+  <!-- LEFT: Client inputs -->
+  <div class="card">
+    <div class="section-header">
+      <h2>Clients by Tier</h2>
+      <div class="total-clients">Total: <span id="total-clients">0</span> clients</div>
+    </div>
+
+    <div class="tier-header">
+      <span>Tier</span>
+      <span>Clients</span>
+      <span>MRR</span>
+    </div>
+
+    <!-- Tradie Booster -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">Tradie Booster</div>
+        <div class="tier-rate">$88 / mo</div>
+      </div>
+      <input type="number" id="t1" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m1">$0</div>
+    </div>
+
+    <!-- Legacy Member -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">Legacy Member</div>
+        <div class="tier-rate">$718 / mo</div>
+      </div>
+      <input type="number" id="t2" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m2">$0</div>
+    </div>
+
+    <!-- CNW Discount -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">CNW Discount</div>
+        <div class="tier-rate">$677 / mo · 3 months</div>
+        <div class="cnw-note">→ rolls to Elite ($1,355)</div>
+      </div>
+      <input type="number" id="t3" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m3">$0</div>
+    </div>
+
+    <!-- Elite Foundation -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">Elite Foundation</div>
+        <div class="tier-rate">$1,190 / mo</div>
+      </div>
+      <input type="number" id="t4" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m4">$0</div>
+    </div>
+
+    <!-- Elite -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">Elite</div>
+        <div class="tier-rate">$1,355 / mo</div>
+      </div>
+      <input type="number" id="t5" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m5">$0</div>
+    </div>
+
+    <!-- Executive -->
+    <div class="tier-row">
+      <div>
+        <div class="tier-name">Executive</div>
+        <div class="tier-rate">$2,445 / mo</div>
+      </div>
+      <input type="number" id="t6" min="0" value="0" oninput="calc()">
+      <div class="tier-mrr" id="m6">$0</div>
+    </div>
+
+    <!-- CNW Upgrade Tracker -->
+    <div class="cnw-tracker">
+      <h3>CNW Upgrade Value</h3>
+      <div class="cnw-lift">
+        <span>Current CNW revenue</span>
+        <span id="cnw-current">$0</span>
+      </div>
+      <div class="cnw-lift">
+        <span>Post-upgrade revenue</span>
+        <span id="cnw-upgraded">$0</span>
+      </div>
+      <div class="cnw-lift">
+        <span>Monthly lift on conversion</span>
+        <span id="cnw-lift">+$0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Controls + Summary -->
+  <div class="card">
+    <h2>Parameters</h2>
+
+    <div class="control-group">
+      <label>Monthly Churn Rate <span class="value-display" id="churn-display">5%</span></label>
+      <input type="range" id="churn" min="0" max="30" step="0.5" value="5" oninput="updateChurnDisplay(); calc()">
+    </div>
+
+    <div class="control-group">
+      <label>New Clients / Month (Sales Target)</label>
+      <input type="number" id="new-clients" min="0" value="4" oninput="calc()">
+    </div>
+
+    <div class="control-group">
+      <label>Avg New Client Tier ($ per month)</label>
+      <input type="number" id="avg-new" min="0" value="1355" oninput="calc()">
+    </div>
+
+    <div class="control-group">
+      <label>Projection Period (months)</label>
+      <input type="number" id="months" min="1" max="60" value="12" oninput="calc()">
+    </div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">
+
+    <h2>Current Snapshot</h2>
+
+    <div class="summary-grid">
+      <div class="stat-card">
+        <div class="label">MRR</div>
+        <div class="value" id="mrr">$0</div>
+        <div class="sub">Monthly Recurring</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">ARR</div>
+        <div class="value" id="arr">$0</div>
+        <div class="sub">Annual Run Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg Revenue / Client</div>
+        <div class="value" id="arpc">$0</div>
+        <div class="sub">Per month</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Monthly Churn Loss</div>
+        <div class="value" id="churn-loss" style="color:var(--red)">$0</div>
+        <div class="sub">Estimated MRR at risk</div>
+      </div>
+      <div class="stat-card" style="grid-column:1/-1">
+        <div class="label">Clients Needed to Hit MRR Target</div>
+        <div style="margin:8px 0 10px;">
+          <select id="target-tier" onchange="calc()" style="background:var(--dark);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:0.85rem;padding:6px 10px;width:100%;outline:none;cursor:pointer;">
+            <option value="88">Tradie Booster — $88/mo</option>
+            <option value="718">Legacy Member — $718/mo</option>
+            <option value="677">CNW Discount — $677/mo</option>
+            <option value="1190">Elite Foundation — $1,190/mo</option>
+            <option value="1355" selected>Elite — $1,355/mo</option>
+            <option value="2445">Executive — $2,445/mo</option>
+          </select>
+        </div>
+        <div class="value" id="clients-needed">—</div>
+        <div class="sub" id="clients-needed-sub">Select a tier above</div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>MRR Target Progress</label>
+      <div class="control-group" style="margin-bottom:8px;">
+        <input type="number" id="mrr-target" min="0" value="20000" placeholder="Monthly target $" oninput="calc()">
+      </div>
+      <div class="target-bar">
+        <div class="target-fill" id="target-fill" style="width:0%"></div>
+      </div>
+      <div class="target-label">
+        <span id="target-pct">0% of target</span>
+        <span id="target-gap">$0 to go</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL WIDTH: Projection Table -->
+  <div class="card full-width">
+    <h2>Month-by-Month Projection</h2>
+    <div style="overflow-x:auto;">
+      <table class="proj-table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Clients (start)</th>
+            <th>New</th>
+            <th>Churned</th>
+            <th>Clients (end)</th>
+            <th>MRR</th>
+            <th>ARR Run Rate</th>
+            <th>Cumulative Revenue</th>
+          </tr>
+        </thead>
+        <tbody id="proj-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const rates = {
+    t1: 88,
+    t2: 718,
+    t3: 677,
+    t4: 1190,
+    t5: 1355,
+    t6: 2445
+  };
+
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+
+  function updateChurnDisplay() {
+    document.getElementById('churn-display').textContent = document.getElementById('churn').value + '%';
+  }
+
+  function calc() {
+    const t1 = Math.max(0, parseInt(document.getElementById('t1').value) || 0);
+    const t2 = Math.max(0, parseInt(document.getElementById('t2').value) || 0);
+    const t3 = Math.max(0, parseInt(document.getElementById('t3').value) || 0);
+    const t4 = Math.max(0, parseInt(document.getElementById('t4').value) || 0);
+    const t5 = Math.max(0, parseInt(document.getElementById('t5').value) || 0);
+    const t6 = Math.max(0, parseInt(document.getElementById('t6').value) || 0);
+
+    const churnRate = parseFloat(document.getElementById('churn').value) / 100;
+    const newPerMonth = Math.max(0, parseInt(document.getElementById('new-clients').value) || 0);
+    const avgNew = Math.max(0, parseFloat(document.getElementById('avg-new').value) || 0);
+    const projMonths = Math.max(1, Math.min(60, parseInt(document.getElementById('months').value) || 12));
+    const mrrTarget = Math.max(0, parseFloat(document.getElementById('mrr-target').value) || 0);
+
+    // Tier MRRs
+    const m1 = t1 * rates.t1;
+    const m2 = t2 * rates.t2;
+    const m3 = t3 * rates.t3;
+    const m4 = t4 * rates.t4;
+    const m5 = t5 * rates.t5;
+    const m6 = t6 * rates.t6;
+
+    document.getElementById('m1').textContent = fmt(m1);
+    document.getElementById('m2').textContent = fmt(m2);
+    document.getElementById('m3').textContent = fmt(m3);
+    document.getElementById('m4').textContent = fmt(m4);
+    document.getElementById('m5').textContent = fmt(m5);
+    document.getElementById('m6').textContent = fmt(m6);
+
+    const totalClients = t1 + t2 + t3 + t4 + t5 + t6;
+    document.getElementById('total-clients').textContent = totalClients;
+
+    const mrr = m1 + m2 + m3 + m4 + m5 + m6;
+    const arr = mrr * 12;
+    const arpc = totalClients > 0 ? mrr / totalClients : 0;
+    const churnLoss = mrr * churnRate;
+
+    document.getElementById('mrr').textContent = fmt(mrr);
+    document.getElementById('arr').textContent = fmt(arr);
+    document.getElementById('arpc').textContent = fmt(arpc);
+    document.getElementById('churn-loss').textContent = fmt(churnLoss);
+
+    // Clients needed to hit target
+    const clientsNeededEl = document.getElementById('clients-needed');
+    const clientsNeededSub = document.getElementById('clients-needed-sub');
+    const targetTierRate = parseFloat(document.getElementById('target-tier').value) || 0;
+    if (mrrTarget > 0 && targetTierRate > 0) {
+      const gap = mrrTarget - mrr;
+      if (gap <= 0) {
+        clientsNeededEl.textContent = '✓ Done';
+        clientsNeededEl.style.color = 'var(--green)';
+        clientsNeededSub.textContent = 'Already at or above your MRR target';
+      } else {
+        const needed = Math.ceil(gap / targetTierRate);
+        clientsNeededEl.textContent = needed;
+        clientsNeededEl.style.color = 'var(--orange)';
+        clientsNeededSub.textContent = `${needed} more client${needed !== 1 ? 's' : ''} at $${targetTierRate.toLocaleString('en-AU')}/mo closes the $${Math.round(gap).toLocaleString('en-AU')} gap`;
+      }
+    } else {
+      clientsNeededEl.textContent = '—';
+      clientsNeededSub.textContent = 'Set an MRR target above';
+    }
+
+    // Target
+    const pct = mrrTarget > 0 ? Math.min(100, (mrr / mrrTarget) * 100) : 0;
+    const fill = document.getElementById('target-fill');
+    fill.style.width = pct + '%';
+    fill.className = 'target-fill' + (pct >= 100 ? ' over' : '');
+    document.getElementById('target-pct').textContent = Math.round(pct) + '% of target';
+    document.getElementById('target-gap').textContent = mrr >= mrrTarget ? '✓ Target reached' : fmt(mrrTarget - mrr) + ' to go';
+
+    // CNW tracker
+    const cnwCurrent = t3 * rates.t3;
+    const cnwUpgraded = t3 * rates.t5;
+    const cnwLift = cnwUpgraded - cnwCurrent;
+    document.getElementById('cnw-current').textContent = fmt(cnwCurrent);
+    document.getElementById('cnw-upgraded').textContent = fmt(cnwUpgraded);
+    document.getElementById('cnw-lift').textContent = '+' + fmt(cnwLift);
+
+    // Projection table
+    let clients = totalClients;
+    let currentMrr = mrr;
+    let cumulative = 0;
+    const tbody = document.getElementById('proj-body');
+    tbody.innerHTML = '';
+
+    // Track CNW rollover — after 3 months, CNW clients move to Elite
+    let cnwRemaining = t3;
+    let cnwMonthCounter = 0;
+
+    for (let i = 1; i <= projMonths; i++) {
+      const startClients = clients;
+
+      // CNW rollover: when counter hits 3, those clients move to Elite rate
+      let mrrAdjust = 0;
+      if (cnwRemaining > 0) {
+        cnwMonthCounter++;
+        if (cnwMonthCounter > 3) {
+          // CNW clients rolled to Elite — revenue lift
+          mrrAdjust = cnwRemaining * (rates.t5 - rates.t3);
+          cnwRemaining = 0;
+        }
+      }
+
+      const churned = Math.round(clients * churnRate);
+      clients = Math.max(0, clients - churned + newPerMonth);
+      const addedMrr = (newPerMonth * avgNew) - (churned * (currentMrr / Math.max(1, startClients)));
+      currentMrr = Math.max(0, currentMrr + addedMrr + mrrAdjust);
+      cumulative += currentMrr;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>Month ${i}</td>
+        <td>${startClients}</td>
+        <td style="color:var(--green)">+${newPerMonth}</td>
+        <td style="color:var(--red)">-${churned}</td>
+        <td><strong>${clients}</strong></td>
+        <td class="revenue">${fmt(currentMrr)}</td>
+        <td>${fmt(currentMrr * 12)}</td>
+        <td>${fmt(cumulative)}</td>
+      `;
+      tbody.appendChild(row);
+    }
+  }
+
+  // Init
+  updateChurnDisplay();
+  calc();
+</script>
+</body>
+</html>
