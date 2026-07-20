@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elegant Air Conditioning | Quoting Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#D98FB3;
+    --orange-dark:#C06E96;
+    --black:#1A1A1A;
+    --dark:#1a1a1a;
+    --grey:#faf7f8;
+    --border:#ecdfe6;
+    --yellow:#FFF6B0;
+    --green:#1e8e3e;
+    --red:#c62828;
+    --text:#1A1A1A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Montserrat',sans-serif;
+    margin:0;
+    background:var(--grey);
+    color:var(--text);
+  }
+  h1,h2,h3,h4{font-family:'Montserrat',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin:0;}
+  header{
+    position:sticky;top:0;z-index:100;
+    background:#fff;
+    color:var(--black);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+    border-bottom:2px solid var(--orange);
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .logo{font-family:'Montserrat',sans-serif;font-weight:300;font-size:19px;letter-spacing:4px;color:var(--black);}
+  .brand .logo span{font-weight:600;color:var(--orange-dark);}
+  .tool-tag{
+    font-size:10.5px;
+    background:var(--orange);
+    color:#fff;
+    padding:3px 10px;
+    border-radius:3px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .header-actions{display:flex;gap:10px;}
+  button{
+    font-family:'Montserrat',sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    border:none;
+    border-radius:4px;
+    padding:9px 16px;
+    font-size:14px;
+  }
+  .btn-primary{background:var(--orange);color:#fff;}
+  .btn-primary:hover{background:var(--orange-dark);}
+  .btn-dark{background:#333;color:#fff;}
+  .btn-dark:hover{background:#000;}
+  .btn-outline{background:#fff;border:1.5px solid var(--orange);color:var(--orange);}
+  .btn-outline:hover{background:#fff3ec;}
+  .btn-sm{padding:5px 10px;font-size:12px;}
+  .btn-danger{background:#fff;border:1.5px solid var(--red);color:var(--red);}
+  .btn-danger:hover{background:#fff0f0;}
+
+  nav{
+    display:flex;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    padding:0 24px;
+    position:sticky;top:61px;z-index:99;
+  }
+  nav button.tab{
+    background:none;
+    border:none;
+    padding:14px 18px;
+    font-family:'Montserrat',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    text-transform:uppercase;
+    color:#666;
+    border-bottom:3px solid transparent;
+    border-radius:0;
+  }
+  nav button.tab.active{color:var(--orange);border-bottom:3px solid var(--orange);}
+
+  main{max-width:1180px;margin:0 auto;padding:26px 24px 80px;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+
+  .card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:20px 22px;
+    margin-bottom:20px;
+  }
+  .card h3{font-size:20px;margin-bottom:14px;color:var(--black);}
+  .card h3 .sub{font-family:'Montserrat',sans-serif;text-transform:none;font-size:12px;color:#888;font-weight:500;letter-spacing:0;}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{
+    text-align:left;
+    font-family:'Montserrat',sans-serif;
+    text-transform:uppercase;
+    font-size:12.5px;
+    letter-spacing:.4px;
+    color:#666;
+    border-bottom:2px solid var(--black);
+    padding:8px 8px;
+  }
+  td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+
+  input, select{
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+    padding:7px 8px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    width:100%;
+  }
+  input.data-input, input.editable{
+    background:var(--yellow);
+    border:1px solid #e6d64a;
+  }
+  input[type=number]{text-align:right;}
+  input::placeholder{color:#aaa;}
+  .pct-wrap{position:relative;display:flex;align-items:center;}
+  .pct-wrap .pct-sign{position:absolute;left:8px;color:#777;font-size:13px;pointer-events:none;}
+  .pct-wrap input{padding-left:20px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+  .field label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px;}
+  .field{margin-bottom:10px;}
+
+  .summary-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  .summary-box{
+    background:var(--black);
+    color:#fff;
+    border-radius:8px;
+    padding:16px;
+    text-align:center;
+  }
+  .summary-box.orange{background:var(--orange);}
+  .summary-box .label{font-size:11px;text-transform:uppercase;letter-spacing:.5px;opacity:.8;font-family:'Montserrat',sans-serif;}
+  .summary-box .value{font-size:24px;font-weight:800;font-family:'Montserrat',sans-serif;margin-top:4px;}
+  .summary-box .sub{font-size:11px;opacity:.75;margin-top:2px;}
+
+  .pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;}
+  .pill.builder{background:#e3edff;color:#2952a3;}
+  .pill.private{background:#e8f7ea;color:#1e8e3e;}
+  .pill.realestate{background:#f7e6ee;color:var(--orange-dark);}
+  .pill.custom{background:#eee;color:#555;}
+
+  .search-row{display:flex;gap:10px;margin-bottom:14px;}
+  .search-row input{flex:1;}
+
+  .remove-x{
+    background:none;border:none;color:#c62828;font-weight:800;font-size:16px;cursor:pointer;padding:0 6px;
+  }
+
+  .toolbar-controls{display:flex;gap:10px;align-items:center;}
+
+  .empty-state{color:#999;font-style:italic;padding:14px 0;font-size:14px;}
+
+  .import-box textarea{
+    width:100%;min-height:90px;font-family:monospace;font-size:13px;padding:10px;border:1px solid #ccc;border-radius:4px;
+  }
+  .hint{font-size:12px;color:#888;margin-top:4px;}
+
+  .saved-quote-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+  .saved-quote-row:last-child{border-bottom:none;}
+  .saved-quote-row .meta{font-size:13px;color:#666;}
+
+  @media print{
+    header, nav, .no-print{display:none !important;}
+    body{background:#fff;}
+    main{padding:0;max-width:100%;}
+    .card{border:none;box-shadow:none;padding:0;margin-bottom:22px;page-break-inside:avoid;}
+    .tabpanel{display:none !important;}
+    #panel-quote.print-active{display:block !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">ELEGANT <span>AIR CONDITIONING</span></div>
+    <div class="tool-tag">Quoting Tool</div>
+  </div>
+  <div class="header-actions no-print">
+    <button class="btn-outline" onclick="exportData()">Export Backup</button>
+    <button class="btn-outline" onclick="document.getElementById('importFile').click()">Import Backup</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    <button class="btn-dark" onclick="printQuote()">Print / PDF Quote</button>
+  </div>
+</header>
+
+<nav class="no-print">
+  <button class="tab active" onclick="showTab('setup')">Rates Setup</button>
+  <button class="tab" onclick="showTab('catalog')">Materials Catalog</button>
+  <button class="tab" onclick="showTab('quote')">Quote Builder</button>
+  <button class="tab" onclick="showTab('saved')">Saved Quotes</button>
+</nav>
+
+<main>
+
+  <!-- SETUP TAB -->
+  <div class="tabpanel active" id="panel-setup">
+    <div class="card">
+      <h3>Labour Rates <span class="sub">Cost rate + overhead give your true cost per hour. Charge-out rates are your sell rates by client type.</span></h3>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16%">Labour Type</th>
+            <th>Labour Cost Rate ($/hr)</th>
+            <th>Overhead ($/hr)</th>
+            <th>Builder — Charge Out</th>
+            <th>Private — Charge Out</th>
+            <th>Real Estate — Charge Out</th>
+          </tr>
+        </thead>
+        <tbody id="ratesTableBody"></tbody>
+      </table>
+      <p class="hint">Overhead $/hr is your business overhead cost per productive labour hour (vehicle, insurance, admin etc). This is used to calculate Net Profit on quotes. Charge-out rates are defaults only — every quote line can be dialed up or down individually.</p>
+    </div>
+
+    <div class="card">
+      <h3>Default Material Markup</h3>
+      <div class="field" style="max-width:220px;">
+        <label>Global Default Markup</label>
+        <div class="pct-wrap">
+          <span class="pct-sign">%</span>
+          <input type="number" class="data-input" id="globalMarkup" step="1" onblur="updateGlobalMarkup(this.value)">
+        </div>
+      </div>
+      <p class="hint">Applied automatically when you add a material to a quote. Can be overridden per line item on any quote.</p>
+    </div>
+  </div>
+
+  <!-- CATALOG TAB -->
+  <div class="tabpanel" id="panel-catalog">
+    <div class="card">
+      <h3>Add Material <span class="sub">Manual entry</span></h3>
+      <div class="grid3">
+        <div class="field"><label>Supplier</label><input type="text" id="mSupplier"></div>
+        <div class="field"><label>Item Name</label><input type="text" id="mName"></div>
+        <div class="field"><label>Item Code</label><input type="text" id="mCode"></div>
+      </div>
+      <div class="grid3">
+        <div class="field"><label>Unit</label><input type="text" id="mUnit" placeholder="each / m / lm / box"></div>
+        <div class="field"><label>Cost ($)</label><input type="number" step="0.01" id="mCost"></div>
+        <div class="field" style="display:flex;align-items:flex-end;"><button class="btn-primary" style="width:100%" onclick="addCatalogItem()">Add to Catalog</button></div>
+      </div>
+    </div>
+
+    <div class="card import-box">
+      <h3>Bulk Import <span class="sub">Paste a supplier list</span></h3>
+      <textarea id="bulkImport" placeholder="Supplier, Item Name, Code, Unit, Cost&#10;Reece, 90mm PVC Pipe, PVC90, lm, 4.20&#10;Reece, Copper Elbow 15mm, CE15, each, 1.85"></textarea>
+      <p class="hint">One item per line, comma separated: Supplier, Item Name, Code, Unit, Cost</p>
+      <button class="btn-primary" style="margin-top:8px;" onclick="bulkImportCatalog()">Import Lines</button>
+    </div>
+
+    <div class="card">
+      <h3>Catalog</h3>
+      <div class="search-row">
+        <input type="text" id="catalogSearch" placeholder="Search by item, code or supplier..." oninput="renderCatalog()">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Supplier</th><th>Item</th><th>Code</th><th>Unit</th><th style="text-align:right">Cost</th><th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody id="catalogTableBody"></tbody>
+      </table>
+      <div id="catalogEmpty" class="empty-state" style="display:none;">No materials in catalog yet — add manually above or bulk import a supplier list.</div>
+    </div>
+  </div>
+
+  <!-- QUOTE BUILDER TAB -->
+  <div class="tabpanel" id="panel-quote">
+    <div class="card">
+      <h3>Quote Details</h3>
+      <div class="grid3">
+        <div class="field"><label>Client Name</label><input type="text" id="qClient" onblur="renderQuote()"></div>
+        <div class="field"><label>Job / Site</label><input type="text" id="qJob" onblur="renderQuote()"></div>
+        <div class="field">
+          <label>Client Type</label>
+          <select id="qClientType" onchange="applyClientTypeDefaults()">
+            <option value="">Select client type...</option>
+            <option value="builder">Builder</option>
+            <option value="private">Private Client</option>
+            <option value="realestate">Real Estate</option>
+            <option value="custom">Custom (manual rates)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Labour</h3>
+      <div class="grid3 no-print">
+        <div class="field">
+          <label>Labour Type</label>
+          <select id="newLabourType"><option value="tradesman">Tradesman</option><option value="apprentice">Apprentice</option></select>
+        </div>
+        <div class="field"><label>Hours</label><input type="number" step="0.25" id="newLabourHours"></div>
+        <div class="field" style="display:flex;align-items:flex-end;"><button class="btn-primary" style="width:100%" onclick="addLabourLine()">Add Labour Line</button></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Type</th><th style="text-align:right">Hours</th><th style="text-align:right">Charge Out Rate ($/hr)</th><th style="text-align:right">Line Sell $</th><th style="width:40px" class="no-print"></th></tr>
+        </thead>
+        <tbody id="labourTableBody"></tbody>
+      </table>
+      <div id="labourEmpty" class="empty-state" style="display:none;">No labour lines yet.</div>
+    </div>
+
+    <div class="card">
+      <h3>Materials</h3>
+      <div class="search-row no-print">
+        <input type="text" id="quoteMatSearch" placeholder="Search catalog to add materials..." oninput="renderMatSearchResults()">
+      </div>
+      <div id="matSearchResults" class="no-print"></div>
+      <table>
+        <thead>
+          <tr><th>Item</th><th style="text-align:right">Qty</th><th style="text-align:right">Unit Cost</th><th style="text-align:right;width:90px">Markup %</th><th style="text-align:right">Line Sell $</th><th style="width:40px" class="no-print"></th></tr>
+        </thead>
+        <tbody id="materialTableBody"></tbody>
+      </table>
+      <div id="materialEmpty" class="empty-state" style="display:none;">No materials added yet.</div>
+    </div>
+
+    <div class="card">
+      <h3>Quote Summary</h3>
+      <div class="summary-grid">
+        <div class="summary-box orange">
+          <div class="label">Sell Price</div>
+          <div class="value" id="sumSell">$0</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">Est. Hours</div>
+          <div class="value" id="sumHours">0</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">Gross Profit</div>
+          <div class="value" id="sumGP">$0</div>
+          <div class="sub" id="sumGPpct">0%</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">Net Profit</div>
+          <div class="value" id="sumNP">$0</div>
+          <div class="sub" id="sumNPpct">0%</div>
+        </div>
+        <div class="summary-box">
+          <div class="label">Total Cost</div>
+          <div class="value" id="sumCost">$0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card no-print">
+      <h3>Save Quote</h3>
+      <button class="btn-primary" onclick="saveCurrentQuote()">Save Quote</button>
+      <button class="btn-outline" onclick="newQuote()">Start New Quote</button>
+    </div>
+  </div>
+
+  <!-- SAVED QUOTES TAB -->
+  <div class="tabpanel" id="panel-saved">
+    <div class="card">
+      <h3>Saved Quotes</h3>
+      <div id="savedQuotesList"></div>
+      <div id="savedEmpty" class="empty-state" style="display:none;">No saved quotes yet.</div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ---------- STATE ----------
+let rates = {
+  tradesman:  { costRate: 54, overhead: 31, builder: 125, private: 165, realestate: 145 },
+  apprentice: { costRate: 21, overhead: 31, builder: 83, private: 109, realestate: 96 }
+};
+let globalMarkup = 30;
+let catalog = [
+  {
+    "id": "dk1",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Premium Ducted RC IDU",
+    "code": "FDYA71AV19",
+    "unit": "each",
+    "cost": 1156
+  },
+  {
+    "id": "dk2",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Premium Ducted RC ODU",
+    "code": "RZAS71C2V1",
+    "unit": "each",
+    "cost": 1855
+  },
+  {
+    "id": "dk3",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 Premium Ducted RC IDU",
+    "code": "FDYA85AV19",
+    "unit": "each",
+    "cost": 1296
+  },
+  {
+    "id": "dk4",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 Premium Ducted RC ODU",
+    "code": "RZAS85C2V1",
+    "unit": "each",
+    "cost": 2114
+  },
+  {
+    "id": "dk5",
+    "supplier": "Daikin",
+    "name": "10.0kW R32 Premium Ducted RC ODU",
+    "code": "RZAS100C2V1",
+    "unit": "each",
+    "cost": 2318
+  },
+  {
+    "id": "dk6",
+    "supplier": "Daikin",
+    "name": "10.0kW R32 Premium Ducted RC IDU",
+    "code": "FDYA100AV19",
+    "unit": "each",
+    "cost": 1444
+  },
+  {
+    "id": "dk7",
+    "supplier": "Daikin",
+    "name": "12.5kW R32 Premium Ducted RC IDU",
+    "code": "FDYA125AV19",
+    "unit": "each",
+    "cost": 1670
+  },
+  {
+    "id": "dk8",
+    "supplier": "Daikin",
+    "name": "12.5kW R32 Premium Ducted RC ODU",
+    "code": "RZAS125C2V1",
+    "unit": "each",
+    "cost": 2681
+  },
+  {
+    "id": "dk9",
+    "supplier": "Daikin",
+    "name": "14.0kW R32 Premium Ducted RC IDU",
+    "code": "FDYA140AV19",
+    "unit": "each",
+    "cost": 1874
+  },
+  {
+    "id": "dk10",
+    "supplier": "Daikin",
+    "name": "14.0kW R32 Premium Ducted RC ODU",
+    "code": "RZAS140C2V1",
+    "unit": "each",
+    "cost": 3006
+  },
+  {
+    "id": "dk11",
+    "supplier": "Daikin",
+    "name": "16.0kW R32 Premium Ducted RC ODU",
+    "code": "RZAS160C2V1",
+    "unit": "each",
+    "cost": 3306
+  },
+  {
+    "id": "dk12",
+    "supplier": "Daikin",
+    "name": "16.0kW R32 Premium Ducted RC IDU",
+    "code": "FDYA160AV19",
+    "unit": "each",
+    "cost": 2061
+  },
+  {
+    "id": "dk13",
+    "supplier": "Daikin",
+    "name": "18.0kW R32 Premium Ducted RC IDU",
+    "code": "FDYA180AV1",
+    "unit": "each",
+    "cost": 2106
+  },
+  {
+    "id": "dk14",
+    "supplier": "Daikin",
+    "name": "18.0kW R32 Premium Ducted RC ODU",
+    "code": "RZAS180DV1",
+    "unit": "each",
+    "cost": 3374
+  },
+  {
+    "id": "dk15",
+    "supplier": "Daikin",
+    "name": "18.0kW R32 Premium Ducted RC ODU 3P",
+    "code": "RZAS180DY1",
+    "unit": "each",
+    "cost": 3374
+  },
+  {
+    "id": "dk16",
+    "supplier": "Daikin",
+    "name": "20.0kW R32 Premium Ducted RC ODU 3P",
+    "code": "RZAS200DY1",
+    "unit": "each",
+    "cost": 3510
+  },
+  {
+    "id": "dk17",
+    "supplier": "Daikin",
+    "name": "20.0kW R32 Premium Ducted RC IDU",
+    "code": "FDYA200AV1",
+    "unit": "each",
+    "cost": 2262
+  },
+  {
+    "id": "dk18",
+    "supplier": "Daikin",
+    "name": "24.0kW R410A Premium Ducted RC IDU",
+    "code": "FDYQ250LCV1",
+    "unit": "each",
+    "cost": 2738
+  },
+  {
+    "id": "dk19",
+    "supplier": "Daikin",
+    "name": "24.0kW R410A Premium Ducted RC ODU 3P",
+    "code": "RZYQ10TY1",
+    "unit": "each",
+    "cost": 4469
+  },
+  {
+    "id": "dk20",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN50AV1",
+    "unit": "each",
+    "cost": 813
+  },
+  {
+    "id": "dk21",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Inverter Ducted RC ODU",
+    "code": "RZA50C2V1",
+    "unit": "each",
+    "cost": 1327
+  },
+  {
+    "id": "dk22",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Inverter Ducted RC ODU",
+    "code": "RZA60C2V1",
+    "unit": "each",
+    "cost": 1469
+  },
+  {
+    "id": "dk23",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN60AV1",
+    "unit": "each",
+    "cost": 900
+  },
+  {
+    "id": "dk24",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN71AV1",
+    "unit": "each",
+    "cost": 977
+  },
+  {
+    "id": "dk25",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Inverter Ducted RC ODU",
+    "code": "RZA71C2V1",
+    "unit": "each",
+    "cost": 1581
+  },
+  {
+    "id": "dk26",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN85AV1",
+    "unit": "each",
+    "cost": 1097
+  },
+  {
+    "id": "dk27",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 Inverter Ducted RC ODU",
+    "code": "RZA85C2V1",
+    "unit": "each",
+    "cost": 1787
+  },
+  {
+    "id": "dk28",
+    "supplier": "Daikin",
+    "name": "10.0kW R32 Inverter Ducted RC ODU",
+    "code": "RZA100C2V1",
+    "unit": "each",
+    "cost": 1928
+  },
+  {
+    "id": "dk29",
+    "supplier": "Daikin",
+    "name": "10.0kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN100AV1",
+    "unit": "each",
+    "cost": 1191
+  },
+  {
+    "id": "dk30",
+    "supplier": "Daikin",
+    "name": "12.5kW R32 Inverter Ducted RC ODU",
+    "code": "RZA125C2V1",
+    "unit": "each",
+    "cost": 2228
+  },
+  {
+    "id": "dk31",
+    "supplier": "Daikin",
+    "name": "12.5kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN125AV1",
+    "unit": "each",
+    "cost": 1376
+  },
+  {
+    "id": "dk32",
+    "supplier": "Daikin",
+    "name": "14.0kW R32 Inverter Ducted RC ODU",
+    "code": "RZA140C2V1",
+    "unit": "each",
+    "cost": 2553
+  },
+  {
+    "id": "dk33",
+    "supplier": "Daikin",
+    "name": "14.0kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN140AV1",
+    "unit": "each",
+    "cost": 1577
+  },
+  {
+    "id": "dk34",
+    "supplier": "Daikin",
+    "name": "15.5kW R32 Inverter Ducted RC IDU",
+    "code": "FDYAN160AV1",
+    "unit": "each",
+    "cost": 1742
+  },
+  {
+    "id": "dk35",
+    "supplier": "Daikin",
+    "name": "15.5kW R32 Inverter Ducted RC ODU",
+    "code": "RZA160C2V1",
+    "unit": "each",
+    "cost": 2820
+  },
+  {
+    "id": "dk36",
+    "supplier": "Daikin",
+    "name": "18.0kW R410A Inverter Ducted RC ODU 3P",
+    "code": "RZQ180M2Y1",
+    "unit": "each",
+    "cost": 2933
+  },
+  {
+    "id": "dk37",
+    "supplier": "Daikin",
+    "name": "18.0kW R410A Inverter Ducted RC IDU",
+    "code": "FDYQN180LCV1",
+    "unit": "each",
+    "cost": 1832
+  },
+  {
+    "id": "dk38",
+    "supplier": "Daikin",
+    "name": "19.5kW R410A Inverter Ducted RC IDU",
+    "code": "FDYQN200LCV1",
+    "unit": "each",
+    "cost": 1967
+  },
+  {
+    "id": "dk39",
+    "supplier": "Daikin",
+    "name": "19.5kW R410A Inverter Ducted RC ODU 3P",
+    "code": "RZQ200MY1",
+    "unit": "each",
+    "cost": 3053
+  },
+  {
+    "id": "dk40",
+    "supplier": "Daikin",
+    "name": "23.5kW R410A Inverter Ducted RC ODU 3P",
+    "code": "RZQ250LY1",
+    "unit": "each",
+    "cost": 3731
+  },
+  {
+    "id": "dk41",
+    "supplier": "Daikin",
+    "name": "23.5kW R410A Inverter Ducted RC IDU",
+    "code": "FDYQN250LBV1",
+    "unit": "each",
+    "cost": 2403
+  },
+  {
+    "id": "dk42",
+    "supplier": "Daikin",
+    "name": "Wired Controller",
+    "code": "BRC1E63",
+    "unit": "each",
+    "cost": 111
+  },
+  {
+    "id": "dk43",
+    "supplier": "Daikin",
+    "name": "2.0kW R32 Cora RC IDU",
+    "code": "FTXV20WVMA",
+    "unit": "each",
+    "cost": 223
+  },
+  {
+    "id": "dk44",
+    "supplier": "Daikin",
+    "name": "2.0kW R32 Cora RC ODU",
+    "code": "RXV20WVMA",
+    "unit": "each",
+    "cost": 516
+  },
+  {
+    "id": "dk45",
+    "supplier": "Daikin",
+    "name": "2.5kW R32 Cora RC IDU",
+    "code": "FTXV25WVMA",
+    "unit": "each",
+    "cost": 235
+  },
+  {
+    "id": "dk46",
+    "supplier": "Daikin",
+    "name": "2.5kW R32 Cora RC ODU",
+    "code": "RXV25WVMA",
+    "unit": "each",
+    "cost": 548
+  },
+  {
+    "id": "dk47",
+    "supplier": "Daikin",
+    "name": "3.5kW R32 Cora RC IDU",
+    "code": "FTXV35WVMA",
+    "unit": "each",
+    "cost": 284
+  },
+  {
+    "id": "dk48",
+    "supplier": "Daikin",
+    "name": "3.5kW R32 Cora RC ODU",
+    "code": "RXV35WVMA",
+    "unit": "each",
+    "cost": 663
+  },
+  {
+    "id": "dk49",
+    "supplier": "Daikin",
+    "name": "4.6kW R32 Cora RC IDU",
+    "code": "FTXV46WVMA",
+    "unit": "each",
+    "cost": 367
+  },
+  {
+    "id": "dk50",
+    "supplier": "Daikin",
+    "name": "4.6kW R32 Cora RC ODU",
+    "code": "RXV46WVMA",
+    "unit": "each",
+    "cost": 857
+  },
+  {
+    "id": "dk51",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Cora RC IDU",
+    "code": "FTXV50WVMA",
+    "unit": "each",
+    "cost": 390
+  },
+  {
+    "id": "dk52",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Cora RC ODU",
+    "code": "RXV50WVMA",
+    "unit": "each",
+    "cost": 908
+  },
+  {
+    "id": "dk53",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Cora RC IDU",
+    "code": "FTXV60WVMA",
+    "unit": "each",
+    "cost": 436
+  },
+  {
+    "id": "dk54",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Cora RC ODU",
+    "code": "RXV60WVMA",
+    "unit": "each",
+    "cost": 1018
+  },
+  {
+    "id": "dk55",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Cora RC IDU",
+    "code": "FTXV71WVMA",
+    "unit": "each",
+    "cost": 486
+  },
+  {
+    "id": "dk56",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Cora RC ODU",
+    "code": "RXV71WVMA",
+    "unit": "each",
+    "cost": 1134
+  },
+  {
+    "id": "dk57",
+    "supplier": "Daikin",
+    "name": "8.0kW R32 XL RC ODU - Standard",
+    "code": "RXV80WVMA",
+    "unit": "each",
+    "cost": 1408
+  },
+  {
+    "id": "dk58",
+    "supplier": "Daikin",
+    "name": "8.0kW R32 XL RC IDU - Standard",
+    "code": "FTXV80WVMA",
+    "unit": "each",
+    "cost": 604
+  },
+  {
+    "id": "dk59",
+    "supplier": "Daikin",
+    "name": "9.0kW R32 XL RC IDU - Standard",
+    "code": "FTXV90WVMA",
+    "unit": "each",
+    "cost": 709
+  },
+  {
+    "id": "dk60",
+    "supplier": "Daikin",
+    "name": "9.0kW R32 XL RC ODU - Standard",
+    "code": "RXV90WVMA",
+    "unit": "each",
+    "cost": 1655
+  },
+  {
+    "id": "dk61",
+    "supplier": "Daikin",
+    "name": "2.2kW R32 Alira X RC IDU",
+    "code": "FTXM20YVMA",
+    "unit": "each",
+    "cost": 242
+  },
+  {
+    "id": "dk62",
+    "supplier": "Daikin",
+    "name": "2.2kW R32 Alira X RC ODU",
+    "code": "RXM20YVMA",
+    "unit": "each",
+    "cost": 566
+  },
+  {
+    "id": "dk63",
+    "supplier": "Daikin",
+    "name": "2.5kW R32 Alira X RC IDU",
+    "code": "FTXM25YVMA",
+    "unit": "each",
+    "cost": 257
+  },
+  {
+    "id": "dk64",
+    "supplier": "Daikin",
+    "name": "2.5kW R32 Alira X RC ODU",
+    "code": "RXM25YVMA",
+    "unit": "each",
+    "cost": 599
+  },
+  {
+    "id": "dk65",
+    "supplier": "Daikin",
+    "name": "3.5kW R32 Alira X RC ODU",
+    "code": "RXM35YVMA",
+    "unit": "each",
+    "cost": 726
+  },
+  {
+    "id": "dk66",
+    "supplier": "Daikin",
+    "name": "3.5kW R32 Alira X RC IDU",
+    "code": "FTXM35YVMA",
+    "unit": "each",
+    "cost": 312
+  },
+  {
+    "id": "dk67",
+    "supplier": "Daikin",
+    "name": "4.6kW R32 Alira X RC IDU",
+    "code": "FTXM46WVMA",
+    "unit": "each",
+    "cost": 404
+  },
+  {
+    "id": "dk68",
+    "supplier": "Daikin",
+    "name": "4.6kW R32 Alira X RC ODU",
+    "code": "RXM46WVMA",
+    "unit": "each",
+    "cost": 938
+  },
+  {
+    "id": "dk69",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Alira X RC ODU",
+    "code": "RXM50WVMA",
+    "unit": "each",
+    "cost": 995
+  },
+  {
+    "id": "dk70",
+    "supplier": "Daikin",
+    "name": "5.0kW R32 Alira X RC IDU",
+    "code": "FTXM50WVMA",
+    "unit": "each",
+    "cost": 427
+  },
+  {
+    "id": "dk71",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Alira X RC IDU",
+    "code": "FTXM60WVMA",
+    "unit": "each",
+    "cost": 478
+  },
+  {
+    "id": "dk72",
+    "supplier": "Daikin",
+    "name": "6.0kW R32 Alira X RC ODU",
+    "code": "RXM60WVMA",
+    "unit": "each",
+    "cost": 1115
+  },
+  {
+    "id": "dk73",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Alira X RC ODU",
+    "code": "RXM71WVMA",
+    "unit": "each",
+    "cost": 1242
+  },
+  {
+    "id": "dk74",
+    "supplier": "Daikin",
+    "name": "7.1kW R32 Alira X RC IDU",
+    "code": "FTXM71WVMA",
+    "unit": "each",
+    "cost": 533
+  },
+  {
+    "id": "dk75",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 XL Premium RC IDU",
+    "code": "FTXM85WVMA",
+    "unit": "each",
+    "cost": 689
+  },
+  {
+    "id": "dk76",
+    "supplier": "Daikin",
+    "name": "8.5kW R32 XL Premium RC ODU",
+    "code": "RXM85WVMA",
+    "unit": "each",
+    "cost": 1603
+  },
+  {
+    "id": "dk77",
+    "supplier": "Daikin",
+    "name": "9.5kW R32 XL Premium RC IDU",
+    "code": "FTXM95WVMA",
+    "unit": "each",
+    "cost": 810
+  },
+  {
+    "id": "dk78",
+    "supplier": "Daikin",
+    "name": "9.5kW R32 XL Premium RC ODU",
+    "code": "RXM95WVMA",
+    "unit": "each",
+    "cost": 1885
+  }
+]; // seeded Daikin catalog (Ducted + Split, With Accessories pricing)
+let savedQuotes = []; // full quote snapshots
+
+let currentQuote = {
+  client: '', job: '', clientType: '',
+  labourLines: [], // {id, type, hours, rate}
+  materialLines: [] // {id, catalogId, name, unit, qty, unitCost, markup}
+};
+
+let uidCounter = 1;
+function uid(){ return 'id' + (uidCounter++) + '_' + Date.now(); }
+
+// ---------- PERSISTENCE ----------
+function saveState(){
+  localStorage.setItem('vc_quoting_rates', JSON.stringify(rates));
+  localStorage.setItem('vc_quoting_markup', JSON.stringify(globalMarkup));
+  localStorage.setItem('vc_quoting_catalog', JSON.stringify(catalog));
+  localStorage.setItem('vc_quoting_saved', JSON.stringify(savedQuotes));
+}
+
+function loadState(){
+  const r = localStorage.getItem('vc_quoting_rates');
+  const m = localStorage.getItem('vc_quoting_markup');
+  const c = localStorage.getItem('vc_quoting_catalog');
+  const s = localStorage.getItem('vc_quoting_saved');
+  if(r) rates = JSON.parse(r);
+  if(m) globalMarkup = JSON.parse(m);
+  if(c) catalog = JSON.parse(c);
+  if(s) savedQuotes = JSON.parse(s);
+}
+
+// ---------- TABS ----------
+function showTab(name){
+  document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav .tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  const idx = ['setup','catalog','quote','saved'].indexOf(name);
+  document.querySelectorAll('nav .tab')[idx].classList.add('active');
+  if(name === 'saved') renderSavedQuotes();
+}
+
+// ---------- RATES SETUP ----------
+function renderRatesTable(){
+  const body = document.getElementById('ratesTableBody');
+  body.innerHTML = '';
+  ['tradesman','apprentice'].forEach(type => {
+    const r = rates[type];
+    const label = type === 'tradesman' ? 'Tradesman' : 'Apprentice';
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><strong>' + label + '</strong></td>' +
+      '<td><input type="number" step="0.5" class="data-input" value="' + r.costRate + '" onblur="updateRate(\'' + type + '\',\'costRate\',this.value)"></td>' +
+      '<td><input type="number" step="0.5" class="data-input" value="' + r.overhead + '" onblur="updateRate(\'' + type + '\',\'overhead\',this.value)"></td>' +
+      '<td><input type="number" step="0.5" class="data-input" value="' + r.builder + '" onblur="updateRate(\'' + type + '\',\'builder\',this.value)"></td>' +
+      '<td><input type="number" step="0.5" class="data-input" value="' + r.private + '" onblur="updateRate(\'' + type + '\',\'private\',this.value)"></td>' +
+      '<td><input type="number" step="0.5" class="data-input" value="' + r.realestate + '" onblur="updateRate(\'' + type + '\',\'realestate\',this.value)"></td>';
+    body.appendChild(tr);
+  });
+}
+
+function updateRate(type, field, value){
+  const num = parseFloat(value);
+  rates[type][field] = isNaN(num) ? 0 : num;
+  saveState();
+}
+
+function updateGlobalMarkup(value){
+  const num = parseFloat(value);
+  globalMarkup = isNaN(num) ? 0 : num;
+  saveState();
+}
+
+// ---------- CATALOG ----------
+function addCatalogItem(){
+  const supplier = document.getElementById('mSupplier').value.trim();
+  const name = document.getElementById('mName').value.trim();
+  const code = document.getElementById('mCode').value.trim();
+  const unit = document.getElementById('mUnit').value.trim() || 'each';
+  const cost = parseFloat(document.getElementById('mCost').value) || 0;
+  if(!name){ alert('Enter an item name.'); return; }
+  catalog.push({ id: uid(), supplier, name, code, unit, cost });
+  document.getElementById('mSupplier').value = '';
+  document.getElementById('mName').value = '';
+  document.getElementById('mCode').value = '';
+  document.getElementById('mUnit').value = '';
+  document.getElementById('mCost').value = '';
+  saveState();
+  renderCatalog();
+}
+
+function bulkImportCatalog(){
+  const raw = document.getElementById('bulkImport').value.trim();
+  if(!raw) return;
+  const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  let added = 0;
+  lines.forEach(line => {
+    const parts = line.split(',').map(p => p.trim());
+    if(parts.length < 5) return;
+    const [supplier, name, code, unit, costRaw] = parts;
+    const cost = parseFloat(costRaw);
+    if(!name || isNaN(cost)) return;
+    catalog.push({ id: uid(), supplier, name, code, unit: unit || 'each', cost });
+    added++;
+  });
+  document.getElementById('bulkImport').value = '';
+  saveState();
+  renderCatalog();
+  alert(added + ' item(s) imported.');
+}
+
+function deleteCatalogItem(id){
+  catalog = catalog.filter(c => c.id !== id);
+  saveState();
+  renderCatalog();
+}
+
+function renderCatalog(){
+  const body = document.getElementById('catalogTableBody');
+  const search = (document.getElementById('catalogSearch').value || '').toLowerCase();
+  const filtered = catalog.filter(c =>
+    c.name.toLowerCase().includes(search) ||
+    (c.code || '').toLowerCase().includes(search) ||
+    (c.supplier || '').toLowerCase().includes(search)
+  );
+  body.innerHTML = '';
+  filtered.forEach(c => {
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + escapeHtml(c.supplier) + '</td>' +
+      '<td>' + escapeHtml(c.name) + '</td>' +
+      '<td>' + escapeHtml(c.code) + '</td>' +
+      '<td>' + escapeHtml(c.unit) + '</td>' +
+      '<td style="text-align:right">$' + c.cost.toFixed(2) + '</td>' +
+      '<td><button class="remove-x" onclick="deleteCatalogItem(\'' + c.id + '\')">&times;</button></td>';
+    body.appendChild(tr);
+  });
+  document.getElementById('catalogEmpty').style.display = catalog.length === 0 ? 'block' : 'none';
+}
+
+function escapeHtml(str){
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ---------- QUOTE: LABOUR ----------
+function applyClientTypeDefaults(){
+  currentQuote.clientType = document.getElementById('qClientType').value;
+  // sync rate on any line whose hours haven't been filled in yet
+  currentQuote.labourLines.forEach(l => {
+    if(l.hours === '' || l.hours == null){
+      if(currentQuote.clientType && currentQuote.clientType !== 'custom'){
+        l.rate = rates[l.type][currentQuote.clientType];
+      } else {
+        l.rate = rates[l.type].builder;
+      }
+    }
+  });
+  saveState();
+  renderQuote();
+}
+
+function normalizeLabourLines(){
+  // older saved data may have literal 0 instead of blank for un-entered hours/rate
+  currentQuote.labourLines.forEach(l => {
+    if(l.hours === 0) l.hours = '';
+    if(l.rate === 0) l.rate = '';
+  });
+  // remove any leftover auto-added apprentice line with no hours entered
+  currentQuote.labourLines = currentQuote.labourLines.filter(l => !(l.type === 'apprentice' && (l.hours === '' || l.hours == null)));
+}
+
+function ensureApprenticeLine(){
+  if(currentQuote.labourLines.some(l => l.type === 'apprentice')) return;
+  let rate = '';
+  if(currentQuote.clientType && currentQuote.clientType !== 'custom'){
+    rate = rates.apprentice[currentQuote.clientType];
+  }
+  currentQuote.labourLines.push({ id: uid(), type: 'apprentice', hours: '', rate });
+}
+
+function addLabourLine(){
+  const type = document.getElementById('newLabourType').value;
+  const hours = parseFloat(document.getElementById('newLabourHours').value);
+  if(!hours || hours <= 0){ alert('Enter hours for this labour line.'); return; }
+  const clientType = currentQuote.clientType;
+  let rate;
+  if(clientType && clientType !== 'custom'){
+    rate = rates[type][clientType];
+  } else {
+    rate = rates[type].builder; // sensible default from the rates setup, fully editable per line
+  }
+  currentQuote.labourLines.push({ id: uid(), type, hours, rate });
+  document.getElementById('newLabourHours').value = '';
+  renderQuote();
+}
+
+function updateLabourLine(id, field, value){
+  const line = currentQuote.labourLines.find(l => l.id === id);
+  if(!line) return;
+  line[field] = (value === '') ? '' : (parseFloat(value) || 0);
+  renderQuote();
+}
+
+function removeLabourLine(id){
+  currentQuote.labourLines = currentQuote.labourLines.filter(l => l.id !== id);
+  renderQuote();
+}
+
+// ---------- QUOTE: MATERIALS ----------
+function renderMatSearchResults(){
+  const search = (document.getElementById('quoteMatSearch').value || '').trim().toLowerCase();
+  const container = document.getElementById('matSearchResults');
+  if(!search){ container.innerHTML = ''; return; }
+  const matches = catalog.filter(c =>
+    c.name.toLowerCase().includes(search) ||
+    (c.code || '').toLowerCase().includes(search) ||
+    (c.supplier || '').toLowerCase().includes(search)
+  ).slice(0, 8);
+  if(matches.length === 0){
+    container.innerHTML = '<div class="empty-state">No matches in catalog.</div>';
+    return;
+  }
+  let html = '<table><tbody>';
+  matches.forEach(c => {
+    html += '<tr>' +
+      '<td>' + escapeHtml(c.name) + ' <span style="color:#999;font-size:12px;">(' + escapeHtml(c.supplier) + ' · $' + c.cost.toFixed(2) + '/' + escapeHtml(c.unit) + ')</span></td>' +
+      '<td style="width:90px;"><input type="number" step="1" min="1" value="1" id="qty_' + c.id + '" style="text-align:right"></td>' +
+      '<td style="width:110px;"><button class="btn-outline btn-sm" style="width:100%" onclick="addMaterialLine(\'' + c.id + '\')">Add</button></td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+function addMaterialLine(catalogId){
+  const item = catalog.find(c => c.id === catalogId);
+  if(!item) return;
+  const qtyInput = document.getElementById('qty_' + catalogId);
+  const qty = qtyInput ? (parseFloat(qtyInput.value) || 1) : 1;
+  currentQuote.materialLines.push({
+    id: uid(), catalogId: item.id, name: item.name, unit: item.unit,
+    qty, unitCost: item.cost, markup: globalMarkup
+  });
+  document.getElementById('quoteMatSearch').value = '';
+  document.getElementById('matSearchResults').innerHTML = '';
+  renderQuote();
+}
+
+function updateMaterialLine(id, field, value){
+  const line = currentQuote.materialLines.find(l => l.id === id);
+  if(!line) return;
+  line[field] = parseFloat(value) || 0;
+  renderQuote();
+}
+
+function removeMaterialLine(id){
+  currentQuote.materialLines = currentQuote.materialLines.filter(l => l.id !== id);
+  renderQuote();
+}
+
+// ---------- QUOTE: RENDER + CALC ----------
+function renderQuote(){
+  currentQuote.client = document.getElementById('qClient').value;
+  currentQuote.job = document.getElementById('qJob').value;
+
+  // Labour table
+  const lbody = document.getElementById('labourTableBody');
+  lbody.innerHTML = '';
+  let laborRevenue = 0, laborCost = 0, laborOverhead = 0, totalHours = 0;
+  currentQuote.labourLines.forEach(l => {
+    const label = l.type === 'tradesman' ? 'Tradesman' : 'Apprentice';
+    const hoursNum = (l.hours === '' || l.hours == null) ? 0 : parseFloat(l.hours);
+    const rateNum = (l.rate === '' || l.rate == null) ? 0 : parseFloat(l.rate);
+    const lineSell = hoursNum * rateNum;
+    laborRevenue += lineSell;
+    laborCost += hoursNum * rates[l.type].costRate;
+    laborOverhead += hoursNum * rates[l.type].overhead;
+    totalHours += hoursNum;
+    const hoursVal = (l.hours === '' || l.hours == null) ? '' : l.hours;
+    const rateVal = (l.rate === '' || l.rate == null) ? '' : l.rate;
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + label + '</td>' +
+      '<td style="text-align:right"><input type="number" step="0.25" class="editable" style="text-align:right" value="' + hoursVal + '" onblur="updateLabourLine(\'' + l.id + '\',\'hours\',this.value)"></td>' +
+      '<td style="text-align:right"><input type="number" step="1" class="editable" style="text-align:right" value="' + rateVal + '" onblur="updateLabourLine(\'' + l.id + '\',\'rate\',this.value)"></td>' +
+      '<td style="text-align:right">$' + lineSell.toFixed(2) + '</td>' +
+      '<td class="no-print"><button class="remove-x" onclick="removeLabourLine(\'' + l.id + '\')">&times;</button></td>';
+    lbody.appendChild(tr);
+  });
+  document.getElementById('labourEmpty').style.display = currentQuote.labourLines.length === 0 ? 'block' : 'none';
+
+  // Material table
+  const mbody = document.getElementById('materialTableBody');
+  mbody.innerHTML = '';
+  let materialRevenue = 0, materialCost = 0;
+  currentQuote.materialLines.forEach(l => {
+    const lineCost = l.qty * l.unitCost;
+    const lineSell = lineCost * (1 + (l.markup / 100));
+    materialRevenue += lineSell;
+    materialCost += lineCost;
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + escapeHtml(l.name) + '</td>' +
+      '<td style="text-align:right"><input type="number" step="1" class="editable" style="text-align:right" value="' + l.qty + '" onblur="updateMaterialLine(\'' + l.id + '\',\'qty\',this.value)"></td>' +
+      '<td style="text-align:right">$' + l.unitCost.toFixed(2) + '</td>' +
+      '<td style="text-align:right"><input type="number" step="1" class="editable" style="text-align:right" value="' + l.markup + '" onblur="updateMaterialLine(\'' + l.id + '\',\'markup\',this.value)"></td>' +
+      '<td style="text-align:right">$' + lineSell.toFixed(2) + '</td>' +
+      '<td class="no-print"><button class="remove-x" onclick="removeMaterialLine(\'' + l.id + '\')">&times;</button></td>';
+    mbody.appendChild(tr);
+  });
+  document.getElementById('materialEmpty').style.display = currentQuote.materialLines.length === 0 ? 'block' : 'none';
+
+  // Summary
+  const sellPrice = laborRevenue + materialRevenue;
+  const totalCost = laborCost + materialCost;
+  const grossProfit = sellPrice - totalCost;
+  const netProfit = grossProfit - laborOverhead;
+  const gpPct = sellPrice > 0 ? (grossProfit / sellPrice * 100) : 0;
+  const npPct = sellPrice > 0 ? (netProfit / sellPrice * 100) : 0;
+
+  document.getElementById('sumSell').textContent = '$' + sellPrice.toFixed(2);
+  document.getElementById('sumHours').textContent = totalHours;
+  document.getElementById('sumGP').textContent = '$' + grossProfit.toFixed(2);
+  document.getElementById('sumGPpct').textContent = gpPct.toFixed(1) + '% margin';
+  document.getElementById('sumNP').textContent = '$' + netProfit.toFixed(2);
+  document.getElementById('sumNPpct').textContent = npPct.toFixed(1) + '% margin';
+  document.getElementById('sumCost').textContent = '$' + totalCost.toFixed(2);
+
+  saveState();
+}
+
+function newQuote(){
+  if(!confirm('Start a new blank quote? Unsaved changes will be lost.')) return;
+  currentQuote = { client: '', job: '', clientType: '', labourLines: [], materialLines: [] };
+  document.getElementById('qClient').value = '';
+  document.getElementById('qJob').value = '';
+  document.getElementById('qClientType').value = '';
+  renderQuote();
+}
+
+// ---------- SAVED QUOTES ----------
+function saveCurrentQuote(){
+  if(!currentQuote.client && !currentQuote.job){
+    alert('Add a client name or job before saving.');
+    return;
+  }
+  const snapshot = JSON.parse(JSON.stringify(currentQuote));
+  snapshot.savedId = uid();
+  snapshot.savedAt = new Date().toLocaleString();
+  savedQuotes.unshift(snapshot);
+  saveState();
+  alert('Quote saved.');
+  renderSavedQuotes();
+}
+
+function loadSavedQuote(savedId){
+  const q = savedQuotes.find(s => s.savedId === savedId);
+  if(!q) return;
+  currentQuote = JSON.parse(JSON.stringify(q));
+  normalizeLabourLines();
+  document.getElementById('qClient').value = currentQuote.client;
+  document.getElementById('qJob').value = currentQuote.job;
+  document.getElementById('qClientType').value = currentQuote.clientType;
+  showTab('quote');
+  renderQuote();
+}
+
+function deleteSavedQuote(savedId){
+  if(!confirm('Delete this saved quote?')) return;
+  savedQuotes = savedQuotes.filter(s => s.savedId !== savedId);
+  saveState();
+  renderSavedQuotes();
+}
+
+function renderSavedQuotes(){
+  const list = document.getElementById('savedQuotesList');
+  list.innerHTML = '';
+  savedQuotes.forEach(q => {
+    const sell = calcQuoteSell(q);
+    const row = document.createElement('div');
+    row.className = 'saved-quote-row';
+    row.innerHTML =
+      '<div>' +
+        '<strong>' + escapeHtml(q.client || 'Unnamed client') + '</strong> — ' + escapeHtml(q.job || 'No job name') +
+        '<div class="meta">Saved ' + q.savedAt + ' · Sell $' + sell.toFixed(2) + ' · <span class="pill ' + q.clientType + '">' + q.clientType + '</span></div>' +
+      '</div>' +
+      '<div>' +
+        '<button class="btn-outline btn-sm" onclick="loadSavedQuote(\'' + q.savedId + '\')">Load</button> ' +
+        '<button class="btn-danger btn-sm" onclick="deleteSavedQuote(\'' + q.savedId + '\')">Delete</button>' +
+      '</div>';
+    list.appendChild(row);
+  });
+  document.getElementById('savedEmpty').style.display = savedQuotes.length === 0 ? 'block' : 'none';
+}
+
+function calcQuoteSell(q){
+  let laborRevenue = 0, materialRevenue = 0;
+  q.labourLines.forEach(l => {
+    const h = (l.hours === '' || l.hours == null) ? 0 : parseFloat(l.hours);
+    const r = (l.rate === '' || l.rate == null) ? 0 : parseFloat(l.rate);
+    laborRevenue += h * r;
+  });
+  q.materialLines.forEach(l => materialRevenue += (l.qty * l.unitCost) * (1 + (l.markup / 100)));
+  return laborRevenue + materialRevenue;
+}
+
+// ---------- EXPORT / IMPORT ----------
+function exportData(){
+  const data = { rates, globalMarkup, catalog, savedQuotes, currentQuote };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'vincere_quoting_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const data = JSON.parse(e.target.result);
+      if(data.rates) rates = data.rates;
+      if(data.globalMarkup !== undefined) globalMarkup = data.globalMarkup;
+      if(data.catalog) catalog = data.catalog;
+      if(data.savedQuotes) savedQuotes = data.savedQuotes;
+      if(data.currentQuote) currentQuote = data.currentQuote;
+      saveState();
+      initUI();
+      alert('Backup imported successfully.');
+    } catch(err){
+      alert('Could not read that file. Make sure it is a valid backup JSON.');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function printQuote(){
+  document.getElementById('panel-quote').classList.add('print-active');
+  window.print();
+  setTimeout(() => document.getElementById('panel-quote').classList.remove('print-active'), 500);
+}
+
+// ---------- INIT ----------
+function initUI(){
+  document.getElementById('globalMarkup').value = globalMarkup;
+  document.getElementById('qClient').value = currentQuote.client;
+  document.getElementById('qJob').value = currentQuote.job;
+  document.getElementById('qClientType').value = currentQuote.clientType;
+  normalizeLabourLines();
+  renderRatesTable();
+  renderCatalog();
+  renderQuote();
+  renderSavedQuotes();
+}
+
+loadState();
+initUI();
+</script>
+
+</body>
+</html>
