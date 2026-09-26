@@ -1,48 +1,60 @@
-# Electrical Quote — AI Customisation Prompt
+# Prompt 1 — Business Setup
 
-## How to use this
+Run this once to build your branded quote template. You'll use the output as your base template for every future quote.
 
-1. Open the template file and copy all the HTML code inside the code block
+---
+
+## Instructions
+
+1. Copy the prompt below and fill in your website URL
 2. Open [claude.ai](https://claude.ai)
-3. Copy the prompt below, fill in your details, then paste the HTML at the bottom
-4. Hit send — Claude will rebuild the entire page for your business
-5. Copy the output, save it as `quote.html`, open it in your browser
+3. Paste the prompt, then paste the full HTML template code underneath it
+4. Claude will rebuild the template using your real business data
+5. Save the output as `my-quote-template.html` — this is your branded base for all future quotes
 
 ---
 
 ## The Prompt
 
 ```
-I have an electrical quote template in HTML. I need you to customise it for my business.
+I have an electrical quote template in HTML. I need you to set it up for my business by pulling real data from my website.
 
 My website: [PASTE YOUR WEBSITE URL HERE]
 
-Please visit my website and extract:
-- My business name
-- Phone number
-- Suburb and state
-- Brand colours (hex codes if visible, otherwise choose something professional that suits my brand)
-- Any tagline or slogan
+Please visit my website and extract the following, then apply it to the HTML template:
 
-Then update the HTML template with the following changes:
+BUSINESS DETAILS
+- Business name (replace every instance of "Journey Electrical" throughout the file)
+- Phone number (replace all instances)
+- Suburb and state (replace all location references)
+- Any tagline or slogan (update the hero headline)
 
-1. Replace every reference to "Journey Electrical" with my business name throughout the entire file
-2. Update all phone numbers and location details wherever they appear
-3. Update the CSS colour variables at the top of the code to match my brand colours
-4. Replace the scope of works with these line items:
+BRANDING
+- Primary brand colour — find the hex code from the website CSS or visuals. If you can't extract it exactly, choose the closest match. Update all CSS colour variables at the top of the file.
+- Secondary colours if present
+- Any logo URL found on the site — embed it or reference it in the topbar
 
-   1. [Describe the work] — $[price]
-   2. [Describe the work] — $[price]
-   3. [Describe the work] — $[price]
+PHOTOS
+- Find 3 to 5 real images from the website (job site photos, team photos, work examples)
+- Use these image URLs to replace the placeholder images in the gallery and hero sections of the template
 
-5. Update the total to match
-6. Client name: [client name, or leave as "Your Client"]
-7. Client address: [client address, or leave blank]
-8. Quote number: [e.g. QU-0042, or leave as is]
+REVIEWS
+- Find 3 to 5 real customer reviews or testimonials from the website
+- Replace the placeholder testimonials in the reviews section with these real ones, including the reviewer name if available
 
-Output the complete HTML. I will save it as quote.html and open it in my browser.
+SCOPE OF WORKS
+- Clear the existing line items and replace with placeholder rows:
+  - [Work description] — $[price]
+  - [Work description] — $[price]
+  - [Work description] — $[price]
+- Set the total to $0.00 as a placeholder
+- Client name: [Client Name]
+- Client address: [Client Address]
+- Quote number: QU-0001
 
----
+The output should be a complete, self-contained HTML file I can save and use as my base template. I will fill in the actual scope and client details separately for each job.
+
+Here is the template:
 
 [PASTE THE HTML TEMPLATE CODE HERE]
 ```
@@ -51,6 +63,6 @@ Output the complete HTML. I will save it as quote.html and open it in my browser
 
 ## Tips
 
-- Claude Pro (paid) can browse your website automatically — free accounts work too but you may need to type your details in manually
-- After the first output, you can ask Claude to make changes: "update the headline", "add another line item", "make the button red"
-- Save each version as you go — you can use the same template for every job, just swap the client details and scope
+- Claude Pro can browse websites directly. Free Claude works too — if it can't access your site, paste your phone number, suburb, brand colour and a few review quotes manually in the prompt
+- If your photos aren't publicly accessible, describe what imagery you want and Claude will source relevant placeholder images instead
+- Once you have your branded base template, use **Prompt 2** for each new job
