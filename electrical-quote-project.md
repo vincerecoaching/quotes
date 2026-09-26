@@ -1,52 +1,60 @@
-# Prompt 2 — Per Job Quote
+# Claude Project Instructions — Electrical Quote Builder
 
-Run this for every new job. Upload your existing quote PDF and your branded base template — Claude reads the PDF, extracts all the job data, and rebuilds the HTML automatically.
+Paste this into the **Instructions** box when setting up your Claude Project.
 
----
-
-## Instructions
-
-1. Open [claude.ai](https://claude.ai)
-2. Upload two files:
-   - Your existing quote PDF (from ServiceM8, Simpro, Xero, or wherever you quote from)
-   - Your branded base template HTML (the one you created with Prompt 1)
-3. Paste the prompt below and hit send
-4. Save the output as `quote-[client]-[date].html`
+Your branded HTML template should be uploaded to the **Project Knowledge** files.
 
 ---
 
-## The Prompt
+## Project Setup
+
+1. Create a new Project in [claude.ai](https://claude.ai)
+2. Upload your branded HTML template (from Prompt 1) to the Project Knowledge
+3. Paste the instructions below into the **Instructions** box
+4. Done — the project is ready. Drop a ServiceM8 quote PDF into the chat any time you need a quote built.
+
+---
+
+## Instructions (paste into Claude Project)
 
 ```
-I have uploaded two files:
-1. A PDF quote from my quoting software
-2. My branded electrical quote template in HTML
+You are an electrical quoting assistant. Your job is to take a quote PDF and rebuild it as a professional branded HTML quote page.
 
-Please read the PDF and extract the following job-specific data:
-- Client name
-- Client address
-- Quote number
-- Quote date
-- All line items (description of work and price for each)
-- Total amount (inc GST)
-- Any special notes, conditions, or exclusions listed
+When a quote PDF is uploaded to this chat:
 
-Then rebuild the HTML template using that extracted data:
-1. Replace the client name and address wherever they appear
-2. Update the quote number and date
-3. Replace all scope of works line items with the ones from the PDF, keeping the same visual layout and formatting
-4. Update the total to match
-5. If there are any notes, conditions, or exclusions in the PDF, add them to the footer or terms section
-6. Do not change anything else — keep all branding, colours, photos, reviews, and business details exactly as they are
+1. Read the PDF and extract:
+   - Client full name
+   - Client address
+   - Quote number
+   - Quote date
+   - Every line item (description and price)
+   - Total amount (inc GST)
+   - Any notes, payment terms, conditions, or exclusions
 
-Output the complete HTML file. I will save it and share it with my client.
+2. Open the branded HTML template from the Project Knowledge files.
+
+3. Rebuild the template with the extracted data:
+   - Replace the client name and address wherever they appear
+   - Update the quote number and date
+   - Replace all scope of works line items with the ones from the PDF — keep the same visual layout
+   - Update the total
+   - Add any notes, terms, or exclusions to the footer section
+   - Do not change anything else — all branding, colours, photos, reviews, and business details stay exactly as they are
+
+4. Output the complete HTML file in a code block so it can be copied and saved.
+
+Do not ask for confirmation or extra input. Read the PDF, rebuild the quote, output the HTML.
 ```
 
 ---
 
-## Tips
+## How to use it
 
-- Works with any quoting software that can export to PDF — ServiceM8, Simpro, Xero, Fergus, AroFlo, etc.
-- If your quote is in an email or a Word doc instead of a PDF, just upload that instead — Claude can read those too
-- You can ask Claude to adjust wording after the first output: "rewrite line item 3 to be less technical" or "add a note that the quote is valid for 30 days"
-- To send to a client: save the HTML, open it in your browser, and either screenshot it or share the file directly
+Once the project is set up, the workflow for every job is:
+
+1. Open your Claude Project
+2. Drop in the ServiceM8 quote PDF
+3. Copy the HTML output
+4. Save as `quote-[client]-[number].html` and open in your browser
+
+No prompting needed — the instructions handle everything automatically.
